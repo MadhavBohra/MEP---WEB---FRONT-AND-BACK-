@@ -1,10 +1,8 @@
-import Image from "next/image";
-import type { ReactNode } from "react";
-import { StoreProvider } from "./StoreProvider";
-import { Nav } from "./components/Nav";
-
-import "./styles/globals.css";
-import styles from "./styles/layout.module.css";
+import { ReactNode } from "react";
+import { StoreProvider } from "./StoreProvider"; // Adjust the import path if necessary
+import Head from "next/head";
+import styles from "./styles/layout.module.css"; // Adjust the import path if necessary
+import UsernameCard from "./components/UsernameCard"; // Adjust the import path if necessary
 
 interface Props {
   readonly children: ReactNode;
@@ -13,71 +11,31 @@ interface Props {
 export default function RootLayout({ children }: Props) {
   return (
     <StoreProvider>
-      <html lang="en">
+      <Head>
+        <title>Dashboard Overview</title>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Lufga:wght@400&display=swap"
+          rel="stylesheet"
+        />
+      </Head>
+      <html>
         <body>
-          <section className={styles.container}>
-            <Nav />
+          <div className={styles.container}>
+            <main className={styles.main}>
+              <div className={styles.dashstart}>
+              <header className={styles.header}>
+                <h1 className={styles.headerTitle}>Dashboard Overview</h1>
+              </header>
+              <section className={styles.dashboard}>
+                <UsernameCard
+                  name="Manan Jain"
+                  message="Have a nice day and don’t forget to take care of your health!"
+                />
 
-            <header className={styles.header}>
-              <Image
-                src="/logo.svg"
-                className={styles.logo}
-                alt="logo"
-                width={100}
-                height={100}
-              />
-            </header>
-
-            <main className={styles.main}>{children}</main>
-
-            <footer className={styles.footer}>
-              <span>Learn </span>
-              <a
-                className={styles.link}
-                href="https://reactjs.org"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                React
-              </a>
-              <span>, </span>
-              <a
-                className={styles.link}
-                href="https://redux.js.org"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Redux
-              </a>
-              <span>, </span>
-              <a
-                className={styles.link}
-                href="https://redux-toolkit.js.org"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Redux Toolkit
-              </a>
-              <span>, </span>
-              <a
-                className={styles.link}
-                href="https://react-redux.js.org"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                React Redux
-              </a>
-              ,<span> and </span>
-              <a
-                className={styles.link}
-                href="https://reselect.js.org"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Reselect
-              </a>
-            </footer>
-          </section>
+              </section>
+              </div>
+            </main>
+          </div>
         </body>
       </html>
     </StoreProvider>
