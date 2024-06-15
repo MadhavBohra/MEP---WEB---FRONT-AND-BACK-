@@ -4,30 +4,35 @@
     align-items: center;
     background-color: #f4f4f4;
     padding: 20px;
-    margin: 20px;
-    margin-left:0;
+    margin:0;
     border-radius: 15px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     position: absolute;
-    width: 40vw;
-    height:172px;
-    top:80px;
-    left:0px
+    width: 10vw;
+    height:100px;
+    top:350px;
+    left:640px
   }
   
   .textContainer {
     max-width: 60%;
   }
   
-  .greeting {
+  .steps {
     font-family: 'Lufga', sans-serif;
-    font-weight: 400;
+    font-weight: 600;
     font-size: 22px;
     line-height: 28.71px;
     margin: 0;
   }
-  
+  .greeting {
+    font-family: 'Lufga', sans-serif;
+    font-weight: 200;
+    font-size: 22px;
+    line-height: 28.71px;
+    margin: 0;
+  }
   .username {
     font-weight: 700;
   }
@@ -52,12 +57,12 @@
   }
   
   .imageContainer {
-    max-width: 40%;
+    max-width: 90%;
   }
   
   .image {
-    max-width: 100%;
-    height: 400px;
-    border-radius: 8px;
+    max-width: 90%;
+    height: auto;
+    border-radius: 80px;
   }
   
