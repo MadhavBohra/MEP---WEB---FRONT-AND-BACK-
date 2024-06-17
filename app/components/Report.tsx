@@ -1,4 +1,6 @@
 // src/components/Report.js
+'use client';
+
 import React from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
 import styles from '../styles/Report.module.css';

@@ -1,26 +1,29 @@
 import React from 'react';
-import styles from '../styles/Header.module.css';
+import '../styles/Header.css'; // Import a CSS file for styling
 
 const Header: React.FC = () => {
   return (
-    <header className={styles.header}>
-      <div className={styles.logoContainer}>
-        <img src='/logo.png' alt="Logo" className={styles.logo} />
+    <header className="header">
+      <div className="logo">
+        <img src="/logo.png" alt="Logo" />
       </div>
-      <nav className={styles.nav}>
-        <ul className={styles.navList}>
-          <li className={styles.navItem}><a href="/home" className={styles.navLink}>Home</a></li>
-          <li className={styles.navItem}><a href="/aboutus" className={styles.navLink}>About Us</a></li>
-          <li className={styles.navItem}><a href="/blogs" className={styles.navLink}>Blogs</a></li>
-          <li className={styles.navItem}><a href="/contact" className={styles.navLink}>Contact</a></li>
-          <li className={styles.navItem}><a href="/faqs" className={styles.navLink}>FAQs</a></li>
-          <li className={styles.navItem}><a href="/search" className={styles.navLink}><img src='/search.png' alt="Search" className={styles.icon} /></a></li>
-        </ul>
+      <nav className="nav-links">
+        <a href="#home">Home</a>
+        <span>/</span>
+        <a href="#about-us">About Us</a>
+        <span>/</span>
+        <a href="#blogs">Blogs</a>
+        <span>/</span>
+        <a href="#contact">Contact</a>
+        <span>/</span>
+        <a href="#faqs">FAQs</a>
+        <span>/</span>
+        <img className="icon" src="/search.png" alt="Search" />
       </nav>
-      <div className={styles.iconsContainer}>
-        <a href="/notifications" className={styles.iconLink}><img src='/Bell.png' alt="Notifications" className={styles.icon} /></a>
-        <a href="/settings" className={styles.iconLink}><img src='/settings.png' alt="Settings" className={styles.iconLarge} /></a>
-        <a href="/profile" className={styles.iconLink}><img src='/avataricon.png' alt="Avatar" className={styles.icon} /></a>
+      <div className="icons">
+        <img className="bell" src="/bell.png" alt="Notifications" />
+        <img className="settings" src="/settings.png" alt="Settings" />
+        <img className="avatar" src="/avataricon.png" alt="User Avatar" />
       </div>
     </header>
   );

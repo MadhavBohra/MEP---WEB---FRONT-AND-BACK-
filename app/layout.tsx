@@ -35,7 +35,7 @@ export default function RootLayout({ children }: Props) {
         <body className={styles.background}>
           <div className={styles.container}>
             <main className={styles.main}>
-              <Header />
+             <div className={styles.headercomp}><Header /></div> 
               <div className={styles.dashstart}>
                 <header className={styles.header}>
                   <h1 className={styles.headerTitle}>Dashboard Overview</h1>

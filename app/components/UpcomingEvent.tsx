@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import styles from '../styles/UpcomingEvents.module.css';
 import bellIcon1 from '../public/bellIcon1.png'; 

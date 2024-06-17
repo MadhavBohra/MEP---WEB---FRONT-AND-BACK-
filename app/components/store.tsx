@@ -1,7 +1,13 @@
-import { createStore } from 'redux';
-import { Provider } from 'react-redux';
-import rootReducer from './reducers';
+// store.tsx
+import { configureStore } from '@reduxjs/toolkit';
+import userReducer from '../reducers/userReducers';
 
-const store = createStore(rootReducer);
+const store = configureStore({
+  reducer: {
+    user: userReducer,
+  },
+});
 
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
 export default store;

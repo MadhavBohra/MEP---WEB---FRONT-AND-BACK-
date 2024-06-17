@@ -1,3 +1,5 @@
+'use client';
+
 import styles from '../styles/Watertaken.module.css';
 
 interface WatertakenProps {
