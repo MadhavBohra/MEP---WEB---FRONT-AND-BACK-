@@ -1,16 +1,17 @@
 .card {
   display: flex;
   flex-direction: column;
-  background-color: #f4f4f4;
+  background-color: #BDCFC666;
   padding-left: 20px;
   border-radius: 15px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   height: 230px;
-  width: 70%;
+  padding-right: 2vw;
+  width: 12vw;
   position: absolute;
   top: 680px;
-  left:370px;
+  left:270px;
 }
 .heading{
   font-family: 'Lufga', sans-serif;
@@ -29,8 +30,8 @@
   font-weight: 400;
   font-size: 16px;
   color: #333;
-  margin-top: 10px; /* Adjust this value as needed to increase space */
-  margin-bottom: 10px; /* Additional margin for separation */
+  margin-top: 10px; 
+  margin-bottom: 10px; 
 }
 .cir{
   margin-right:10px;

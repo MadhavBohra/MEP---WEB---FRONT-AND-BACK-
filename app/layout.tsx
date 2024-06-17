@@ -1,4 +1,5 @@
-// src/pages/_app.js or src/layout/RootLayout.js
+'use client';
+
 import React, { ReactNode } from 'react';
 import { StoreProvider } from './StoreProvider';
 import Head from 'next/head';
@@ -7,7 +8,13 @@ import StepCounter from './components/StepCounter';
 import CalorieCounter from './components/CalorieCounter';
 import Watertaken from './components/Watertaken';
 import Report from './components/Report';
+import Reminder from './components/Reminders';
 import styles from './styles/Layout.module.css';
+import BarsDataset from './components/Chart';
+import ProfileCard from './components/ProfileCard';
+import Calendar from './components/DatePicker';
+import UpcomingEvents from './components/UpcomingEvent';
+import PostWorkoutSessionCard from './components/PostWorkout';
 
 interface Props {
   readonly children: ReactNode;
@@ -24,7 +31,7 @@ export default function RootLayout({ children }: Props) {
         />
       </Head>
       <html>
-        <body>
+        <body className={styles.background}>
           <div className={styles.container}>
             <main className={styles.main}>
               <div className={styles.dashstart}>
@@ -35,11 +42,18 @@ export default function RootLayout({ children }: Props) {
                   <UsernameCard
                     name="Manan Jain"
                     message="Have a nice day and don’t forget to take care of your health!"
-                  />
+                  /><div className={styles.profilecard}><ProfileCard Name='Manan Jain' Age='20' Address='BITS Goa' Blood_Group='B+' Height='170cm' Weight='70kg'/>
+                  </div>
+                  <div className={styles.datepicker}><Calendar/></div>         
+                  <div className={styles.graph}><BarsDataset /></div>
+                  <Reminder dur1="48 min" ex1="stretching" dur2="32 min" ex2="Mind training" />
+                  <div className={styles.upcomingevent}><UpcomingEvents /></div>
+                  <div className={styles.postWorkoutSessionCard}><PostWorkoutSessionCard/></div>
                   <Report weight="87" general="78" />
                   <StepCounter name="Steps Taken" steps="202" />
                   <CalorieCounter name="Calories Burned" calories="408" />
                   <Watertaken name="Water Taken" water="8" />
+                  <div className={styles.vl}></div>
                 </section>
               </div>
             </main>

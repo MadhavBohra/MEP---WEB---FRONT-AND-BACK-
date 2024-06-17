@@ -1,0 +1,52 @@
+.card {
+    background-color: #BDCFC666;
+    border-radius: 10px;
+    padding: 20px;
+    width: 20vw;
+    height: 20vh;
+    position:absolute;
+    bottom:-10vh;
+    left:0;
+    margin-bottom: 10px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  
+  .avatar {
+    margin-bottom: 10px;
+  }
+  
+  .name {
+    font-size: 1.5em;
+    margin: 10px 0;
+  }
+  
+  .ageLocation {
+    color: #666;
+    font-size: 1em;
+    margin-bottom: 20px;
+  }
+  
+  .info {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .infoItem {
+    font-size: 1em;
+    margin-right: 5px;
+  }
+  
+  .infoItem p:first-child {
+    font-weight: bold;
+  }
+  .vl {
+    border-left: 7px solid black;
+    border-radius: 2px;
+    height: 100vh;
+    position: absolute;
+    left: 50vw;
+    top: 0;
+  }
+  

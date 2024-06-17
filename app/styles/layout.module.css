@@ -1,4 +1,6 @@
+
 .container {
+  overflow:hidden;
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -13,11 +15,11 @@
 
 .dashstart {
   flex: 0 0 300px; 
-  background-color: #f4f4f4; 
+  background-color:transparent; 
   padding: 20px;
   position: absolute;
-  top:10vh;
-  left:5vw;
+  top: 10vh;
+  left: 5vw;
 }
 
 .header {
@@ -30,6 +32,51 @@
   margin: 0;
 }
 
+.graph {
+  position: absolute;
+  top: 30vh;
+  left: 0;
+}
+.profilecard{
+  position: absolute;
+  top: 20vh;
+  left: 60vw;
+}
+
 .dashboard {
   margin-top: 20px;
+  position: relative;
+}
+
+.vl {
+  border-left: 7px solid black;
+  border-radius: 2px;
+  height: 100vh;
+  position: absolute;
+  left: 50vw;
+  top: 0;
+}
+.background {
+  background-image: url('/Background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+}
+.datepicker{
+  position: absolute;
+  top: 32vh;
+  left: 60vw;
+}
+.upcomingevent{
+  position: absolute;
+  top:45vh;
+  left:60vw;
+}
+.postWorkoutSessionCard{
+  position: absolute;
+  top:60vh;
+  left:60vw;
 }

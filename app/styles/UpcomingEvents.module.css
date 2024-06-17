@@ -1,0 +1,61 @@
+.upcomingEvents {
+    font-family: Arial, sans-serif;
+    width: 20vw;
+    margin-top: 2px;
+  }
+  
+  .title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .eventsContainer {
+    display: flex;
+    flex-direction: column; /* Display events vertically */
+  }
+  
+  .event {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px; /* Add margin between events */
+  }
+  
+  .iconContainer {
+    margin-right: 10px;
+  }
+  
+  .bellIcon {
+    width: 24px;
+    height: 24px;
+    background-color: #7dbd7d; /* Example color for bell icon */
+    border-radius: 50%;
+  }
+  
+  .eventDetails {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .eventTitle {
+    font-size: 18px;
+    margin: 0;
+  }
+  
+  .eventDescription {
+    font-size: 14px;
+    color: #666;
+    margin: 5px 0;
+  }
+  
+  .eventTime {
+    font-size: 12px;
+    color: #999;
+  }
+  
+  .dueSoon {
+    font-size: 12px;
+    color: #f39c12;
+    margin-top: 5px;
+  }
+  
