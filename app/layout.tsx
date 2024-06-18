@@ -15,7 +15,7 @@ export default function RootLayout({ children }: Props) {
     <StoreProvider>
       <Router>
         <Routes>
-          <Route path="/" element={<UserEditForm/>} />
+          <Route path="/" element={<UserDashboard/>} />
           <Route path="/user-details" element={<UserEditForm />} />
         </Routes>
         {children}
