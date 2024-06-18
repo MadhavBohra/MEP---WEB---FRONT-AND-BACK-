@@ -1,7 +1,14 @@
 import React from 'react';
-import '../styles/Header.css'; // Import a CSS file for styling
+import { useNavigate } from 'react-router-dom';
+import '../styles/Header.css'; // Ensure this path is correct
 
-const Header: React.FC = () => {
+const Header = () => {
+  const navigate = useNavigate();
+
+  const handleAvatarClick = () => {
+    navigate('/user-details');
+  };
+
   return (
     <header className="header">
       <div className="logo">
@@ -23,7 +30,7 @@ const Header: React.FC = () => {
       <div className="icons">
         <img className="bell" src="/bell.png" alt="Notifications" />
         <img className="settings" src="/settings.png" alt="Settings" />
-        <img className="avatar" src="/avataricon.png" alt="User Avatar" />
+        <img className="avatar" src="/avataricon.png" alt="User Avatar" onClick={handleAvatarClick} />
       </div>
     </header>
   );
