@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Header.css'; // Ensure this path is correct
@@ -6,7 +8,7 @@ const Header = () => {
   const navigate = useNavigate();
 
   const handleAvatarClick = () => {
-    navigate('/user-details');
+    navigate('/user-details-edit');
   };
 
   return (

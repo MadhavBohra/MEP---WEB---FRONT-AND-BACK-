@@ -3,7 +3,9 @@
 import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateUserDetails } from '../actions/userActions';
-import '../styles/UserDetailsforms.css'; // Ensure this path is correct
+import { useNavigate } from 'react-router-dom';
+import '../styles/UserDetailsforms.css';
+import Header from './Header'
 
 interface FormData {
   username: string;
@@ -29,7 +31,7 @@ const UserDetailsForm: React.FC = () => {
     phone: ''
   });
 
-  const [avatar, setAvatar] = useState<string>('/avataricon.png'); // Default avatar image
+  const [avatar, setAvatar] = useState<string>('/avataricon.png'); 
 
   useEffect(() => {
     if (formData.profilePicture) {
@@ -67,79 +69,79 @@ const UserDetailsForm: React.FC = () => {
   };
 
   return (
-    <html>
-      <body>
-        <div>
-          <form onSubmit={handleSubmit} className="user-details-form">
-            <div className="profile-picture-container">
-              <img src={avatar} alt="User Avatar" className="avatar" />
-              <div className="greeting">
-                Hello, {formData.username || 'User'}!
+    <div>
+      <Header />
+
+      <div>
+        <form onSubmit={handleSubmit} className="user-details-form">
+          <div className="profile-picture-container">
+            <img src={avatar} alt="User Avatar" className="avatar" />
+            <div className="greeting">
+              Hello, {formData.username || 'User'}!
+            </div>
+          </div>
+          <div className="form-fields">
+            <div className="left-column">
+              <div className="form-group">
+                <label>
+                  Username:
+                  <input type="text" name="username" value={formData.username} onChange={handleChange} />
+                </label>
+              </div>
+              <div className="form-group">
+                <label>
+                  Profile Picture:
+                  <input type="file" onChange={handleFileChange} />
+                </label>
+              </div>
+              <div className="form-group">
+                <label>
+                  Blood Group:
+                  <select name="bloodGroup" value={formData.bloodGroup} onChange={handleChange}>
+                    <option value="">Select</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                  </select>
+                </label>
               </div>
             </div>
-            <div className="form-fields">
-              <div className="left-column">
-                <div className="form-group">
-                  <label>
-                    Username:
-                    <input type="text" name="username" value={formData.username} onChange={handleChange} />
-                  </label>
-                </div>
-                <div className="form-group">
-                  <label>
-                    Profile Picture:
-                    <input type="file" onChange={handleFileChange} />
-                  </label>
-                </div>
-                <div className="form-group">
-                  <label>
-                    Blood Group:
-                    <select name="bloodGroup" value={formData.bloodGroup} onChange={handleChange}>
-                      <option value="">Select</option>
-                      <option value="A+">A+</option>
-                      <option value="A-">A-</option>
-                      <option value="B+">B+</option>
-                      <option value="B-">B-</option>
-                      <option value="O+">O+</option>
-                      <option value="O-">O-</option>
-                      <option value="AB+">AB+</option>
-                      <option value="AB-">AB-</option>
-                    </select>
-                  </label>
-                </div>
+            <div className="right-column">
+              <div className="form-group">
+                <label>
+                  Height:
+                  <input type="text" name="height" value={formData.height} onChange={handleChange} />
+                </label>
               </div>
-              <div className="right-column">
-                <div className="form-group">
-                  <label>
-                    Height:
-                    <input type="text" name="height" value={formData.height} onChange={handleChange} />
-                  </label>
-                </div>
-                <div className="form-group">
-                  <label>
-                    Weight:
-                    <input type="text" name="weight" value={formData.weight} onChange={handleChange} />
-                  </label>
-                </div>
-                <div className="form-group">
-                  <label>
-                    Email:
-                    <input type="email" name="email" value={formData.email} onChange={handleChange} />
-                  </label>
-                </div>
-                <div className="form-group">
-                  <label>
-                    Phone Number:
-                    <input type="tel" name="phone" value={formData.phone} onChange={handleChange} />
-                  </label>
-                </div>
+              <div className="form-group">
+                <label>
+                  Weight:
+                  <input type="text" name="weight" value={formData.weight} onChange={handleChange} />
+                </label>
+              </div>
+              <div className="form-group">
+                <label>
+                  Email:
+                  <input type="email" name="email" value={formData.email} onChange={handleChange} />
+                </label>
+              </div>
+              <div className="form-group">
+                <label>
+                  Phone Number:
+                  <input type="tel" name="phone" value={formData.phone} onChange={handleChange} />
+                </label>
               </div>
             </div>
-            <button type="submit" className="save-button">Save</button>
-          </form>
-        </div>
-      </body>
-    </html>
+          </div>
+          <button type="submit" className="save-button">Save</button>
+        </form>
+      </div>
+    </div>
   );
 };
 
