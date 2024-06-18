@@ -1,10 +1,9 @@
 //page.tsx
 import type { Metadata } from "next";
-import UserDashboard from "./components/UserDashboard";
-import UserdetailsForm from './components/UserDetails'
+import UserDashboard from "./UserDashboard/page";
 
 export default function IndexPage() {
-  return <UserDashboard/>;
+  return  <UserDashboard/>;
 }
 
 export const metadata: Metadata = {

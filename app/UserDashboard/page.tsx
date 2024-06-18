@@ -15,7 +15,7 @@ import ProfileCard from './ProfileCard';
 import Calendar from './DatePicker';
 import UpcomingEvents from './UpcomingEvent';
 import PostWorkoutSessionCard from './PostWorkout';
-import Header from './Header';
+import Header from '../components/Header';
 
 interface Props {
   readonly children: ReactNode;

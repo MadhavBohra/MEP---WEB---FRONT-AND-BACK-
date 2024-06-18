@@ -3,9 +3,10 @@
 import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateUserDetails } from '../actions/userActions';
-import { useNavigate } from 'react-router-dom';
+
 import '../styles/UserDetailsforms.css';
-import Header from './Header'
+import Header from '../components/Header'
+import { StoreProvider } from '../StoreProvider';
 
 interface FormData {
   username: string;
@@ -19,7 +20,7 @@ interface FormData {
 }
 
 const UserDetailsForm: React.FC = () => {
-  const dispatch = useDispatch();
+
   const [formData, setFormData] = useState<FormData>({
     username: '',
     profilePicture: null,
@@ -69,9 +70,9 @@ const UserDetailsForm: React.FC = () => {
   };
 
   return (
-    <div>
+    <StoreProvider>
+    
       <Header />
-
       <div>
         <form onSubmit={handleSubmit} className="user-details-form">
           <div className="profile-picture-container">
@@ -141,7 +142,7 @@ const UserDetailsForm: React.FC = () => {
           <button type="submit" className="save-button">Save</button>
         </form>
       </div>
-    </div>
+    </StoreProvider>
   );
 };
 

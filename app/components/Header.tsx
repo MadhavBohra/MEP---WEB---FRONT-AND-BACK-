@@ -1,16 +1,10 @@
 'use client';
 
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import '../styles/Header.css'; // Ensure this path is correct
+import Link from 'next/link';
+import '../styles/Header.css'; 
 
 const Header = () => {
-  const navigate = useNavigate();
-
-  const handleAvatarClick = () => {
-    navigate('/user-details-edit');
-  };
-
   return (
     <header className="header">
       <div className="logo">
@@ -32,7 +26,7 @@ const Header = () => {
       <div className="icons">
         <img className="bell" src="/bell.png" alt="Notifications" />
         <img className="settings" src="/settings.png" alt="Settings" />
-        <img className="avatar" src="/avataricon.png" alt="User Avatar" onClick={handleAvatarClick} />
+        <Link href='/UserDetailEditForm'><img className="avatar" src="/avataricon.png" alt="User Avatar" /></Link>
       </div>
     </header>
   );
