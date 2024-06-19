@@ -18,10 +18,10 @@ const Report: React.FC<ReportProps> = ({ weight, general }) => {
     <div className={styles.card}>
       <h2 className={styles.heading}>Reports</h2>
       <div className={styles.reportItem}>
-      <p className={styles.text}><CircularProgress variant="determinate" value={weightPercentage} className={styles.cir}/> {weight}% decrease</p>
+      <p className={styles.text}><CircularProgress variant="determinate" value={weightPercentage} className={styles.cir}/>Weight {weight}% decrease</p>
       </div>
       <div className={styles.reportItem}>
-      <p className={styles.text}> <CircularProgress variant="determinate" value={generalPercentage} className={styles.cir}/>{general}% increase</p>
+      <p className={styles.text}> <CircularProgress variant="determinate" value={generalPercentage} className={styles.cir}/>Health {general}% increase</p>
       </div>
     </div>
   );

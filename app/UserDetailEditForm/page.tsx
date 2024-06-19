@@ -72,8 +72,7 @@ const UserDetailsForm: React.FC = () => {
   return (
     <StoreProvider>
     
-      <Header />
-      <div>
+      <div className="body">
         <form onSubmit={handleSubmit} className="user-details-form">
           <div className="profile-picture-container">
             <img src={avatar} alt="User Avatar" className="avatar" />

@@ -3,6 +3,19 @@
     padding: 0;
     font-family: 'Lufga', sans-serif;
   }
+  .body{
+    background-image: url('/Background.png');
+    background-size: cover; /* Ensure the image covers the entire background */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    background-position:center; /* Center the image */
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height:100vh;
+    margin: 0%;
+    z-index: -1;
+  }
 
   .user-details-form {
     font-family: 'Lufga', sans-serif;
@@ -11,7 +24,10 @@
     grid-template-rows: auto auto;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
-    max-width: 1075px;
+    width: 1075px;
+    position: absolute;
+    top:5vh;
+    left: 20vw;
     margin: 70px auto 0px auto;
     padding: 10px;
     background: rgba(255, 255, 255, 0.9);

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useEffect,useState } from 'react';
 import { StoreProvider } from '../StoreProvider';
 import Head from 'next/head';
 import UsernameCard from './UsernameCard';
@@ -16,12 +16,30 @@ import Calendar from './DatePicker';
 import UpcomingEvents from './UpcomingEvent';
 import PostWorkoutSessionCard from './PostWorkout';
 import Header from '../components/Header';
-
+import axios from 'axios';
 interface Props {
   readonly children: ReactNode;
 }
 
 export default function UserDashboard() {
+
+ /* const[userData,setuserData] = useState([]);
+  
+  const getData = async () => {
+    try {
+      const res = await axios.get('');
+      setuserData(res.data);
+    }
+    catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    getData();
+  }, []);*/
+
+
   return (
     <StoreProvider>
       <Head>
@@ -35,7 +53,7 @@ export default function UserDashboard() {
         <body className={styles.background}>
           <div className={styles.container}>
             <main className={styles.main}>
-             <div className={styles.headercomp}><Header /></div> 
+              <div className={styles.headercomp}><Header /></div>
               <div className={styles.dashstart}>
                 <header className={styles.header}>
                   <h1 className={styles.headerTitle}>Dashboard Overview</h1>
