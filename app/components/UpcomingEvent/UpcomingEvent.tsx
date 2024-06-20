@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image'; // Import Image component from Next.js
-import styles from '../styles/UpcomingEvents.module.css';
+import styles from './UpcomingEvents.module.css';
 
 const UpcomingEvents = () => {
   const events = [

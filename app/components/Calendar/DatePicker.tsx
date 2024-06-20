@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import styles from '../styles/Calendar.module.css';
+import styles from './Calendar.module.css';
 
 interface DatePicker {
   date: string;

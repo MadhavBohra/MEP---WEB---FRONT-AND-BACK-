@@ -3,9 +3,8 @@
 import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateUserDetails } from '../actions/userActions';
-
-import '../styles/UserDetailsforms.css';
-import Header from '../components/Header'
+import './UserDetailsforms.css';
+import Link from 'next/link';
 import { StoreProvider } from '../StoreProvider';
 
 interface FormData {
@@ -66,7 +65,6 @@ const UserDetailsForm: React.FC = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(updateUserDetails(formData));
   };
 
   return (
@@ -138,7 +136,7 @@ const UserDetailsForm: React.FC = () => {
               </div>
             </div>
           </div>
-          <button type="submit" className="save-button">Save</button>
+          <Link href='/UserDashboard'><button type="submit" className="save-button">Save</button></Link>
         </form>
       </div>
     </StoreProvider>

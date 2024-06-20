@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import '../styles/Header.css'; 
+import './Header.css'; 
 
 const Header = () => {
   return (

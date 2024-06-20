@@ -1,6 +1,6 @@
 'use client';
 
-import styles from '../styles/Watertaken.module.css';
+import styles from './Watertaken.module.css';
 
 interface WatertakenProps {
   name: string;

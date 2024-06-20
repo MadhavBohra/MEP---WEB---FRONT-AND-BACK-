@@ -3,7 +3,7 @@
 
 import React from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
-import styles from '../styles/Report.module.css';
+import styles from './Report.module.css';
 
 interface ReportProps {
   weight: string;

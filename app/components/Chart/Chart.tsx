@@ -17,6 +17,7 @@ const chartSetting = {
     },
   },
 };
+
 const dataset = [
   {
     water: 59,
@@ -100,9 +101,9 @@ export default function BarsDataset() {
       dataset={dataset}
       xAxis={[{ scaleType: 'band', dataKey: 'month' }]}
       series={[
-        { dataKey: 'water', label: 'Water', valueFormatter },
-        { dataKey: 'steps', label: 'Steps', valueFormatter },
-        { dataKey: 'Calories', label: 'Calories', valueFormatter },
+        { dataKey: 'water', label: 'Water', valueFormatter, color: 'green' },
+        { dataKey: 'steps', label: 'Steps', valueFormatter, color: 'blue' },
+        { dataKey: 'Calories', label: 'Calories', valueFormatter, color: 'purple' },
       ]}
       {...chartSetting}
     />

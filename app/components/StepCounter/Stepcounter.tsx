@@ -1,6 +1,6 @@
 'use client';
 
-import styles from '../styles/Stepcounter.module.css';
+import styles from './Stepcounter.module.css';
 
 interface StepCounterProps {
   name: string;
