@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import styles from '../styles/ProfileCard.module.css';
+import styles from './ProfileCard.module.css';
 
 
 interface ProfileCardProps {

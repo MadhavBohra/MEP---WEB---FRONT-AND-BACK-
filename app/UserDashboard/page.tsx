@@ -3,19 +3,19 @@
 import React, { ReactNode, useEffect,useState } from 'react';
 import { StoreProvider } from '../StoreProvider';
 import Head from 'next/head';
-import UsernameCard from './UsernameCard';
-import StepCounter from './StepCounter';
-import CalorieCounter from './CalorieCounter';
-import Watertaken from './Watertaken';
-import Report from './Report';
-import Reminder from './Reminders';
-import styles from '../styles/Layout.module.css';
-import BarsDataset from './Chart';
-import ProfileCard from './ProfileCard';
-import Calendar from './DatePicker';
-import UpcomingEvents from './UpcomingEvent';
-import PostWorkoutSessionCard from './PostWorkout';
-import Header from '../components/Header';
+import UsernameCard from '../components/UsernameCard/UsernameCard';
+import StepCounter from '../components/StepCounter/Stepcounter';
+import CalorieCounter from '../components/CalorieCounter/CalorieCounter';
+import Watertaken from '../components/WaterTaken/Watertaken';
+import Report from '../components/Report/Report';
+import Reminder from '../components/Reminder/Reminders';
+import styles from '../styles/layout.module.css';
+import BarsDataset from '../components/Chart/Chart';
+import ProfileCard from '../components/ProfileCard/ProfileCard';
+import Calendar from '../components/Calendar/DatePicker';
+import UpcomingEvents from '../components/UpcomingEvent/UpcomingEvent';
+import PostWorkoutSessionCard from '../components/PostWorkout/PostWorkout';
+import Header from '../components/Header/Header';
 import axios from 'axios';
 interface Props {
   readonly children: ReactNode;
@@ -45,7 +45,7 @@ export default function UserDashboard() {
       <Head>
         <title>Dashboard Overview</title>
         <link
-          href="https://fonts.googleapis.com/css2?family=Lufga:wght@400&display=swap"
+          href="/fonts"
           rel="stylesheet"
         />
       </Head>

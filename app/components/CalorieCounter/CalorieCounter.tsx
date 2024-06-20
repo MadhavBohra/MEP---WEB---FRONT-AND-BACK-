@@ -1,6 +1,6 @@
 'use client';
 
-import styles from '../styles/Caloriecounter.module.css';
+import styles from './Caloriecounter.module.css';
 
 interface CalorieCounterProps {
   name: string;

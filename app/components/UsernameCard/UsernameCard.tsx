@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import styles from '../styles/UsernameCard.module.css';
+import styles from './UsernameCard.module.css';
 
 interface UsernameCardProps {
   name: string;

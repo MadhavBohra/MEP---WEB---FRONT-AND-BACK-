@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import styles from '../styles/Reminders.module.css';
+import styles from './Reminders.module.css';
 
 interface ReminderProps {
   dur1: string;
