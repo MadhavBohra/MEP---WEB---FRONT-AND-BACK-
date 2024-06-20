@@ -9,7 +9,7 @@ import CalorieCounter from '../components/CalorieCounter/CalorieCounter';
 import Watertaken from '../components/WaterTaken/Watertaken';
 import Report from '../components/Report/Report';
 import Reminder from '../components/Reminder/Reminders';
-import styles from '../styles/Layout.module.css';
+import styles from '../styles/layout.module.css';
 import BarsDataset from '../components/Chart/Chart';
 import ProfileCard from '../components/ProfileCard/ProfileCard';
 import Calendar from '../components/Calendar/DatePicker';
