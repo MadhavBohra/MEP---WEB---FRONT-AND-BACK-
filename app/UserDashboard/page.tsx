@@ -1,6 +1,6 @@
 'use client';
 
-import React, { ReactNode, useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StoreProvider } from '../StoreProvider';
 import Head from 'next/head';
 import UsernameCard from '../components/UsernameCard/UsernameCard';
@@ -17,37 +17,71 @@ import UpcomingEvents from '../components/UpcomingEvent/UpcomingEvent';
 import PostWorkoutSessionCard from '../components/PostWorkout/PostWorkout';
 import Header from '../components/Header/Header';
 import axios from 'axios';
-interface Props {
-  readonly children: ReactNode;
+
+interface UserData {
+  name: string;
+  age: number;
+  height: string;
+  weight: string;
+  blood_grp: string;
+  address: string;
 }
 
-export default function UserDashboard() {
+interface Props {
+  readonly email: string;
+}
 
- /* const[userData,setuserData] = useState([]);
-  
-  const getData = async () => {
+const defaultUser: UserData = {
+  name: 'Manan Jain',
+  age: 20,
+  height: '174',
+  weight: '70',
+  blood_grp: 'B+',
+  address: 'BITS GOA',
+};
+
+export default function UserDashboard({ email }: Props) {
+  const [userData, setUserData] = useState<UserData | null>(null);
+
+  const getData = async (email: string) => {
     try {
-      const res = await axios.get('');
-      setuserData(res.data);
-    }
-    catch (error) {
+      const res = await axios.get(`/api/users`, { //change the relation name accordingly
+        params: { email }
+      });
+      const data = res.data;
+
+      if (data) {
+        const user: UserData = {
+          name: data.name,
+          age: data.age,
+          height: data.height,
+          weight: data.weight,
+          blood_grp: data.blood_grp,
+          address: data.address,
+        };
+        setUserData(user);
+      } else {
+        setUserData(defaultUser);
+      }
+    } catch (error) {
       console.log(error);
+      setUserData(defaultUser);
     }
-  }
+  };
 
   useEffect(() => {
-    getData();
-  }, []);*/
+    getData(email);
+  }, [email]);
 
+  if (!userData) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <StoreProvider>
       <Head>
         <title>Dashboard Overview</title>
-        <link
-          href="/fonts"
-          rel="stylesheet"
-        />
+        <link href="/fonts" rel="stylesheet" />
       </Head>
       <html>
         <body className={styles.background}>
@@ -60,17 +94,17 @@ export default function UserDashboard() {
                 </header>
                 <section className={styles.dashboard}>
                   <UsernameCard
-                    name="Manan Jain"
+                    name={userData.name}
                     message="Have a nice day and don’t forget to take care of your health!"
                   />
                   <div className={styles.profilecard}>
                     <ProfileCard
-                      Name="Manan Jain"
-                      Age="20"
-                      Address="BITS Goa"
-                      Blood_Group="B+"
-                      Height="170cm"
-                      Weight="70kg"
+                      Name={userData.name}
+                      Age={userData.age.toString()}
+                      Address={userData.address}
+                      Blood_Group={userData.blood_grp}
+                      Height={userData.height}
+                      Weight={userData.weight}
                     />
                   </div>
                   <div className={styles.datepicker}><Calendar /></div>

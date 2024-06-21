@@ -1,10 +1,9 @@
 'use client';
 
 import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
-import { useDispatch } from 'react-redux';
-import { updateUserDetails } from '../actions/userActions';
 import './UserDetailsforms.css';
 import Link from 'next/link';
+import axios from 'axios';
 import { StoreProvider } from '../StoreProvider';
 
 interface FormData {
@@ -19,7 +18,6 @@ interface FormData {
 }
 
 const UserDetailsForm: React.FC = () => {
-
   const [formData, setFormData] = useState<FormData>({
     username: '',
     profilePicture: null,
@@ -32,6 +30,42 @@ const UserDetailsForm: React.FC = () => {
   });
 
   const [avatar, setAvatar] = useState<string>('/avataricon.png'); 
+
+  // Fetch user data
+  const getData = async () => {
+    try {
+      const res = await axios.get('/api/user', { //change the relation name accordingly
+        params: { email: formData.email }
+      });
+      const userData = res.data;
+
+      // Set form data with the fetched user data
+      setFormData({
+        username: userData.username || '',
+        profilePicture: null, // We are not handling file here
+        address: userData.address || '',
+        bloodGroup: userData.bloodGroup || '',
+        height: userData.height || '',
+        weight: userData.weight || '',
+        email: userData.email || '',
+        phone: userData.phone || ''
+      });
+
+      // Set avatar if profile picture URL is available
+      if (userData.profilePicture) {
+        setAvatar(userData.profilePicture);
+      }
+    } catch (error) {
+      console.log(error);
+      // Handle user not found or other errors
+    }
+  };
+
+  useEffect(() => {
+    if (formData.email) {
+      getData();
+    }
+  }, [formData.email]);
 
   useEffect(() => {
     if (formData.profilePicture) {
@@ -63,13 +97,70 @@ const UserDetailsForm: React.FC = () => {
     }
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    const updatedUserData = {
+      username: formData.username,
+      address: formData.address,
+      bloodGroup: formData.bloodGroup,
+      height: formData.height,
+      weight: formData.weight,
+      email: formData.email,
+      phone: formData.phone,
+    };
+
+    try {
+      // Update user details if user exists
+      await axios.put(`/api/users`, updatedUserData); //change the relation name accordingly
+
+      // Handle profile picture upload separately if necessary
+      if (formData.profilePicture) {
+        const formDataObj = new FormData();
+        formDataObj.append('profilePicture', formData.profilePicture);
+        await axios.post(`/api/users/upload`, formDataObj, { //change the relation name accordingly
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+          params: {
+            email: formData.email,
+          }
+        });
+      }
+
+      alert('User details updated successfully');
+    } catch (error) {
+      console.error('Error updating user details', error);
+
+      // If user doesn't exist, create a new user
+      try {
+        const res = await axios.post('/api/users', updatedUserData);
+        const newUserId = res.data.id; // Assuming the response contains the new user's ID
+
+        // Handle profile picture upload for the new user if necessary
+        if (formData.profilePicture) {
+          const formDataObj = new FormData();
+          formDataObj.append('profilePicture', formData.profilePicture);
+          await axios.post(`/api/users/upload`, formDataObj, { //change the relation name accordingly
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+            params: {
+              email: formData.email,
+            }
+          });
+        }
+
+        alert('New user created successfully');
+      } catch (createError) {
+        console.error('Error creating new user', createError);
+        alert('Failed to create new user');
+      }
+    }
   };
 
   return (
     <StoreProvider>
-    
       <div className="body">
         <form onSubmit={handleSubmit} className="user-details-form">
           <div className="profile-picture-container">
@@ -136,7 +227,7 @@ const UserDetailsForm: React.FC = () => {
               </div>
             </div>
           </div>
-          <Link href='/UserDashboard'><button type="submit" className="save-button">Save</button></Link>
+          <button type="submit" className="save-button">Save</button>
         </form>
       </div>
     </StoreProvider>
