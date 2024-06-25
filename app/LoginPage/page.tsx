@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { FaGoogle, FaFacebook } from 'react-icons/fa';
 import './LoginForm.css';
