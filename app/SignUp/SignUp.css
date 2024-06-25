@@ -62,7 +62,8 @@ input {
  
 .Pwdconditions {
   margin-top: 0px;
-  margin-bottom: 0px;
+  margin-bottom: 20px;
+  margin-left: -25px;
   font-size: xx-small; /* Set the font size to xx-small */
 }
  
@@ -164,12 +165,11 @@ input {
   color: #666;
   font-weight: bold;
 }
-.Consent{
-  font-size: xx-small;
-}
+
  
 .consent-checkbox-wrapper {
   margin: 0;
+  padding:0;
   display: flex;
   align-items: flex-start; /* Change from center to flex-start */
 }
@@ -180,6 +180,10 @@ input {
   margin-right: -135px; /* Add a small margin to separate checkbox from text */
 }
  
+.Consent{
+  font-size: xx-small;
+  margin-left:0;
+}
 .consent-checkbox-wrapper label {
   margin: 0;
   display: inline-block;

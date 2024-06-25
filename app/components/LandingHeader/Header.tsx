@@ -24,8 +24,8 @@ const Header = () => {
         <img className="icon" src="/search.png" alt="Search" />
       </nav>
       <div className="icons">
-        <img className="bell" src="/bell.png" alt="Notifications" />
-        <Link href='/UserDashboard'><img className="avatar" src="/avataricon.png" alt="User Avatar" /></Link>
+        <a href='/SignUp' className="bell"><button className='signup'>SignUp</button></a>
+        <a href='/LoginPage' className="avatar"><button className='login'>Login</button></a>
       </div>
     </header>
   );

@@ -4,7 +4,6 @@ import React, { useState, FormEvent, ChangeEvent } from 'react';
 import { FaGoogle, FaFacebook } from 'react-icons/fa';
 import './SignUp.css';
 
-
 const SignupForm: React.FC = () => {
   const [username, setUsername] = useState<string>('');
   const [email, setEmail] = useState<string>('');
@@ -16,7 +15,6 @@ const SignupForm: React.FC = () => {
   // Handle form submission
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // Add your login logic here
     console.log('Login clicked');
   };
 
@@ -55,7 +53,7 @@ const SignupForm: React.FC = () => {
   return (
     <div className="login-container">
       <div className="form-container">
-        <img src='/logo.png' alt="Logo" className="logo" /> {/* Use the imported logo image */}
+        <img src='/logo.png' alt="Logo" className="logo" />
         <h2>Welcome To MyEasyPharma</h2>
         <h4>
           Already have an account? <a href="/LogIn" className="LogIn">Log In</a>
@@ -63,7 +61,7 @@ const SignupForm: React.FC = () => {
         <form onSubmit={handleSubmit}>
           <label>Email</label>
           <input
-            placeholder='email'
+            placeholder='Email'
             type="email"
             name="email"
             value={email}
@@ -96,11 +94,8 @@ const SignupForm: React.FC = () => {
               onClick={toggleShowPassword}
             />
             <ul className='Pwdconditions'>
-              <li>Use 8 or more characters</li>
-              <li>One uppercase character</li>
-              <li>One lowercase character</li>
-              <li>One special character</li>
-              <li>One number</li>
+              <li>Use 8 or more characters, one uppercase character, one uppercase character & one lowercase character</li>
+              <li>Use one special character & one number</li>
             </ul>
             <div className="consent-checkbox-wrapper">
               <input
@@ -108,14 +103,9 @@ const SignupForm: React.FC = () => {
                 id="consent"
                 checked={consentChecked}
                 onChange={handleConsentChange}
-              />
-              <label htmlFor="consent" className='Consent'>
-                I want to receive emails about the products, feature updates, events and marketing promotions.
-              </label>
+              /><label htmlFor="consent" className='Consent'>I want to receive emails about the products, feature updates, events and marketing promotions.</label>
             </div>
-            <h6>
-              By creating an account, you agree to the <a href="/Terms" className="Terms">Terms of use</a> and <a href="/PrivacyPolicy" className="PrivacyPolicy">Privacy Policy</a>.
-            </h6>
+            <h6>By creating an account, you agree to the <a href="/Terms" className="Terms">Terms of use</a> and <a href="/PrivacyPolicy" className="PrivacyPolicy">Privacy Policy</a>.</h6>
           </div>
           <button type="submit" className="create-acc-btn" disabled={!formValid}>
             Create Account
@@ -123,7 +113,7 @@ const SignupForm: React.FC = () => {
         </form>
       </div>
       <div className="image-container">
-        <img src='/GreenBGRight.png' alt="Side" /> {/* Use the imported side image */}
+        <img src='/GreenBGRight.png' alt="Side" />
       </div>
     </div>
   );

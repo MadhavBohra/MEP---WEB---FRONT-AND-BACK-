@@ -4,7 +4,7 @@ import React from "react";
 import { StoreProvider } from "../StoreProvider";
 import Link from "next/link";
 import styles from "./LandingPage.module.css";
-import Header from "../components/Header/Header";
+import Header from "../components/LandingHeader/Header";
 
 export default function LandingPage() {
     return (

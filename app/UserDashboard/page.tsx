@@ -15,7 +15,7 @@ import ProfileCard from '../components/ProfileCard/ProfileCard';
 import Calendar from '../components/Calendar/DatePicker';
 import UpcomingEvents from '../components/UpcomingEvent/UpcomingEvent';
 import PostWorkoutSessionCard from '../components/PostWorkout/PostWorkout';
-import Header from '../components/Header/Header';
+import Header from '../components/UserDashboardHeader/Header';
 import axios from 'axios';
 
 interface UserData {

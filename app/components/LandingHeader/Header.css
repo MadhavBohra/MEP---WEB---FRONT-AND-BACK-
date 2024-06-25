@@ -19,13 +19,12 @@
 .nav-links {
   display: flex;
   align-items: center;
-  font-family: 'Lufga', sans-serif;
-  padding: 0;
 }
 
 .nav-links a {
   margin: 0 ;
   width: 4vw;
+  font-family: 'Lufga', sans-serif;
   text-decoration: none;
   justify-content: center;
   color: #254336; /* Change the color to #254336 */
@@ -55,4 +54,35 @@
   height: 24px;
   margin-left: 15px;
   cursor: pointer;
+}
+.signup,
+.login{
+  font-family: 'Lufga', sans-serif;
+  padding: 5px 15px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+.signup {
+  background-color: #ffffff; /* White background for SignUp */
+  color: #254336; /* Text color */
+  border: 2px solid #254336; /* Border */
+  border-radius: 5px; /* Rounded corners */
+}
+
+.signup:hover {
+  background-color: #254336; /* Background on hover */
+  color: #ffffff; /* Text color on hover */
+}
+
+.login {
+  background-color: #254336; /* Background for Login */
+  color: #ffffff; /* Text color */
+  border: 2px solid #254336; /* Border */
+  border-radius: 5px; /* Rounded corners */
+}
+
+.login:hover {
+  background-color: #ffffff; /* Background on hover */
+  color: #254336; /* Text color on hover */
 }
