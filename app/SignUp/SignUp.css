@@ -1,0 +1,181 @@
+body {
+    font-family: 'Lufga', sans-serif;
+  }
+  
+  .login-container {
+    display: flex;
+    height: 100vh; /* Ensure the container takes the full viewport height */
+    background-color: #ffffff;
+  }
+  
+  .form-container {
+    flex: 1.5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    background-color: #ffffff;
+  }
+  
+  .logo {
+    width: 75px;
+    margin-top: 1rem;
+    margin-bottom: 0rem;
+  }
+  
+  h2 {
+    margin: 0;
+    padding: 0;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  label {
+    margin-bottom: 0rem;
+    max-width: 100%; /* Ensure labels take full width */
+  }
+  
+  input {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%; /* Make inputs take full width */
+  }
+  
+  .password-input {
+    position: relative;
+  }
+  
+  .password-input input {
+    padding: 0.5rem;
+    margin-bottom: 0rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .Pwdconditions {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: xx-small; /* Set the font size to xx-small */
+  }
+  
+  .eye-icon {
+    position: absolute;
+    top: -7.5%; /* Adjust the top position as needed */
+    right: 0px;
+    cursor: pointer;
+    width: 25px;
+    height: auto;
+  }
+  
+  .forgot-password {
+    margin-bottom: 1rem;
+    margin-top: 0rem;
+    color: #007BFF;
+    text-decoration: none;
+  }
+  
+  .forgot-password:hover {
+    text-decoration: underline;
+  }
+  
+  .LogIn {
+    color: #007BFF;
+    text-decoration: none;
+  }
+  
+  .LogIn:hover {
+    text-decoration: underline;
+  }
+  
+  .Terms {
+    color: #007BFF;
+    text-decoration: none;
+  }
+  
+  .Terms:hover {
+    text-decoration: underline;
+  }
+  
+  .PrivacyPolicy {
+    color: #007BFF;
+    text-decoration: none;
+  }
+  
+  .PrivacyPolicy:hover {
+    text-decoration: underline;
+  }
+  
+  .create-acc-btn,
+  .google-btn,
+  .facebook-btn {
+    padding: 0.75rem;
+    margin-bottom: 0.25rem;
+    border: none;
+    border-radius: 75px;
+    cursor: pointer;
+  }
+  
+  .create-acc-btn {
+    background-color: #007BFF;
+    color: white;
+  }
+  
+  .icon {
+    margin-right: 0.5rem;
+  }
+  
+  .image-container {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end; /* Align image container to the right */
+    align-items: center;
+    overflow: hidden; /* Ensure the image container does not overflow */
+  }
+  
+  .image-container img {
+    height: 100%; /* Make the image take the full height of the container */
+    width: auto; /* Maintain the aspect ratio */
+    object-fit: cover; /* Ensures the image covers the container without distortion */
+  }
+  
+  .or-separator {
+    display: flex;
+    align-items: center;
+    margin: 1rem 0;
+    width: 100%;
+  }
+  
+  .or-separator .line {
+    flex: 1;
+    height: 1px;
+    background-color: #ccc;
+  }
+  
+  .or-separator .or-text {
+    margin: 0 1rem;
+    color: #666;
+    font-weight: bold;
+  }
+  .Consent{
+    font-size: xx-small;
+  }
+  .consent-checkbox {
+    display: flex;
+    align-items: center;
+    margin-top: 0px; /* Adjust as needed */
+    margin-bottom: 0px; /* Adjust as needed */
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  
+  .consent-checkbox input[type="checkbox"] {
+    margin-right: 0px; /* Adjust as needed */
+  }

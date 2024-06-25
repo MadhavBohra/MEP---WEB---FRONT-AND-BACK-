@@ -45,7 +45,7 @@ export default function UserDashboard({ email }: Props) {
 
   const getData = async (email: string) => {
     try {
-      const res = await axios.get(`/api/users`, { //change the relation name accordingly
+      const res = await axios.get(`/api/users`, { //change the relation name accordinglycd
         params: { email }
       });
       const data = res.data;

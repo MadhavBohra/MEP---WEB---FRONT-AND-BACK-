@@ -137,7 +137,7 @@ const UserDetailsForm: React.FC = () => {
         const res = await axios.post('/api/users', updatedUserData);
         const newUserId = res.data.id; // Assuming the response contains the new user's ID
 
-        // Handle profile picture upload for the new user if necessary
+
         if (formData.profilePicture) {
           const formDataObj = new FormData();
           formDataObj.append('profilePicture', formData.profilePicture);
