@@ -1,0 +1,282 @@
+.personalizedPlanChild {
+    width: 408px;
+    height: 435px;
+    position: relative;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: var(--br-36xl);
+    background: linear-gradient(128.11deg, #254336, rgba(93, 169, 136, 0.8));
+    border: 1px solid var(--color-tan);
+    box-sizing: border-box;
+    display: none;
+    max-width: 100%;
+  }
+  .byAyush,
+  .deliveringHealthAnd {
+    margin: 0;
+  }
+  .deliveringHealthAndContainer {
+    margin-bottom: -34px;
+    height: 165px;
+    flex: 1;
+    position: relative;
+    font-weight: 600;
+    display: inline-block;
+    z-index: 3;
+  }
+  .planHeading {
+    align-self: stretch;
+    height: 131px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  .personalizedPlanItem {
+    width: 31px;
+    height: 14.7px;
+    position: relative;
+    z-index: 3;
+  }
+  .personalizedPlan,
+  .personalizedPlanInner {
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: var(--br-36xl);
+    background: linear-gradient(128.11deg, #254336, rgba(93, 169, 136, 0.8));
+    border: 1px solid var(--color-tan);
+    box-sizing: border-box;
+    max-width: 100%;
+  }
+  .personalizedPlan {
+    flex: 0.7363;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding: var(--padding-249xl) var(--padding-36xl) var(--padding-lg);
+    min-width: 265px;
+    z-index: 2;
+  }
+  .personalizedPlanInner {
+    width: 408px;
+    height: 435px;
+    position: relative;
+    display: none;
+    z-index: 1;
+  }
+  .personalisedHealthPlan {
+    width: 296px;
+    height: 165px;
+    position: relative;
+    font-weight: 600;
+    display: inline-block;
+    flex-shrink: 0;
+    z-index: 3;
+  }
+  .frameChild {
+    height: 14.7px;
+    width: 31px;
+    position: relative;
+    z-index: 4;
+  }
+  .frameDiv {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 0 var(--padding-6xs);
+    margin-top: -34px;
+  }
+  .corporateDescriptionChild,
+  .personalizedPlan1 {
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: var(--br-36xl);
+    background: linear-gradient(128.11deg, #254336, rgba(93, 169, 136, 0.8));
+    border: 1px solid var(--color-tan);
+    box-sizing: border-box;
+    max-width: 100%;
+  }
+  .personalizedPlan1 {
+    flex: 0.7662;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding: var(--padding-251xl) var(--padding-30xl) 0;
+    min-width: 265px;
+    min-height: 435px;
+    z-index: 2;
+  }
+  .corporateDescriptionChild {
+    width: 408px;
+    height: 435px;
+    position: relative;
+    display: none;
+  }
+  .enableProductive {
+    margin-bottom: -27px;
+    height: 165px;
+    flex: 1;
+    position: relative;
+    font-weight: 600;
+    display: inline-block;
+    z-index: 3;
+  }
+  .enableProductiveHealthierWrapper {
+    align-self: stretch;
+    height: 138px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  .corporateDescriptionItem {
+    width: 31px;
+    height: 14.7px;
+    position: relative;
+    z-index: 3;
+  }
+  .corporateDescription,
+  .productiveCorporates {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    max-width: 100%;
+  }
+  .corporateDescription {
+    align-self: stretch;
+    height: 435px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: var(--br-36xl);
+    background: linear-gradient(128.11deg, #254336, rgba(93, 169, 136, 0.8));
+    border: 1px solid var(--color-tan);
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding: var(--padding-244xl) var(--padding-36xl) var(--padding-6xs);
+    z-index: 2;
+  }
+  .productiveCorporates {
+    flex: 1;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0 var(--padding-7xs) 0 0;
+    min-width: 269px;
+  }
+  .socialIcon {
+    width: 37px;
+    height: 34px;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+    z-index: 1;
+  }
+  .socialIcons {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 0 0 var(--padding-4xs);
+  }
+  .employeeHealth {
+    align-self: stretch;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: flex-start;
+    gap: var(--gap-mini);
+    max-width: 100%;
+  }
+  .socialIcon1 {
+    height: 31px;
+    width: 19px;
+    position: relative;
+    z-index: 1;
+  }
+  .socialIconTwo {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0 var(--padding-6xs);
+  }
+  .socialIcon2,
+  .socialIcon3 {
+    width: 33px;
+    height: 31px;
+    position: relative;
+    object-fit: cover;
+    z-index: 1;
+  }
+  .socialIcon3 {
+    height: 29px;
+  }
+  .socialContainer1 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: var(--gap-lgi-5);
+  }
+  .socialContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 0 var(--padding-11xs);
+  }
+  .healthWellness {
+    width: 1312px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-start;
+    gap: var(--gap-3xs);
+    max-width: 100%;
+    text-align: center;
+    font-size: var(--font-size-11xl);
+    color: var(--color-white);
+    font-family: var(--font-lufga);
+  }
+  @media screen and (max-width: 1125px) {
+    .employeeHealth {
+      flex-wrap: wrap;
+    }
+  }
+  @media screen and (max-width: 1025px) {
+    .deliveringHealthAndContainer,
+    .enableProductive,
+    .personalisedHealthPlan {
+      font-size: var(--font-size-5xl);
+    }
+  }
+  @media screen and (max-width: 450px) {
+    .deliveringHealthAndContainer {
+      font-size: var(--font-size-lg);
+    }
+    .personalizedPlan {
+      padding: var(--padding-155xl) var(--padding-xl) var(--padding-xl);
+      box-sizing: border-box;
+      flex: 1;
+    }
+    .personalisedHealthPlan {
+      font-size: var(--font-size-lg);
+    }
+    .personalizedPlan1 {
+      padding-left: var(--padding-xl);
+      padding-top: var(--padding-156xl);
+      padding-right: var(--padding-xl);
+      box-sizing: border-box;
+      flex: 1;
+    }
+    .enableProductive {
+      font-size: var(--font-size-lg);
+    }
+    .corporateDescription {
+      padding: var(--padding-152xl) var(--padding-xl) var(--padding-xl);
+      box-sizing: border-box;
+    }
+  }
+  
