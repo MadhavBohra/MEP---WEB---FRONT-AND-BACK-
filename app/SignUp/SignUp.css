@@ -1,5 +1,6 @@
 body {
   font-family: 'Lufga', sans-serif;
+  margin: 0px 0px 0px 0px;
 }
  
 .login-container {
@@ -167,6 +168,7 @@ input {
 .image-container img {
   height: 100%; /* Make the image take the full height of the container */
   width: 40%; /* Maintain the aspect ratio */
+
   position: fixed;
   object-fit:fill; 
 }
