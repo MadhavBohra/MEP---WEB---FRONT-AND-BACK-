@@ -25,7 +25,7 @@ const Header = () => {
       </nav>
       <div className="icons">
         <img className="bell" src="/bell.png" alt="Notifications" />
-        <img className='settings' src='/setting' alt='Settings'/>
+        <Link href='/UserDetailEditForm'><img className='settings' src='/settings.png' alt='Settings'/></Link>
         <Link href='/UserDashboard'><img className="avatar" src="/avataricon.png" alt="User Avatar" /></Link>
       </div>
     </header>

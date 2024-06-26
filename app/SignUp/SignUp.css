@@ -20,7 +20,7 @@ body {
  
 .logo {
   width: 75px;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   margin-bottom: 0rem;
 }
  
@@ -28,36 +28,52 @@ h2 {
   margin: 0;
   padding: 0;
 }
- 
+h6{
+  margin:0.4rem;
+}
 form {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  margin-top: 0px;
+  width: 100vw;
   max-width: 400px;
 }
  
 label {
   margin-bottom: 0rem;
+  margin-top: 0rem;
   max-width: 100%; /* Ensure labels take full width */
 }
  
 input {
-  margin-bottom: 1rem;
+  margin-bottom: 0.25rem;
   padding: 0.5rem;
-  border: 1px solid #ccc;
+  border: 1.25px solid #ccc;
   border-radius: 5px;
   width: 100%; /* Make inputs take full width */
 }
  
 .password-input {
   position: relative;
+  width: 100% ;
 }
  
 .password-input input {
+  padding-right: 2.5rem;
   padding: 0.5rem;
-  margin-bottom: 0rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  margin-bottom: 0.1rem;
+  border: 1.25px solid #ccc;
+  border-radius: 5px;
+  width:100%;
+}
+ 
+.eye-icon {
+  position: absolute; /* Position the eye icon absolutely within the container */
+  right: -1rem; /* Position the eye icon to the right end */
+  transform: translateY(-290%); /* Adjust the vertical alignment */
+  cursor: pointer;
+  width: 30px;
+  height: auto;
 }
  
 .Pwdconditions {
@@ -65,15 +81,6 @@ input {
   margin-bottom: 20px;
   margin-left: -25px;
   font-size: xx-small; /* Set the font size to xx-small */
-}
- 
-.eye-icon {
-  position: absolute;
-  top: -7.5%; /* Adjust the top position as needed */
-  right: 0px;
-  cursor: pointer;
-  width: 25px;
-  height: auto;
 }
  
 .forgot-password {
@@ -118,6 +125,7 @@ input {
 .google-btn,
 .facebook-btn {
   padding: 0.75rem;
+  margin-top: 0px;
   margin-bottom: 0.25rem;
   border: none;
   border-radius: 75px;
@@ -129,6 +137,22 @@ input {
   color: white;
 }
  
+.google-btn {
+  background-color: #db4437;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+ 
+.facebook-btn {
+  background-color: #3b5998;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+ 
 .icon {
   margin-right: 0.5rem;
 }
@@ -137,26 +161,26 @@ input {
   flex: 1;
   display: flex;
   justify-content: flex-end; /* Align image container to the right */
-  align-items: center;
   overflow: hidden; /* Ensure the image container does not overflow */
 }
  
 .image-container img {
   height: 100%; /* Make the image take the full height of the container */
-  width: auto; /* Maintain the aspect ratio */
-  object-fit: cover; /* Ensures the image covers the container without distortion */
+  width: 40%; /* Maintain the aspect ratio */
+  position: fixed;
+  object-fit:fill; 
 }
  
 .or-separator {
   display: flex;
   align-items: center;
-  margin: 1rem 0;
+  margin: 0rem 0;
   width: 100%;
 }
  
 .or-separator .line {
   flex: 1;
-  height: 1px;
+  height: 1.25px;
   background-color: #ccc;
 }
  
@@ -165,11 +189,12 @@ input {
   color: #666;
   font-weight: bold;
 }
-
+.Consent{
+  font-size: xx-small;
+}
  
 .consent-checkbox-wrapper {
   margin: 0;
-  padding:0;
   display: flex;
   align-items: flex-start; /* Change from center to flex-start */
 }
@@ -180,10 +205,6 @@ input {
   margin-right: -135px; /* Add a small margin to separate checkbox from text */
 }
  
-.Consent{
-  font-size: xx-small;
-  margin-left:0;
-}
 .consent-checkbox-wrapper label {
   margin: 0;
   display: inline-block;
