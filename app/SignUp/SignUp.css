@@ -70,13 +70,15 @@ input {
  
 .eye-icon {
   position: absolute; /* Position the eye icon absolutely within the container */
-  top:6.5vh;
-  right: -1rem; /* Position the eye icon to the right end */
-  transform: translateY(-290%); /* Adjust the vertical alignment */
+  top: 50%; /* Vertically center the icon */
+  right: 10px; /* Position the eye icon to the right with some padding */
+  transform: translateY(-50%); /* Adjust the vertical alignment to be perfectly centered */
   cursor: pointer;
-  width: 30px;
+  width: 20px; /* Adjust the width as needed */
   height: auto;
+  pointer-events: auto; /* Ensure the icon is clickable */
 }
+
  
 .Pwdconditions {
   margin-top: 10px;

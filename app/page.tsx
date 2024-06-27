@@ -5,8 +5,10 @@ import UserDashboard from "./UserDashboard/page";
 import LandingPage from "./LandingPage/page";
 import SignupForm from "./SignUp/page";
 import LoginForm from "./LoginPage/page";
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 const IndexPage: React.FC = () => {
+
   const email='xyz@gmail.com'; // Ensure this matches the type expected by UserDashboard
 
 // return <UserDashboard email={email} />;
