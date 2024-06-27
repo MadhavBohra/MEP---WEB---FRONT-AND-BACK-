@@ -3,7 +3,7 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { FaGoogle, FaFacebook } from 'react-icons/fa';
 import './LoginForm.css';
-import { GoogleOAuthProvider } from '@react-oauth/google';
+//import { GoogleOAuthProvider } from '@react-oauth/google';
 
 // Type for the component state
 interface LoginFormState {
