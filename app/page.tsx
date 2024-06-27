@@ -13,7 +13,7 @@ const IndexPage: React.FC = () => {
 
 // return <UserDashboard email={email} />;
 //    return <LandingPage/>;
-    return <OurServices/>;
+    return <LandingPage/>;
 
 };
 
