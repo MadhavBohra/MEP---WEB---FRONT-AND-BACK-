@@ -1,3 +1,4 @@
+
 .ourServicesChild,
 .ourServicesInner,
 .ourServicesItem {
@@ -45,7 +46,7 @@
 }
 .ourServices1 {
   margin: 0;
-  width: 612px;
+  width: 732px;
   height: 112px;
   position: relative;
   font-size: 60px;
@@ -89,8 +90,8 @@
 .image11Icon,
 .image9Icon {
   position: absolute;
-  top: 307px;
-  left: 1055px;
+  top: 306px;
+  left: 932px;
   width: 210px;
   height: 373px;
   object-fit: contain;
@@ -99,13 +100,13 @@
 .image10Icon,
 .image9Icon {
   top: 274px;
-  left: 201px;
+  left: 124px;
   width: 227px;
   height: 404px;
 }
 .image10Icon {
-  top: 341px;
-  left: 633px;
+  top: 324px;
+  left: 538px;
   width: 174px;
   height: 290px;
   z-index: 3;

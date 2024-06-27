@@ -21,11 +21,12 @@
   align-items: center;
   font-family: 'Lufga', sans-serif;
   padding: 0;
+  gap: 5px;
 }
 
 .nav-links a {
-  margin: 0 ;
-  width: 4vw;
+  margin: -7px;
+  width: 7vw;
   text-decoration: none;
   justify-content: center;
   color: #254336; /* Change the color to #254336 */

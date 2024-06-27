@@ -15,7 +15,7 @@ const OurServices: React.FC = () => {
         <div className={styles.servicesContainer}>
           <div className={styles.loginContainer}>
             <div className={styles.loginField}>
-              <a className={styles.login}>Login</a>
+              
             </div>
             <h1 className={styles.ourServices1}>Our Services</h1>
           </div>

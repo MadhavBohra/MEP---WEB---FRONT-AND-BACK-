@@ -25,7 +25,8 @@ const HealthWellness = ({ className = "" }) => {
         <div className={styles.personalizedPlan1}>
           <div className={styles.personalizedPlanInner} />
           <div className={styles.personalisedHealthPlan}>
-            Personalised Health Plan for Employees!
+            Personalised Health
+             Plan for Employees!
           </div>
           <div className={styles.frameDiv}>
             <img
@@ -52,6 +53,9 @@ const HealthWellness = ({ className = "" }) => {
             />
           </div>
         </div>
+      </div>
+      <div className={styles.socialContainer}>
+        <div className={styles.socialContainer1}>
         <div className={styles.socialIcons}>
           <img
             className={styles.socialIcon}
@@ -60,9 +64,6 @@ const HealthWellness = ({ className = "" }) => {
             src="/social.svg"
           />
         </div>
-      </div>
-      <div className={styles.socialContainer}>
-        <div className={styles.socialContainer1}>
           <div className={styles.socialIconTwo}>
             <img
               className={styles.socialIcon1}
