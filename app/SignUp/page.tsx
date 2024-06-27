@@ -99,12 +99,14 @@ const LoginForm: React.FC = () => {
             </ul>
             <div className="consent-checkbox-wrapper">
               <input
+                placeholder='checkbox'
+                value='consent'
+                name='consumer'
                 type="checkbox"
                 id="consent"
                 checked={consentChecked}
                 onChange={handleConsentChange}
-              />
-              <label htmlFor="consent" className='Consent'>I want to receive emails about the products, feature updates, events and marketing promotions.</label>
+              /> I want to receive emails about the products, feature updates, events and marketing promotions.
             </div>
             <h6>By creating an account, you agree to the <a href="/Terms" className="Terms">Terms of use</a> and <a href="/PrivacyPolicy" className="PrivacyPolicy">Privacy Policy</a>.</h6>
           </div>
