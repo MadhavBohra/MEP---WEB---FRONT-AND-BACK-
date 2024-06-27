@@ -74,7 +74,7 @@ input {
   right: 10px; /* Position the eye icon to the right with some padding */
   transform: translateY(-50%); /* Adjust the vertical alignment to be perfectly centered */
   cursor: pointer;
-  width: 20px; /* Adjust the width as needed */
+  width: 30px; /* Adjust the width as needed */
   height: auto;
   pointer-events: auto; /* Ensure the icon is clickable */
 }
