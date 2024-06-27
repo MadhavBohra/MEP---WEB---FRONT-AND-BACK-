@@ -206,7 +206,7 @@ input {
   align-items: flex-start; /* Change from center to flex-start */
   font-size: 16px;
   text-align: center;
-  margin-bottom: 0rem;
+  margin-bottom: 1rem;
   margin-top: 0rem;
   max-width: 100%; /* Ensure labels take full width */
 }
