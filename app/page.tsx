@@ -8,6 +8,7 @@ import LoginForm from "./LoginPage/page";
 import OurServices from "./OurServices/page";
 
 const IndexPage: React.FC = () => {
+
   const email='xyz@gmail.com'; // Ensure this matches the type expected by UserDashboard
 
 // return <UserDashboard email={email} />;

@@ -12,6 +12,7 @@
     "@mui/x-charts": "^7.7.0",
     "@nestjs/common": "^10.3.9",
     "@nestjs/core": "^10.3.9",
+    "@react-oauth/google": "^0.12.1",
     "@reduxjs/toolkit": "^2.2.0",
     "@types/axios": "^0.14.0",
     "axios": "^1.7.2",

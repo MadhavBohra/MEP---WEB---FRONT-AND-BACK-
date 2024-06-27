@@ -93,21 +93,23 @@ const LoginForm: React.FC = () => {
               className="eye-icon"
               onClick={toggleShowPassword}
             />
+            </div>
             <ul className='Pwdconditions'>
               <li>Use 8 or more characters, one uppercase character, one uppercase character & one lowercase character</li>
               <li>Use one special character & one number</li>
             </ul>
             <div className="consent-checkbox-wrapper">
               <input
+                placeholder='checkbox'
+                name='consumer'
                 type="checkbox"
                 id="consent"
                 checked={consentChecked}
                 onChange={handleConsentChange}
-              />
-              <label htmlFor="consent" className='Consent'>I want to receive emails about the products, feature updates, events and marketing promotions.</label>
+              /> I want to receive emails about the products, feature updates, events and marketing promotions.
             </div>
             <h6>By creating an account, you agree to the <a href="/Terms" className="Terms">Terms of use</a> and <a href="/PrivacyPolicy" className="PrivacyPolicy">Privacy Policy</a>.</h6>
-          </div>
+          
           <button type="submit" className="create-acc-btn" disabled={!formValid}>Create Account</button>
           <div className="or-separator">
             <span className="line"></span>

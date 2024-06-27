@@ -3,7 +3,7 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { FaGoogle, FaFacebook } from 'react-icons/fa';
 import './LoginForm.css';
-
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 // Type for the component state
 interface LoginFormState {
@@ -46,6 +46,7 @@ const LoginForm: React.FC = () => {
   };
 
   return (
+    
     <div className="login-container">
       <div className="form-container">
         <img src='/logo.png' alt="Logo" className="logo" />  {/* Use the imported logo image */}
