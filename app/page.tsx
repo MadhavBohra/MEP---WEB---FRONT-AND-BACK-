@@ -6,6 +6,7 @@ import LandingPage from "./LandingPage/page";
 import SignupForm from "./SignUp/page";
 import LoginForm from "./LoginPage/page";
 import OurServices from "./OurServices/page";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const IndexPage: React.FC = () => {
 
@@ -13,7 +14,7 @@ const IndexPage: React.FC = () => {
 
 // return <UserDashboard email={email} />;
 //    return <LandingPage/>;
-    return <OurServices/>;
+    return <LoginForm/>;
 
 };
 

@@ -3,8 +3,8 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { FaGoogle, FaFacebook } from 'react-icons/fa';
 import './LoginForm.css';
-//import { GoogleOAuthProvider } from '@react-oauth/google';
-
+import { signIn } from 'next-auth/react';
+import { getCsrfToken } from 'next-auth/react';
 // Type for the component state
 interface LoginFormState {
   username: string;
@@ -43,6 +43,10 @@ const LoginForm: React.FC = () => {
   // Toggle show/hide password
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
+  };
+  
+  const handleClick=()=>{
+    signIn("google");
   };
 
   return (
@@ -86,8 +90,8 @@ const LoginForm: React.FC = () => {
             <span className="or-text">OR</span>
             <span className="line"></span>
           </div>
-          <button type="button" className="google-btn">
-            <FaGoogle className="icon" /> Login with Google
+          <button type="button" className="google-btn" onClick={handleClick}>
+            <FaGoogle className="icon"/> Login with Google
           </button>
           <button type="button" className="facebook-btn">
             <FaFacebook className="icon" /> Login with Facebook

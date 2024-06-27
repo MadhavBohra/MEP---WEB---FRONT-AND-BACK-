@@ -12,11 +12,13 @@
     "@mui/x-charts": "^7.7.0",
     "@nestjs/common": "^10.3.9",
     "@nestjs/core": "^10.3.9",
+    "@prisma/client": "^5.16.0",
     "@react-oauth/google": "^0.12.1",
     "@reduxjs/toolkit": "^2.2.0",
     "@types/axios": "^0.14.0",
     "axios": "^1.7.2",
     "next": "^14.2.4",
+    "next-auth": "^4.24.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.2.1",
@@ -32,6 +34,7 @@
     "@types/node": "20.2.5",
     "@types/react": "18.2.37",
     "@types/react-dom": "^18.2.18",
+    "prisma": "^5.16.0",
     "typescript": "^5.5.2"
   }
 }
