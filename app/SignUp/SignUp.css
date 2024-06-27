@@ -70,6 +70,7 @@ input {
  
 .eye-icon {
   position: absolute; /* Position the eye icon absolutely within the container */
+  top:6.5vh;
   right: -1rem; /* Position the eye icon to the right end */
   transform: translateY(-290%); /* Adjust the vertical alignment */
   cursor: pointer;
