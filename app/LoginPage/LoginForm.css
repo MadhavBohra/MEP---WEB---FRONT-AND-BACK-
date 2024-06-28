@@ -1,5 +1,6 @@
 body {
     font-family: 'Lufga', sans-serif;
+    overflow:hidden;
   }
   
   .login-container {
@@ -16,6 +17,7 @@ body {
     align-items: center;
     padding: 2rem;
     background-color: #ffffff;
+    margin-right: 20vw;
   }
   
   .logo {
@@ -53,19 +55,23 @@ body {
   }
   
   .password-input input {
+    padding-right: 2.5rem;
     padding: 0.5rem;
-    margin-bottom: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    margin-bottom: 0.1rem;
+    border: 1.25px solid #ccc;
+    border-radius: 5px;
+    width:100%;
   }
   
   .eye-icon {
-    position: absolute;
-    top: -50%;
-    right: 0px;
+    position: absolute; /* Position the eye icon absolutely within the container */
+    top: 50%; /* Vertically center the icon */
+    right: 10px; /* Position the eye icon to the right with some padding */
+    transform: translateY(-50%); /* Adjust the vertical alignment to be perfectly centered */
     cursor: pointer;
-    width: 25px;
+    width: 30px; /* Adjust the width as needed */
     height: auto;
+    pointer-events: auto; /* Ensure the icon is clickable */
   }
   
   .forgot-password {
@@ -122,19 +128,14 @@ body {
   .icon {
     margin-right: 0.5rem;
   }
-  
-  .image-container {
-    flex: 1;
-    display: flex;
-    justify-content: flex-end; /* Align image container to the right */
-    align-items: center;
-    overflow: hidden; /* Ensure the image container does not overflow */
-  }
-  
-  .image-container img {
-    height: 100%; /* Make the image take the full height of the container */
-    width: auto; /* Maintain the aspect ratio */
-    object-fit: cover; /* Ensures the image covers the container without distortion */
+    
+  .right-img {
+    width: auto; /* Maintain aspect ratio */
+    height: 100%; /* Make the image fit the container's height */
+    object-fit: cover; /* Cover the container without distortion */
+    position: absolute; /* Ensure the image sticks to the container */
+    left: 65vw; /* Stick the image to the right */
+    margin: 0;
   }
   
   .or-separator {

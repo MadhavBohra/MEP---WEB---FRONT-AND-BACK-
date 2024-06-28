@@ -2,7 +2,7 @@ html,
 body {
   body {
     font-family: 'Lufga', sans-serif;
-    src:url('fonts/LufgaRegular.ttf') format('truetype');
+    src:url('/fonts/LufgaRegular.ttf') format('truetype');
     margin: 0;
     padding: 0;
     box-sizing: border-box;
