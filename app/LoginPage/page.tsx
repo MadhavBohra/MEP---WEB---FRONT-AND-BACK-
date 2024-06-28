@@ -2,7 +2,8 @@
 
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { FaGoogle, FaFacebook } from 'react-icons/fa';
-import { useSession, signIn } from 'next-auth/react';
+import { signIn } from 'next-auth/react';
+import axios from 'axios';
 import './LoginForm.css';
 
 interface LoginFormState {
@@ -13,15 +14,27 @@ interface LoginFormState {
 }
 
 const LoginForm: React.FC = () => {
-  const { data: session } = useSession();
   const [username, setUsername] = useState<LoginFormState['username']>('');
   const [password, setPassword] = useState<LoginFormState['password']>('');
   const [formValid, setFormValid] = useState<LoginFormState['formValid']>(false);
   const [showPassword, setShowPassword] = useState<LoginFormState['showPassword']>(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    signIn('credentials', { username, password });
+    try {
+      const response = await axios.post('/api/login', { username, password });
+      if (response.status === 200) {
+        // Handle successful login here
+        console.log('Login successful:', response.data);
+      }
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response) {
+        setErrorMessage(error.response.data.message);
+      } else {
+        setErrorMessage('An unexpected error occurred');
+      }
+    }
   };
 
   const handleUsernameChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -73,6 +86,7 @@ const LoginForm: React.FC = () => {
               onClick={toggleShowPassword}
             />
           </div>
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
           <a href="/forgot-password" className="forgot-password">Forgot Password?</a>
           <button type="submit" className="login-btn" disabled={!formValid}>Login</button>
           <div className="or-separator">
