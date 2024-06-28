@@ -1,8 +1,13 @@
+
 html,
 body {
   body {
     font-family: 'Lufga', sans-serif;
+<<<<<<< HEAD
     src:url('/fonts/LufgaRegular.ttf') format('truetype');
+=======
+    src:url('./fonts/LufgaRegular.ttf') format('truetype');
+>>>>>>> ebff057c99dc76b6c07b4791067bc0ed777e4352
     margin: 0;
     padding: 0;
     box-sizing: border-box;

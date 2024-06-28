@@ -22,10 +22,11 @@
     height: 165px;
     flex: 1;
     position: relative;
-    font-weight: 600;
+    font-weight: 900;
     display: inline-block;
     z-index: 3;
-    top: 310px;
+    top: 270px;
+    font-size: 29px ;
   }
   .planHeading {
     align-self: stretch;
@@ -60,9 +61,10 @@
     align-items: flex-end;
     justify-content: flex-end;
     padding: var(--padding-249xl) var(--padding-36xl) var(--padding-lg);
-    min-width: 280px;
+    min-width: 426px;
     z-index: 2;
     border-radius:40px;
+    height: 601px;
   }
   .personalizedPlanInner {
     width: 408px;
@@ -72,15 +74,18 @@
     z-index: 1;
   }
   .personalisedHealthPlan {
-    width: 278px;
-    height: 145px;
+    width: 318px;
+    height: 173px;
     position: relative;
     font-family: 'Lufga',sans-serif;
-    font-weight: 600;
+    font-weight: 900;
     display: inline-block;
     flex-shrink: 0;
     z-index: 3;
     color: aliceblue;
+    font-size: 29px;
+    bottom: 18px;;
+    right:50px;
   }
   .frameChild {
     height: 22.7px;
@@ -113,8 +118,8 @@
     align-items: flex-end;
     justify-content: flex-end;
     padding: var(--padding-251xl) var(--padding-30xl) 0;
-    min-width: 280px;
-    min-height: 435px;
+    min-width: 426px;
+    min-height: 601px;
     z-index: 2;
     border-radius: 40px;
     
@@ -127,14 +132,15 @@
   }
   .enableProductive {
     margin-bottom: -27px;
-    height: 165px;
+    height: 154px;
     flex: 1;
     position: relative;
-    font-weight: 600;
+    font-weight: 900;
     display: inline-block;
     z-index: 3;
     color: aliceblue;
     font-family: 'Lufga',sans-serif;
+    font-size: 29px;
   }
   .enableProductiveHealthierWrapper {
     align-self: stretch;
@@ -162,7 +168,7 @@
   }
   .corporateDescription {
     align-self: stretch;
-    height: 435px;
+    height: 601px;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: var(--br-36xl);
     background: linear-gradient(128.11deg, #254336, rgba(93, 169, 136, 0.8));
@@ -172,6 +178,7 @@
     padding: var(--padding-244xl) var(--padding-36xl) var(--padding-6xs);
     z-index: 2;
     border-radius: 40px;
+    min-width: 426px;
   }
   .productiveCorporates {
     flex: 1;
@@ -181,8 +188,8 @@
     min-width: 280px;
   }
   .socialIcon {
-    width: 37px;
-    height: 34px;
+    width:4vw;
+    height: 9vh;
     position: relative;
     overflow: hidden;
     flex-shrink: 0;
@@ -203,13 +210,13 @@
     flex-direction: row;
     align-items: flex-end;
     justify-content: flex-start;
-    gap: 127px;;
-    max-width: 74%;
-    padding-left: 81px;
+    gap: 146px;;
+    max-width: 79%;
+    padding-left: 87px;
   }
   .socialIcon1 {
-    height: 31px;
-    width: 19px;
+    height: 9vh;
+    width: 3vw;
     position: relative;
     z-index: 1;
     padding-bottom: 4px;
@@ -225,22 +232,22 @@
   }
   .socialIcon2,
   .socialIcon3 {
-    width: 33px;
-    height: 31px;
+    width: 3vw;
+    height: 6vh;
     position: relative;
     object-fit: cover;
     z-index: 1;
     padding-bottom: 10px;
   }
-  .socialIcon3 {
-    height: 29px;
-  }
+
   .socialContainer1 {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
     gap: var(--gap-lgi-5);
+    position: sticky;
+    margin: right -27px;
   }
   .socialContainer {
     display: flex;
@@ -248,12 +255,13 @@
     align-items: flex-start;
     justify-content: flex-end;
     padding: 0 var(--padding-11xs);
-    bottom: 76px;
-    padding-bottom: 10px;
+    bottom: 206px;
+    padding-bottom: 14px;
     position: relative;
+    margin: right -27px;
   }
   .healthWellness {
-    width: 1312px;
+    width: 1774px;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
