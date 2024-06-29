@@ -7,7 +7,6 @@ interface PoolConfig {
     password: string;
     database: string;
 }
-
 const poolConfig: PoolConfig = {
     host: 'localhost',
     port: 5432,

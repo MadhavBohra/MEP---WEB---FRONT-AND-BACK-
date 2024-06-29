@@ -1,8 +1,7 @@
 'use client';
-
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { FaGoogle, FaFacebook } from 'react-icons/fa';
-import { signIn } from 'next-auth/react';
+import Link from 'next/link';
 import axios from 'axios';
 import './LoginForm.css';
 
@@ -25,12 +24,12 @@ const LoginForm: React.FC = () => {
     try {
       const response = await axios.post('/api/login', { username, password });
       if (response.status === 200) {
-        // Handle successful login here
         console.log('Login successful:', response.data);
       }
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
         setErrorMessage(error.response.data.message);
+        alert('Wrong email or password');
       } else {
         setErrorMessage('An unexpected error occurred');
       }
@@ -58,7 +57,7 @@ const LoginForm: React.FC = () => {
       <div className="form-container">
         <img src='/logo.png' alt="Logo" className="logo" />
         <h2>Log In</h2>
-        <h4>Don't have an account? <a href="/Sign-Up" className="Sign-Up">Sign Up</a></h4>
+        <h4>Don't have an account? <Link href="/Sign-Up"><span className="Sign-Up">Sign Up</span></Link></h4>
         <form onSubmit={handleSubmit}>
           <label>Username or Email</label>
           <input
@@ -87,22 +86,22 @@ const LoginForm: React.FC = () => {
             />
           </div>
           {errorMessage && <p className="error-message">{errorMessage}</p>}
-          <a href="/forgot-password" className="forgot-password">Forgot Password?</a>
+          <Link href="/forgot-password"><span className="forgot-password">Forgot Password?</span></Link>
           <button type="submit" className="login-btn" disabled={!formValid}>Login</button>
           <div className="or-separator">
             <span className="line"></span>
             <span className="or-text">OR</span>
             <span className="line"></span>
           </div>
-          <button type="button" className="google-btn" onClick={() => signIn('google')}>
-            <FaGoogle className="icon"/> Login with Google
+          <button type="button" className="google-btn">
+            <FaGoogle className="icon" /> Login with Google
           </button>
           <button type="button" className="facebook-btn">
             <FaFacebook className="icon" /> Login with Facebook
           </button>
         </form>
       </div>
-      <img src='/GreenBGRight.png' alt="Side" className='right-img'/>
+      <img src='/GreenBGRight.png' alt="Side" className='right-img' />
     </div>
   );
 };

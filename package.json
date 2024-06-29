@@ -5,6 +5,9 @@
     "build": "next build",
     "start": "next start"
   },
+  "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
+  },
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
@@ -38,7 +41,8 @@
     "@types/node": "20.2.5",
     "@types/react": "18.2.37",
     "@types/react-dom": "^18.2.18",
-    "prisma": "^5.16.0",
+    "prisma": "^5.16.1",
+    "ts-node": "^10.9.2",
     "typescript": "^5.5.2"
   },
   "name": "my-app",
