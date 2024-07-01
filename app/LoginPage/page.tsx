@@ -19,23 +19,28 @@ const LoginForm: React.FC = () => {
   const [showPassword, setShowPassword] = useState<LoginFormState['showPassword']>(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const response = await fetch('/api/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ username, password }),
-    });
-  
-    const result = await response.json();
-  
-    if (response.status === 200) {
-      // Assuming you have a 'redirectTo' field in the response
-      window.location.href = result.redirectTo || '/UserDashboard'; // default to '/dashboard' if 'redirectTo' is not provided
-    } else {
-      alert(result.message);
+    try {
+      const response = await fetch('/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
+
+      const result = await response.json();
+
+      if (response.status === 200) {
+
+        localStorage.setItem('token', result.token);
+        window.location.href = result.redirectTo || '/UserDashboard';
+      } else {
+        setErrorMessage(result.message);
+      }
+    } catch (error) {
+      setErrorMessage('An error occurred. Please try again.');
     }
   };
 

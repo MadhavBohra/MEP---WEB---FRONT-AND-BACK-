@@ -1,35 +1,69 @@
 'use client';
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { StoreProvider } from "../StoreProvider";
 import Link from "next/link";
 import styles from "./LandingPage.module.css";
 import LandingHeader from "../components/LandingHeader/Header";
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
-import { loadAuthState } from '../auth';
-import { authenticated } from '../auth';
 import UserDashboardHeader from "../components/UserDashboardHeader/Header";
 
-export default function LandingPage() {
+// Function to load authentication state
+const loadAuthState = () => {
+  try {
+    const storedToken = localStorage.getItem('token');
+    if (storedToken) {
+      return { authenticated: true, token: storedToken };
+    } else {
+      return { authenticated: false, token: '' };
+    }
+  } catch (error) {
+    console.error('Error accessing localStorage:', error);
+    return { authenticated: false, token: '' };
+  }
+};
+
+const HeaderComponent = () => {
+  const [authState, setAuthState] = useState({ authenticated: false, token: '' });
+
   useEffect(() => {
-    loadAuthState();
+    const state = loadAuthState();
+    setAuthState(state);
+
+    const handleBeforeUnload = () => {
+      localStorage.removeItem('token');
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
   }, []);
 
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setAuthState({ authenticated: false, token: '' });
+  };
+
   return (
-        <StoreProvider>
-          <html>
-            <body className={styles.background}>
-              <div className={styles.container}>
-              <div className={styles.headercomp}>{authenticated ? <UserDashboardHeader /> : <LandingHeader />}</div>
-                <p className={styles.t1}>AI Curated corporate wellness program</p>
-                <p className={styles.t2}>MyEasyPharma</p>
-                <button className={styles.b1}>Get started for free</button>
-                <Link href='/OurServices'><button className={styles.b2}>&#x25BC; Our Services</button></Link>
-                
-              </div>
-            </body>
-          </html>
-        </StoreProvider>
-      );
+    <div className={styles.headercomp}>
+      {authState.authenticated ? <UserDashboardHeader /> : <LandingHeader />}
+    </div>
+  );
+};
+
+export default function LandingPage() {
+  return (
+    <StoreProvider>
+      <div className={styles.background}>
+        <div className={styles.container}>
+          <HeaderComponent />
+          <p className={styles.t1}>AI Curated corporate wellness program</p>
+          <p className={styles.t2}>MyEasyPharma</p>
+          <button className={styles.b1}>Get started for free</button>
+          <Link href='/OurServices'><button className={styles.b2}>&#x25BC; Our Services</button></Link>
+        </div>
+      </div>
+    </StoreProvider>
+  );
 }
