@@ -1,12 +1,59 @@
-import React from "react";
+'use client';
+import React, { useState, useEffect } from "react";
 import HealthWellness from "../components/HealthWellness/HealthWellness";
 import styles from "./OurServices.module.css";
-import Header from "../components/Header/Header";
+import LandingHeader from "../components/LandingHeader/Header";
+import UserDashboardHeader from "../components/UserDashboardHeader/Header";
 
 const OurServices: React.FC = () => {
+
+  const loadAuthState = () => {
+    try {
+      const storedToken = localStorage.getItem('token');
+      if (storedToken) {
+        return { authenticated: true, token: storedToken };
+      } else {
+        return { authenticated: false, token: '' };
+      }
+    } catch (error) {
+      console.error('Error accessing localStorage:', error);
+      return { authenticated: false, token: '' };
+    }
+  };
+  
+  const HeaderComponent = () => {
+    const [authState, setAuthState] = useState({ authenticated: false, token: '' });
+  
+    useEffect(() => {
+      const state = loadAuthState();
+      setAuthState(state);
+  
+      const handleBeforeUnload = () => {
+        localStorage.removeItem('token');
+      };
+  
+      window.addEventListener('beforeunload', handleBeforeUnload);
+  
+      return () => {
+        window.removeEventListener('beforeunload', handleBeforeUnload);
+      };
+    }, []);
+  
+    const handleLogout = () => {
+      localStorage.removeItem('token');
+      setAuthState({ authenticated: false, token: '' });
+    };
+  
+    return (
+      <div className={styles.headercomp}>
+        {authState.authenticated ? <UserDashboardHeader /> : <LandingHeader />}
+      </div>
+    );
+  };
+
   return (
     <div className={styles.root}>
-      <Header />
+      <HeaderComponent />
       <div className={styles.ourServices}>
         <div className={styles.ourServicesChild} />
         <div className={styles.ourServicesItem} />
