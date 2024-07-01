@@ -18,6 +18,7 @@ import PostWorkoutSessionCard from '../components/PostWorkout/PostWorkout';
 import Header from '../components/UserDashboardHeader/Header';
 import axios from 'axios';
 import { getSession } from 'next-auth/react';
+import Modal from '../components/Modal/Modal';
 
 interface UserData {
   name: string;
@@ -52,6 +53,7 @@ const fetchDataFromDB = async (): Promise<UserData | null> => {
 
 export default function UserDashboard() {
   const [userData, setUserData] = useState<UserData | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const getData = async () => {
@@ -64,6 +66,18 @@ export default function UserDashboard() {
     };
     getData();
   }, []);
+
+  const handleModalSave = (steps: string, waterIntake: string, caloriesBurnt: string) => {
+    setUserData((prevState) => {
+      if (!prevState) return prevState;
+      return {
+        ...prevState,
+        steps: parseInt(steps),
+        water_intake: parseInt(waterIntake),
+        calories_burnt: parseInt(caloriesBurnt),
+      };
+    });
+  };
 
   if (!userData) {
     return <div>Loading...</div>;
@@ -107,6 +121,12 @@ export default function UserDashboard() {
                 <StepCounter name="Steps Taken" steps={userData.steps?.toString() || "0"} />
                 <CalorieCounter name="Calories Burned" calories={userData.calories_burnt?.toString() || "0"} />
                 <Watertaken name="Water Taken" water={userData.water_intake?.toString() || "0"} />
+                <button onClick={() => setIsModalOpen(true)}>Update Data</button>
+                <Modal
+                  isOpen={isModalOpen}
+                  onClose={() => setIsModalOpen(false)}
+                  onSave={handleModalSave}
+                />
                 <div className={styles.vl}></div>
               </section>
             </div>

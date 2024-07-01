@@ -68,7 +68,7 @@ const LoginForm: React.FC = () => {
       <div className="form-container">
         <img src='/logo.png' alt="Logo" className="logo" />  {/* Use the imported logo image */}
         <h2>Welcome To MyEasyPharma</h2>
-        <h4>Already have an account? <a href="/LogIn" className="LogIn">Log In</a></h4>
+        <h4>Already have an account? <a href="./LoginPage" className="LogIn">Log In</a></h4>
         <form onSubmit={handleSubmit}>
           <label>Email</label>
           <input
