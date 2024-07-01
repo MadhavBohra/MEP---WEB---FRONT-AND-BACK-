@@ -13,9 +13,9 @@ const Header = () => {
       <nav className="nav-links">
         <a href='/LandingPage'>Home</a>
         <span>/</span>
-        <a href="#about-us">About Us</a>
+        <a href="/AboutUs">About Us</a>
         <span>/</span>
-        <a href="#blogs">Blogs</a>
+        <a href="/Blogs">Blogs</a>
         <span>/</span>
         <a href="#contact">Contact</a>
         <span>/</span>

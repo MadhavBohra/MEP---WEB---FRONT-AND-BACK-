@@ -1,0 +1,80 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Lufga', sans-serif;
+  background-image: url('/Background.png'); /* Ensure this path is correct */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* This makes the background image fixed on scroll */
+}
+
+.blogs-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+  margin-top: 10vh; /* To offset the fixed header */
+}
+
+.blog-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Ensure content is spaced within the box */
+  margin: 15px;
+  width: 80vw;
+  height: 30vh;
+  padding: 20px;
+  border: 2px solid #ccc;
+  border-radius: 50px;
+  background-color: rgba(133, 170, 151, 0.5);
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add box shadow */
+  text-decoration: none; /* Remove underline from links */
+  color: inherit; /* Ensure link color matches the surrounding text */
+}
+
+.blog-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+}
+
+.blog-box .content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.blog-box.even .content {
+  flex-direction: row-reverse; /* Text on the left, image on the right for even boxes */
+}
+
+.blog-box .blog-image {
+  width: auto; /* Adjust width to ensure it fits within the box */
+  height: 30vh; /* Ensure the image covers the container properly */
+  object-fit: cover; /* Maintain aspect ratio while filling the box */
+  border-radius: 40px; /* Optional: round corners of the image */
+}
+
+.blog-box .text-content {
+  width: 55%; /* Adjust width to ensure text fits within the box */
+  padding: 0 20px; /* Add padding to ensure text does not touch the edges */
+}
+
+.blog-box h2 {
+  margin: 0 0 10px;
+  font-family: 'Lufga', sans-serif;
+  color: #254336;
+  font-size: 1.5em; /* Adjust font size */
+}
+
+.blog-box p {
+  margin: 0;
+  font-family: 'Lufga', sans-serif;
+  color: #254336;
+  font-size: 1em; /* Adjust font size */
+}
