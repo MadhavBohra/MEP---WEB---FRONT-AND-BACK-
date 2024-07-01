@@ -19,7 +19,7 @@ const Header = () => {
         <span>/</span>
         <a href="#contact">Contact</a>
         <span>/</span>
-        <a href="#faqs">FAQs</a>
+        <a href="/FAQs">FAQs</a>
         <span>/</span>
         <img className="icon" src="/search.png" alt="Search" />
       </nav>
