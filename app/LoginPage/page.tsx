@@ -19,20 +19,23 @@ const LoginForm: React.FC = () => {
   const [showPassword, setShowPassword] = useState<LoginFormState['showPassword']>(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    try {
-      const response = await axios.post('/api/login', { username, password });
-      if (response.status === 200) {
-        console.log('Login successful:', response.data);
-      }
-    } catch (error) {
-      if (axios.isAxiosError(error) && error.response) {
-        setErrorMessage(error.response.data.message);
-        alert('Wrong email or password');
-      } else {
-        setErrorMessage('An unexpected error occurred');
-      }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const response = await fetch('/api/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username, password }),
+    });
+  
+    const result = await response.json();
+  
+    if (response.status === 200) {
+      // Assuming you have a 'redirectTo' field in the response
+      window.location.href = result.redirectTo || '/UserDashboard'; // default to '/dashboard' if 'redirectTo' is not provided
+    } else {
+      alert(result.message);
     }
   };
 
@@ -57,7 +60,7 @@ const LoginForm: React.FC = () => {
       <div className="form-container">
         <img src='/logo.png' alt="Logo" className="logo" />
         <h2>Log In</h2>
-        <h4>Don't have an account? <Link href="/Sign-Up"><span className="Sign-Up">Sign Up</span></Link></h4>
+        <h4>Don't have an account? <Link href="/SignUp"><span className="Sign-Up">Sign Up</span></Link></h4>
         <form onSubmit={handleSubmit}>
           <label>Username or Email</label>
           <input

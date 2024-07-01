@@ -1,9 +1,12 @@
+import LandingPage from "./LandingPage/page";
 import LoginForm from "./LoginPage/page";
 import OurServices from "./OurServices/page";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
+
 const IndexPage: React.FC = () => {
- return <LoginForm/>;
+
+  return <LandingPage/>;
 };
 
 export default IndexPage;

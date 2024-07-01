@@ -197,26 +197,35 @@ input {
   color: #666;
   font-weight: bold;
 }
-.Consent{
-  font-size: xx-small;
-}
- 
 .consent-checkbox-wrapper {
-  margin: 10px;
   display: flex;
-  position: relative  ;
-  left:1vw;
-  align-items: flex-start; /* Change from center to flex-start */
+  align-items: center; /* Align items in the center vertically */
+  justify-content: flex-start; 
   font-size: 16px;
-  text-align: center;
+  margin: 0;
   margin-bottom: 1rem;
-  margin-top: 0rem;
-  max-width: 100%; /* Ensure labels take full width */
+  width: 100%; /* Ensure labels take full width */
 }
- 
+
 .consent-checkbox-wrapper input[type="checkbox"] {
   margin: 0;
-  margin-left: -145px;
-  margin-right: -135px; /* Add a small margin to separate checkbox from text */
+  margin-left: -2rem;
+  margin-right: 0.1 rem; /* Add a small margin to separate checkbox from text */
+  accent-color: #007BFF; /* Customize the checkbox color */
 }
- 
+
+.consent-checkbox-wrapper label {
+  font-size: 12px;/* Adjust the font size */
+  line-height: 1.5;
+  width: 100vw; /* Adjust width to fit the text properly */
+  word-wrap: break-word; /* Ensure text wraps within the label */
+}
+
+.consent-checkbox-wrapper label a {
+  color: #007BFF;
+  text-decoration: none;
+}
+
+.consent-checkbox-wrapper label a:hover {
+  text-decoration: underline;
+}

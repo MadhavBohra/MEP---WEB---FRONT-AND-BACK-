@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, ChangeEvent, FormEvent } from 'react';
+import axios from 'axios';
 import { FaGoogle, FaFacebook } from 'react-icons/fa';
 import './SignUp.css';
 
@@ -14,12 +15,22 @@ const LoginForm: React.FC = () => {
   const [consentChecked, setConsentChecked] = useState<boolean>(false);
  
   // Handle form submission
-  const handleSubmit = (event: FormEvent) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // Add your login logic here
-    console.log('Login clicked');
+    try {
+      const response = await axios.post('/api/signup', { email,username, password });
+      if (response.status === 200) {
+        console.log('Login successful:', response.data);
+      }
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response) {
+        setErrorMessage(error.response.data.message);
+        alert('Wrong email or password');
+      } else {
+        setErrorMessage('An unexpected error occurred');
+      }
+    }
   };
- 
   // Update state as user types
   const handleUsernameChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -106,11 +117,13 @@ const LoginForm: React.FC = () => {
                 id="consent"
                 checked={consentChecked}
                 onChange={handleConsentChange}
-              /> I want to receive emails about the products, feature updates, events and marketing promotions.
+              /><label htmlFor="consent">
+              I want to receive emails about the products, feature updates, events and marketing promotions.
+            </label>
             </div>
             <h6>By creating an account, you agree to the <a href="/Terms" className="Terms">Terms of use</a> and <a href="/PrivacyPolicy" className="PrivacyPolicy">Privacy Policy</a>.</h6>
           
-          <button type="submit" className="create-acc-btn" disabled={!formValid}>Create Account</button>
+          <button type="submit" className="create-acc-btn" disabled={!formValid} onClick={handleSubmit}>Create Account</button>
           <div className="or-separator">
             <span className="line"></span>
             <span className="or-text">OR</span>
