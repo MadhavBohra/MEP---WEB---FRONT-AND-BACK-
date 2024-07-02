@@ -1,0 +1,78 @@
+.container, .contact {
+  font-family: 'Lufga', sans-serif;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url('/Background.png'); /* Adjust the path accordingly */
+  background-size: cover; /* This ensures the image covers the entire background */
+  background-repeat: no-repeat; /* This prevents the image from repeating */
+  background-position: center; /* This centers the image */
+  min-height: 100vh; /* Ensures the background covers the full viewport height */
+}
+
+.productsupport {
+  font-family: 'Lufga', sans-serif;
+  font-size: 35px;
+  font-weight: 600;
+  line-height: 45.68px;
+  text-align: left;
+  position: absolute;
+  width: 995px;
+  height: 101px;
+  top: 199px;
+  left: 88px;
+  gap: 0px;
+  opacity: 0px;
+  color: #254336;
+}
+
+.address {
+  font-family: 'Lufga', sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 28.71px;
+  text-align: left;
+  position: absolute;
+  width: 585px;
+  height: 280px;
+  top: 367px;
+  left: 86px;
+  gap: 0px;
+  opacity: 0px;
+  color: #254336;
+}
+
+.contact {
+  font-family: 'Lufga', sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 28.71px;
+  text-align: left;
+  position: absolute;
+  width: 318px;
+  height: 87px;
+  top: 367px;
+  left: 60vw;
+  gap: 0px;
+  opacity: 0px;
+  color: #254336;
+}
+.social {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px; /* Adjust as needed */
+  position: absolute;
+  top:70vh;
+  right:5vw;
+}
+.social img {
+  margin-bottom: 15px; /* Increased space between each image */
+}
+.headercomp {
+  width: 100%;
+
+}

@@ -121,7 +121,7 @@ export default function UserDashboard() {
                 <StepCounter name="Steps Taken" steps={userData.steps?.toString() || "0"} />
                 <CalorieCounter name="Calories Burned" calories={userData.calories_burnt?.toString() || "0"} />
                 <Watertaken name="Water Taken" water={userData.water_intake?.toString() || "0"} />
-                <button onClick={() => setIsModalOpen(true)}>Update Data</button>
+                <button className={styles.updateButton} onClick={() => setIsModalOpen(true)}>Update Data</button>
                 <Modal
                   isOpen={isModalOpen}
                   onClose={() => setIsModalOpen(false)}

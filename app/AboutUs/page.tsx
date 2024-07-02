@@ -1,10 +1,8 @@
 'use client'
 
-import { FunctionComponent } from "react";
 import React, { useState, useEffect } from "react";
 import MissionContainer from "../components/MissionContainer/MissionContainer";
 import styles from "./AboutUs.module.css";
-//import Header from "../components/LandingHeader copy/Header";
 import './fonts.css';
 import LandingHeader from "../components/LandingHeader/Header";
 import UserDashboardHeader from "../components/UserDashboardHeader/Header";
@@ -58,39 +56,34 @@ const HeaderComponent = () => {
 
 const AboutUs: React.FC = () => {
   return (
-    <div className={styles.aboutUs}>
+
+
+    <div className={styles.aboutUs1}>
       <HeaderComponent />
-      <div className={styles.aboutUs1}>
-        <img
-          className={styles.backgroundPatternIcon}
-          alt=""
-          src="/background-pattern@2x.png"
-        />
+      <img
+        className={styles.backgroundPatternIcon}
+        alt=""
+        src="/Background.png"
+      />
+      <div className={styles.myeasypharmaIsAtContainer} >
+        MyEasyPharma is at the forefront of merging technology with
+        healthcare to innovate preventive health measures for working
+        professionals.
+      </div>
+      <div className={styles.visionDetails}>
+        <div className={styles.vision}>Vision</div>
+        At MyEasyPharma, our vision is to pioneer a shift in global health
+        paradigms, focusing not just on treating illnesses but on preventing
+        them before they occur.We primarily aim for improved employee
+        health which leads to increased and enhanced efficiency at the
+        workplace.
+      </div>
+      <div className={styles.missionDetails}>
         <div className={styles.mission}>Mission</div>
-        <MissionContainer />
-        <img
-          className={styles.image7Icon}
-          loading="lazy"
-          alt=""
-          src="/image-7@2x.png"
-        />
-        <div className={styles.visionDetails}>
-          <div className={styles.vision}>Vision</div>
-          <div className={styles.atMyeasypharmaOur}>
-            At MyEasyPharma, our vision is to pioneer a shift in global health
-            paradigms, focusing not just on treating illnesses but on preventing
-            them before they occur. We primarily aim for improved employee
-            health which leads to increased and enhanced efficiency at the
-            workplace.
-          </div>
-        </div>
-        <b className={styles.myeasypharmaIsAtContainer} >
-          <p className={styles.myeasypharmaIsAt} >
-            MyEasyPharma is at the forefront of merging technology with
-            healthcare to innovate preventive health measures for working
-            professionals.
-          </p>
-        </b>
+        We provide comprehensive professional Health advice
+        on parameters such as diet, physical activity, ideal screen time
+        and others which reducing susceptibility to Workplace-induced
+        lifestyle disorders.
       </div>
     </div>
   );

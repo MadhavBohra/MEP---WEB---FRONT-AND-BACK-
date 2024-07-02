@@ -11,12 +11,12 @@ const IndexPage: React.FC = () => {
   const email = 'xyz@gmail.com'; // Ensure this matches the type expected by UserDashboard
 
   // Uncomment the component you want to render
-  return <UserDashboard email={email} />;
+ // return <UserDashboard email={email} />;
   // return <LandingPage/>;
   // return <SignupForm/>;
   //return <UserDashboard email={email} />;
-  return <Blogs />;
-  // return <LandingPage/>;
+  //return <Blogs />;
+   return <LandingPage/>;
   // return <OurServices/>;
 };
 
