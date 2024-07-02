@@ -6,18 +6,20 @@ import LandingPage from "./LandingPage/page";
 import LoginForm from "./LoginPage/page";
 import OurServices from "./OurServices/page";
 import Blogs from "./Blogs/page";
+import ContactUs from "./ContactUs/page";
 
 const IndexPage: React.FC = () => {
   const email = 'xyz@gmail.com'; // Ensure this matches the type expected by UserDashboard
 
   // Uncomment the component you want to render
-  return <UserDashboard email={email} />;
+  //return <UserDashboard email={email} />;
   // return <LandingPage/>;
   // return <SignupForm/>;
   //return <UserDashboard email={email} />;
-  return <Blogs />;
+  //return <Blogs />;
   // return <LandingPage/>;
   // return <OurServices/>;
+  return <ContactUs />;
 };
 
 export default IndexPage;
