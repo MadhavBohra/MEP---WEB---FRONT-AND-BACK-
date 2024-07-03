@@ -15,15 +15,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserController = void 0;
 const common_1 = require("@nestjs/common");
 const user_service_1 = require("./user.service");
+const create_user_dto_1 = require("./dto/create-user.dto");
+const file_upload_interceptor_1 = require("./interceptors/file-upload.interceptor");
 let UserController = class UserController {
     constructor(userService) {
         this.userService = userService;
     }
-    async create(user) {
-        if (!user.password) {
+    async create(createUserDto, file) {
+        if (!createUserDto.password) {
             throw new common_1.BadRequestException('Password is required');
         }
-        return this.userService.create(user);
+        return this.userService.create(createUserDto, file ? file.filename : undefined);
     }
     async findOne(id) {
         return this.userService.findOne(id);
@@ -38,9 +40,11 @@ let UserController = class UserController {
 exports.UserController = UserController;
 __decorate([
     (0, common_1.Post)(),
+    (0, common_1.UseInterceptors)(file_upload_interceptor_1.ProfilePictureInterceptor),
     __param(0, (0, common_1.Body)()),
+    __param(1, (0, common_1.UploadedFile)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", [create_user_dto_1.CreateUserDto, Object]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "create", null);
 __decorate([

@@ -22,14 +22,19 @@ let UserService = class UserService {
     constructor(usersRepository) {
         this.usersRepository = usersRepository;
     }
-    async create(user) {
-        if (!user.password) {
-            throw new Error('Password is required');
+    async create(createUserDto, profilePicture) {
+        if (!createUserDto.password) {
+            throw new common_1.BadRequestException('Password is required');
         }
-        const hashedPassword = await bcrypt.hash(user.password, 10);
+        const passwordValidationRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        if (!passwordValidationRegex.test(createUserDto.password)) {
+            throw new common_1.BadRequestException('Password does not meet the required criteria');
+        }
+        const hashedPassword = await bcrypt.hash(createUserDto.password, 10);
         const newUser = this.usersRepository.create({
-            ...user,
+            ...createUserDto,
             password: hashedPassword,
+            profilePicture,
         });
         return this.usersRepository.save(newUser);
     }

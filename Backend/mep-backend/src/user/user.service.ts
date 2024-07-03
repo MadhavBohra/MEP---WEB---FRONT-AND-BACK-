@@ -1,8 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, BadRequestException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './user.entity';
 import * as bcrypt from 'bcrypt';
+import { CreateUserDto } from './dto/create-user.dto';
 
 @Injectable()
 export class UserService {
@@ -11,17 +12,27 @@ export class UserService {
     private usersRepository: Repository<User>,
   ) {}
 
-  async create(user: Partial<User>): Promise<User> {
-    if (!user.password) {
-      throw new Error('Password is required');
+  async create(createUserDto: CreateUserDto, profilePicture?: string): Promise<User> {
+    if (!createUserDto.password) {
+      throw new BadRequestException('Password is required');
     }
-    const hashedPassword = await bcrypt.hash(user.password, 10);
+
+    const passwordValidationRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    if (!passwordValidationRegex.test(createUserDto.password)) {
+      throw new BadRequestException('Password does not meet the required criteria');
+    }
+
+    const hashedPassword = await bcrypt.hash(createUserDto.password, 10);
+    
     const newUser = this.usersRepository.create({
-      ...user,
+      ...createUserDto,
       password: hashedPassword,
+      profilePicture,
     });
+
     return this.usersRepository.save(newUser);
   }
+
 
   async findOne(id: number): Promise<User> {
     return this.usersRepository.findOne({ where: { id } });
