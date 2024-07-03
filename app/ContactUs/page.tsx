@@ -69,8 +69,6 @@ const Contact: FunctionComponent = () => {
             <h3 className={styles.adhead2}>Operating Address:</h3>
             <p className={styles.adtext2}>252, Upper Ground Floor. Deepali, Pitampura,
               Delhi-110034</p>
-          </div>
-          <div className={styles.contact}>
             <h3 className={styles.chead}>Contacts</h3>
             <p className={styles.ctext}>Contact:</p>
             <p className={styles.ctext1}> Email: info@myeasypharma.in</p>

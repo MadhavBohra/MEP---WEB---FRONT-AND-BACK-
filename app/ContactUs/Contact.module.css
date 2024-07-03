@@ -114,8 +114,8 @@
   line-height: 4vh;
   text-align: left;
   position: absolute;
-  top: 40vh;
-  left: 60vw;
+  top: 5vh;
+  left: 55vw;
   width:3vw;
   gap: 0px;
   opacity: 0px;
@@ -129,8 +129,8 @@
   line-height: 4vh;
   text-align: left;
   position: absolute;
-  top: 45vh;
-  left: 60vw;
+  top: 10vh;
+  left: 55vw;
   gap: 0px;
   opacity: 0px;
   color: #254336;
@@ -143,8 +143,8 @@
   line-height: 4vh;
   text-align: left;
   position: absolute;
-  top: 50vh;
-  left: 60vw;
+  top: 15vh;
+  left: 55vw;
   gap: 0px;
   opacity: 0px;
   color: #254336;
@@ -157,8 +157,8 @@
   line-height: 4vh;
   text-align: left;
   position: absolute;
-  top: 55vh;
-  left: 60vw;
+  top: 25vh;
+  left: 55vw;
   gap: 0px;
   opacity: 0px;
   color: #254336;
