@@ -156,6 +156,20 @@ const UserDetailsForm: React.FC = () => {
       return;
     }
   
+    // Client-side validation
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phonePattern = /^\d{10}$/;
+
+    if (!emailPattern.test(formData.email)) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+
+    if (!phonePattern.test(formData.phone)) {
+      alert('Please enter a valid 10-digit phone number.');
+      return;
+    }
+
     try {
       const res = await axios.post('/api/usereditform', formDataToSubmit, {
         headers: {
@@ -178,7 +192,7 @@ const UserDetailsForm: React.FC = () => {
   return (
     <StoreProvider>
       <div className="body">
-        <HeaderComponent/>z``
+        <HeaderComponent/>
         <form onSubmit={handleSubmit} className="user-details-form">
           <div className="profile-picture-container">
             <img src={avatar} alt="User Avatar" className="avatar" />
@@ -221,25 +235,52 @@ const UserDetailsForm: React.FC = () => {
               <div className="form-group">
                 <label>
                   Height:
-                  <input type="text" name="height" value={formData.height} onChange={handleChange} />
+                  <input
+                    type="number"
+                    name="height"
+                    value={formData.height}
+                    onChange={handleChange}
+                    min="0"
+                    step="any"
+                  />
                 </label>
               </div>
               <div className="form-group">
                 <label>
                   Weight:
-                  <input type="text" name="weight" value={formData.weight} onChange={handleChange} />
+                  <input
+                    type="number"
+                    name="weight"
+                    value={formData.weight}
+                    onChange={handleChange}
+                    min="0"
+                    step="any"
+                  />
                 </label>
               </div>
               <div className="form-group">
                 <label>
                   Email:
-                  <input type="email" name="email" value={formData.email} onChange={handleChange} />
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                  />
                 </label>
               </div>
               <div className="form-group">
                 <label>
                   Phone Number:
-                  <input type="tel" name="phone" value={formData.phone} onChange={handleChange} />
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    pattern="\d{10}"
+                    required
+                  />
                 </label>
               </div>
             </div>
