@@ -59,7 +59,7 @@
 .adhead{
   font-family: 'Lufga', sans-serif;
   font-size: 3vh;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 28.71px;
   text-align: left;
   position: absolute;
@@ -72,8 +72,8 @@
 }
 .adtext{
   font-family: 'Lufga', sans-serif;
-  font-size: 22px;
-  font-weight: 600;
+  font-size: 2.5vh;
+  font-weight: 250;
   line-height: 4vh;
   text-align: left;
   position: absolute;
@@ -84,7 +84,7 @@
 .adhead2{
   font-family: 'Lufga', sans-serif;
   font-size: 3vh;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 4vh;
   text-align: left;
   position: absolute;
@@ -97,8 +97,8 @@
 }
 .adtext2{
   font-family: 'Lufga', sans-serif;
-  font-size: 22px;
-  font-weight: 600;
+  font-size: 2.5vh;
+  font-weight: 250;
   line-height: 4vh;
   text-align: left;
   position: absolute;
@@ -110,7 +110,7 @@
 .chead{
   font-family: 'Lufga', sans-serif;
   font-size: 3vh;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 4vh;
   text-align: left;
   position: absolute;
@@ -125,7 +125,7 @@
 .ctext{
   font-family: 'Lufga', sans-serif;
   font-size: 3vh;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 4vh;
   text-align: left;
   position: absolute;
@@ -139,7 +139,7 @@
 .ctext1{
   font-family: 'Lufga', sans-serif;
   font-size: 3vh;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 4vh;
   text-align: left;
   position: absolute;
@@ -153,7 +153,7 @@
 .ctext2{
   font-family: 'Lufga', sans-serif;
   font-size: 3vh;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 4vh;
   text-align: left;
   position: absolute;
@@ -168,10 +168,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 20px; /* Adjust as needed */
   position: absolute;
   top:70vh;
-  right:5vw;
+  right:2.5vw;
 }
 .social img {
   margin-bottom: 15px; /* Increased space between each image */
