@@ -1,4 +1,5 @@
 'use client';
+
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { FaGoogle, FaFacebook } from 'react-icons/fa';
 import Link from 'next/link';
@@ -33,7 +34,6 @@ const LoginForm: React.FC = () => {
       const result = await response.json();
 
       if (response.status === 200) {
-
         localStorage.setItem('token', result.token);
         window.location.href = result.redirectTo || '/UserDashboard';
       } else {
@@ -109,9 +109,12 @@ const LoginForm: React.FC = () => {
           </button>
         </form>
       </div>
-      <img src='/GreenBGRight.png' alt="Side" className='right-img' />
+      <div className="image-container">
+        <img src='/GreenBGRight.png' alt="Side" />
+      </div>
     </div>
   );
 };
 
 export default LoginForm;
+
