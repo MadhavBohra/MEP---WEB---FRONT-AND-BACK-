@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import styles from './Modal.module.css';
 
 interface ModalProps {
@@ -12,8 +13,22 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, onSave }) => {
   const [waterIntake, setWaterIntake] = useState('');
   const [caloriesBurnt, setCaloriesBurnt] = useState('');
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     onSave(steps, waterIntake, caloriesBurnt);
+    try {
+      const response = await axios.post('/api/healthfrommodal', {
+        steps,
+        waterIntake,
+        caloriesBurnt,
+      });
+      if (response.status === 200) {
+        console.log('Data saved successfully');
+      } else {
+        console.error('Error saving data');
+      }
+    } catch (error) {
+      console.error('Error saving data:', error);
+    }
     onClose();
   };
 

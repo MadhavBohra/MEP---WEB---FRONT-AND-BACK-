@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import jwt from 'jsonwebtoken';
 import pool from '../../utils/postgres';
 
-const SECRET_KEY = process.env.SECRET_KEY || 'your-secret-key';
+const SECRET_KEY = 'your_jwt_secret';
 
 export async function POST(req: NextRequest) {
   try {
@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
     const client = await pool.connect();
     const query = `
       SELECT * FROM credentials
-      WHERE username = $1 OR email = $1
+      WHERE email = $1
     `;
 
     const result = await client.query(query, [username]);
@@ -27,8 +27,12 @@ export async function POST(req: NextRequest) {
     if (!isPasswordValid) {
       return NextResponse.json({ message: 'Invalid password' }, { status: 401 });
     }
-
-    const token = jwt.sign({ userId: user.id }, SECRET_KEY, { expiresIn: '1h' });
+    const payload = {
+      userId: user.id,
+      email: username,
+      role: 'user',
+    };
+    const token = jwt.sign(payload, SECRET_KEY, { expiresIn: '1h' });
 
     return NextResponse.json({ message: 'Login successful', token });
   } catch (error) {

@@ -102,3 +102,22 @@
     color: black;
     border: 2px solid #4CAF50;
   }
+  .report{
+    position:absolute;
+    bottom: 1vh;
+    left:3vw;
+    margin:1vw;
+    height: 6vh;
+  }
+.reminder{
+  position:absolute;
+  bottom: 1vh;
+  margin:1vw;
+  padding: 2vh;
+  height: 6vh;
+}
+.vl{
+  border-left: 5px solid black;
+  height: 85vh;
+  z-index: 2;
+}

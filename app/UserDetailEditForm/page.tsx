@@ -2,9 +2,10 @@
 
 import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import './UserDetailsforms.css';
-import Link from 'next/link';
 import axios from 'axios';
 import { StoreProvider } from '../StoreProvider';
+import LandingHeader from "../components/LandingHeader/Header";
+import UserDashboardHeader from "../components/UserDashboardHeader/Header";
 
 interface FormData {
   username: string;
@@ -16,6 +17,50 @@ interface FormData {
   email: string;
   phone: string;
 }
+
+const loadAuthState = () => {
+  try {
+    const storedToken = localStorage.getItem('token');
+    if (storedToken) {
+      return { authenticated: true, token: storedToken };
+    } else {
+      return { authenticated: false, token: '' };
+    }
+  } catch (error) {
+    console.error('Error accessing localStorage:', error);
+    return { authenticated: false, token: '' };
+  }
+};
+
+const HeaderComponent = () => {
+  const [authState, setAuthState] = useState({ authenticated: false, token: '' });
+
+  useEffect(() => {
+    const state = loadAuthState();
+    setAuthState(state);
+
+    const handleBeforeUnload = () => {
+      localStorage.removeItem('token');
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setAuthState({ authenticated: false, token: '' });
+  };
+
+  return (
+    <div className="headercomp">
+      {authState.authenticated ? <UserDashboardHeader /> : <LandingHeader />}
+    </div>
+  );
+};
 
 const UserDetailsForm: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
@@ -31,35 +76,30 @@ const UserDetailsForm: React.FC = () => {
 
   const [avatar, setAvatar] = useState<string>('/avataricon.png'); 
 
-  // Fetch user data
   const getData = async () => {
     try {
-      const res = await axios.get('/api/user', { //change the relation name accordingly
-        params: { email: formData.email }
-      });
+      const res = await axios.get('/api/usereditform', { params: { email: formData.email } });
       const userData = res.data;
-
-      // Set form data with the fetched user data
+  
       setFormData({
         username: userData.username || '',
-        profilePicture: null, // We are not handling file here
+        profilePicture: null, 
         address: userData.address || '',
-        bloodGroup: userData.bloodGroup || '',
+        bloodGroup: userData.blood_group || '',
         height: userData.height || '',
         weight: userData.weight || '',
         email: userData.email || '',
         phone: userData.phone || ''
       });
-
-      // Set avatar if profile picture URL is available
-      if (userData.profilePicture) {
-        setAvatar(userData.profilePicture);
+  
+      if (userData.profile_picture) {
+        setAvatar(`/uploads/${userData.profile_picture}`);
       }
     } catch (error) {
       console.log(error);
-      // Handle user not found or other errors
     }
   };
+  
 
   useEffect(() => {
     if (formData.email) {
@@ -99,69 +139,46 @@ const UserDetailsForm: React.FC = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    const updatedUserData = {
-      username: formData.username,
-      address: formData.address,
-      bloodGroup: formData.bloodGroup,
-      height: formData.height,
-      weight: formData.weight,
-      email: formData.email,
-      phone: formData.phone,
-    };
-
+  
+    const formDataToSubmit = new FormData();
+    formDataToSubmit.append('username', formData.username);
+    formDataToSubmit.append('address', formData.address);
+    formDataToSubmit.append('bloodGroup', formData.bloodGroup);
+    formDataToSubmit.append('height', formData.height);
+    formDataToSubmit.append('weight', formData.weight);
+    formDataToSubmit.append('email', formData.email);
+    formDataToSubmit.append('phone', formData.phone);
+  
+    if (formData.profilePicture instanceof File) {
+      formDataToSubmit.append('profilePicture', formData.profilePicture);
+    } else {
+      console.error('Invalid profile picture');
+      return;
+    }
+  
     try {
-      // Update user details if user exists
-      await axios.put(`/api/users`, updatedUserData); //change the relation name accordingly
-
-      // Handle profile picture upload separately if necessary
-      if (formData.profilePicture) {
-        const formDataObj = new FormData();
-        formDataObj.append('profilePicture', formData.profilePicture);
-        await axios.post(`/api/users/upload`, formDataObj, { //change the relation name accordingly
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-          params: {
-            email: formData.email,
-          }
-        });
+      const res = await axios.post('/api/usereditform', formDataToSubmit, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+  
+      if (res.status === 200) {
+        alert('User details updated successfully');
+      } else {
+        console.error('Error updating user details', res.data.error);
       }
-
-      alert('User details updated successfully');
     } catch (error) {
       console.error('Error updating user details', error);
-
-      // If user doesn't exist, create a new user
-      try {
-        const res = await axios.post('/api/users', updatedUserData);
-        const newUserId = res.data.id; // Assuming the response contains the new user's ID
-
-
-        if (formData.profilePicture) {
-          const formDataObj = new FormData();
-          formDataObj.append('profilePicture', formData.profilePicture);
-          await axios.post(`/api/users/upload`, formDataObj, { //change the relation name accordingly
-            headers: {
-              'Content-Type': 'multipart/form-data',
-            },
-            params: {
-              email: formData.email,
-            }
-          });
-        }
-
-        alert('New user created successfully');
-      } catch (createError) {
-        console.error('Error creating new user', createError);
-        alert('Failed to create new user');
-      }
     }
   };
+  
+  
 
   return (
     <StoreProvider>
       <div className="body">
+        <HeaderComponent/>z``
         <form onSubmit={handleSubmit} className="user-details-form">
           <div className="profile-picture-container">
             <img src={avatar} alt="User Avatar" className="avatar" />

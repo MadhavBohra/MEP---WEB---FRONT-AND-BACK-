@@ -9,7 +9,7 @@ import CalorieCounter from '../components/CalorieCounter/CalorieCounter';
 import Watertaken from '../components/WaterTaken/Watertaken';
 import Report from '../components/Report/Report';
 import Reminder from '../components/Reminder/Reminders';
-import styles from '../styles/layout.module.css';
+import styles from './UserDashboard.module.css';
 import BarsDataset from '../components/Chart/Chart';
 import ProfileCard from '../components/ProfileCard/ProfileCard';
 import Calendar from '../components/Calendar/DatePicker';
@@ -114,10 +114,14 @@ export default function UserDashboard() {
                 </div>
                 <div className={styles.datepicker}><Calendar /></div>
                 <div className={styles.graph}><BarsDataset /></div>
-                <Reminder dur1="48 min" ex1="stretching" dur2="32 min" ex2="Mind training" />
+                <div className={styles.reminder}>
+                <Reminder dur1="48 min" ex1="stretching" dur2="32 min" ex2="Mind training" />  
+                </div>
                 <div className={styles.upcomingevent}><UpcomingEvents /></div>
                 <div className={styles.postWorkoutSessionCard}><PostWorkoutSessionCard /></div>
-                <Report weight={userData.weight} general="78" />
+                <div className={styles.report}>
+                <Report weight={userData.weight} />
+                </div>
                 <StepCounter name="Steps Taken" steps={userData.steps?.toString() || "0"} />
                 <CalorieCounter name="Calories Burned" calories={userData.calories_burnt?.toString() || "0"} />
                 <Watertaken name="Water Taken" water={userData.water_intake?.toString() || "0"} />
@@ -127,8 +131,8 @@ export default function UserDashboard() {
                   onClose={() => setIsModalOpen(false)}
                   onSave={handleModalSave}
                 />
-                <div className={styles.vl}></div>
               </section>
+              <div className={styles.vl}></div>
             </div>
           </main>
         </div>

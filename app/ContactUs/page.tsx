@@ -5,6 +5,10 @@ import ProductSupport from "../components/ProductSupport/ProductSupport";
 import SocialMedia from "../components/SocialMedia/SocialMedia";
 import React, { useState, useEffect } from "react";
 import styles from './Contact.module.css';
+<<<<<<< HEAD
+=======
+//import Header from "../components/LandingHeader/Header";
+>>>>>>> 1db6ed7c71c8a3c9f77a84bf7bfb35ddf42f7d04
 import LandingHeader from "../components/LandingHeader/Header";
 import UserDashboardHeader from "../components/UserDashboardHeader/Header";
 
@@ -46,12 +50,17 @@ const HeaderComponent = () => {
   };
 
   return (
+<<<<<<< HEAD
     <div>
+=======
+    <div className={styles.headercomp}>
+>>>>>>> 1db6ed7c71c8a3c9f77a84bf7bfb35ddf42f7d04
       {authState.authenticated ? <UserDashboardHeader /> : <LandingHeader />}
     </div>
   );
 };
 
+<<<<<<< HEAD
 const Contact: FunctionComponent = () => {
   return (
     <div>
@@ -85,6 +94,42 @@ const Contact: FunctionComponent = () => {
         </div>
       </div>
     </div>
+=======
+
+const Contact: FunctionComponent = () => {
+  return (
+    <div className={styles.contact}>
+      <LandingHeader />
+      <div className={styles.productSupportWrapper}>
+        <ProductSupport />
+      </div>
+      <div className={styles.contactChild} />
+      <div className={styles.contactItem} />
+      <div className={styles.contactInner} />
+      <div className={styles.twitter}>
+        <p className={styles.twitter1}>Twitter</p>
+      </div>
+      <div className={styles.instagram}>Instagram</div>
+      <div className={styles.linkedin}>
+        <p className={styles.linkedin1}>Linkedin</p>
+        <p className={styles.blankLine}>&nbsp;</p>
+      </div>
+      <div className={styles.facebook}>Facebook</div>
+      <SocialMedia />
+      <div className={styles.footer}>
+        <img
+          className={styles.backgroundPatternIcon}
+          alt=""
+          src="/background.png"
+        />
+        <img
+          className={styles.footerChild}
+          loading="lazy"
+          alt=""
+          src="/line-12.svg"
+        />
+      </div>
+>>>>>>> 1db6ed7c71c8a3c9f77a84bf7bfb35ddf42f7d04
     </div>
   );
 };

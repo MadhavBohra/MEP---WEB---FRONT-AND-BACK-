@@ -16,7 +16,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     const query = `
       SELECT 
-        c.name,
+        c.username AS name,
         c.address,
         c.height,
         c.weight,
@@ -32,7 +32,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       ON 
         c.consumer_id = hd.consumer_id
       WHERE 
-        c.email = ${email}
+        c.email = $1
     `;
 
     const result = await client.query(query, [email]);
