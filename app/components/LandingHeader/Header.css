@@ -6,6 +6,7 @@
   background-color: transparent;
   position: fixed;
   top: 0;
+  margin-top: 1vh;
   width: 95vw;
   height: 5vh;
   z-index: 1000; /* Ensures it stays above other content */
