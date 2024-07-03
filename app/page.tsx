@@ -8,7 +8,6 @@ import OurServices from "./OurServices/page";
 import Blogs from "./Blogs/page";
 
 const IndexPage: React.FC = () => {
-  const email = 'xyz@gmail.com'; // Ensure this matches the type expected by UserDashboard
 
   // Uncomment the component you want to render
 
@@ -19,9 +18,9 @@ const IndexPage: React.FC = () => {
   // return <SignupForm/>;
   //return <UserDashboard email={email} />;
   //return <Blogs />;
-   return <LandingPage/>;
-  // return <LandingPage/>;
-  // return <OurServices/>;
+
+  return <LandingPage/>;
+
 };
 
 export default IndexPage;

@@ -44,8 +44,6 @@ const SocialMedia: FunctionComponent<SocialMediaType> = ({
   );
 };
 
-<<<<<<< HEAD
+
 export default SocialMedia;
-=======
-export default SocialMedia;
->>>>>>> 1db6ed7c71c8a3c9f77a84bf7bfb35ddf42f7d04
+

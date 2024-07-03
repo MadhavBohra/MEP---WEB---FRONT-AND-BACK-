@@ -55,10 +55,11 @@ body {
 
 .blog-box .blog-image {
   width: auto; /* Adjust width to ensure it fits within the box */
-  height: 30vh; /* Ensure the image covers the container properly */
+  height: 25vh; /* Ensure the image covers the container properly */
   object-fit: cover; /* Maintain aspect ratio while filling the box */
   border-radius: 40px; /* Optional: round corners of the image */
 }
+
 
 .blog-box .text-content {
   width: 55%; /* Adjust width to ensure text fits within the box */
