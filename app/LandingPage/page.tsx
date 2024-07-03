@@ -56,8 +56,8 @@ export default function LandingPage() {
   return (
     <StoreProvider>
       <div className={styles.background}>
+        <HeaderComponent />
         <div className={styles.container}>
-          <HeaderComponent />
           <p className={styles.t1}>AI Curated corporate wellness program</p>
           <p className={styles.t2}>MyEasyPharma</p>
           <button className={styles.b1}>Get started for free</button>
