@@ -88,7 +88,7 @@
   line-height: 4vh;
   text-align: left;
   position: absolute;
-  top: 25vh;
+  top: 30vh;
   left: 2vw;
   gap: 0px;
   opacity: 0px;
@@ -102,7 +102,7 @@
   line-height: 4vh;
   text-align: left;
   position: absolute;
-  top:30vh;
+  top:35vh;
   left:2vw;
   margin: 1vh;
 }
