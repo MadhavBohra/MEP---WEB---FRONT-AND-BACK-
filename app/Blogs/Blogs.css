@@ -1,4 +1,4 @@
-body {
+html, body {
   margin: 0;
   padding: 0;
   font-family: 'Lufga', sans-serif;
@@ -7,6 +7,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed; /* This makes the background image fixed on scroll */
+  overflow-y: scroll; /* Ensure the body is scrollable */
 }
 
 .blogs-container {
@@ -59,7 +60,6 @@ body {
   object-fit: cover; /* Maintain aspect ratio while filling the box */
   border-radius: 40px; /* Optional: round corners of the image */
 }
-
 
 .blog-box .text-content {
   width: 55%; /* Adjust width to ensure text fits within the box */

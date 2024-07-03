@@ -2,8 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Header from '../components/Header/Header';
 import UserDashboardHeader from "../components/UserDashboardHeader/Header";
 import LandingHeader from "../components/LandingHeader/Header";
@@ -14,7 +13,7 @@ interface Blog {
   title: string;
   excerpt: string;
   link: string;
-  image: string; // Add image property
+  image: string;
 }
 
 const blogs: Blog[] = [
@@ -23,6 +22,7 @@ const blogs: Blog[] = [
   { id: 3, title: 'Why the Current Generation is More Prone to Lifestyle Disorders', excerpt: "In today's fast-paced world, lifestyle disorders have become increasingly common, particularly among the younger generation. Factors such as sedentary behavior, poor dietary choices, and high-stress levels contribute significantly to this troubling trend.", link: '/blog3', image: '/blogsimg.png' },
   { id: 4, title: 'Why the Current Generation is More Prone to Lifestyle Disorders', excerpt: "In today's fast-paced world, lifestyle disorders have become increasingly common, particularly among the younger generation. Factors such as sedentary behavior, poor dietary choices, and high-stress levels contribute significantly to this troubling trend.", link: '/blog4', image: '/blogsimg.png' },
 ];
+
 const loadAuthState = () => {
   try {
     const storedToken = localStorage.getItem('token');
@@ -61,7 +61,7 @@ const HeaderComponent = () => {
   };
 
   return (
-    <div >
+    <div>
       {authState.authenticated ? <UserDashboardHeader /> : <LandingHeader />}
     </div>
   );
