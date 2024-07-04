@@ -17,9 +17,9 @@ const Header = () => {
         <span>/</span>
         <a href="/Blogs">Blogs</a>
         <span>/</span>
-        <a href="/ContactUs">Contact</a>
-        <span>/</span>
         <a href="/FAQs">FAQs</a>
+        <span>/</span>
+        <a href="/ContactUs">Contact</a>
         <span>/</span>
         <img className="icon" src="/search.png" alt="Search" />
       </nav>
