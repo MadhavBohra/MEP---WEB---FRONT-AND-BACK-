@@ -3,17 +3,14 @@
     justify-content: space-between;
     align-items: center;
     background-color: #BDCFC666;
-    padding: 20px;
-    margin: 20px;
+    padding: 1.5vh;
+    margin: 1.5vh;
     margin-left:0;
     border-radius: 15px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     cursor: pointer;
-    position: absolute;
     width: 40vw;
-    height:172px;
-    top:80px;
-    left:0px
+    height:14vh;
   }
   
   .textContainer {
@@ -23,8 +20,8 @@
   .greeting {
     font-family: 'Lufga', sans-serif;
     font-weight: 400;
-    font-size: 22px;
-    line-height: 28.71px;
+    font-size: 1.5vh;
+    line-height: 1.75vh;
     margin: 0;
   }
   
@@ -35,16 +32,16 @@
   .message {
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
-    font-size: 16px;
-    line-height: 19.5px;
+    font-size: 1.5vh;
+    line-height: 1.5vh;
   }
   
   .link {
     color: #000;
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
-    font-size: 16px;
-    line-height: 19.5px;
+    font-size: 1.5vh;
+    line-height: 1.5vh;
   }
   
   .link:hover {
@@ -57,7 +54,7 @@
   
   .image {
     max-width: 100%;
-    height: 400px;
+    height: 30vh;
     border-radius: 8px;
   }
   

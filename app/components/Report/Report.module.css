@@ -2,13 +2,13 @@
   display: flex;
   flex-direction: column;
   background-color: #BDCFC666;
-  padding-left: 20px;
+  padding-left: 1.5vh;
   border-radius: 15px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   height: 18vh;
   padding-right: 2vw;
-  width: 12vw;
+  width: 13vw;
 }
 .heading{
   font-family: 'Lufga', sans-serif;
@@ -21,7 +21,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 1.5vh;
 }
 
 .text {
@@ -32,12 +32,12 @@
   top:50%;
   left:15%;
   color: #333;
-  margin-top: 30px; 
+  margin-top: 1.75vh; 
 }
 .cir{
   position: absolute;
   top: 30%;
   left:40%;
-  margin-right:10px;
-  margin-top: 10px;
+  margin-right:1vh;
+  margin-top: 1vh;
 }

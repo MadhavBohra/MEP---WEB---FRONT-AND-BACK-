@@ -18,13 +18,13 @@
   border: none;
   color: #0070f3;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 1.5vh;
 }
 
 .dayRow, .dateRow {
   display: flex;
   justify-content: space-around; /* Use space-around to ensure equal spacing */
-  padding: 10px;
+  padding: 1vh;
 }
 
 .day, .date {
@@ -33,15 +33,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 40px; /* Adjust the height as needed */
+  height: 3vh; /* Adjust the height as needed */
 }
 
 .selectedDate {
   background-color: #e0e0e0;
   border-radius: 50%;
   position: relative;
-  width: 40px;
-  height: 40px;
+  width: 4vw;
+  height: 4vh;
   display: flex;
   justify-content: center;
   align-items: center;

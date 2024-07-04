@@ -1,13 +1,13 @@
 .upcomingEvents {
   font-family: Arial, sans-serif;
   width: 20vw;
-  margin-top: 2px;
+  margin-top: 0.5vh;
 }
 
 .title {
-  font-size: 24px;
+  font-size: 1.5vh;
   font-weight: bold;
-  margin-bottom: 20px;
+  margin-bottom: 1.5vh;
 }
 
 .eventsContainer {
@@ -18,7 +18,7 @@
 .event {
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
+  margin-bottom: 1.5vh;
 }
 
 .eventDetails {
@@ -28,32 +28,32 @@
 }
 
 .eventTitle {
-  font-size: 18px;
+  font-size: 1.5vh;
   margin: 0;
 }
 
 .iconContainer {
-  margin-left: 10px; /* Add space between title and icon */
+  margin-left: 1vh; /* Add space between title and icon */
 }
 
 .bellIcon {
-  width: 24px;
-  height: 24px;
+  width: 1.5vh;
+  height: 1.5vh;
 }
 
 .eventDescription {
-  font-size: 14px;
+  font-size: 1.5vh;
   color: #666;
-  margin: 5px 0;
+  margin: 0.5vh 0;
 }
 
 .eventTime {
-  font-size: 12px;
+  font-size: 1.25vh;
   color: #999;
 }
 
 .dueSoon {
-  font-size: 12px;
+  font-size: 1.25vh;
   color: #f39c12;
-  margin-top: 5px;
+  margin-top: 0.5vh;
 }

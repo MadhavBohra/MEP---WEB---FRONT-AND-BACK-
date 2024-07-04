@@ -53,24 +53,24 @@
   }
   .usernamecard{
     position: absolute;
-    top:6vh;
+    top:8vh;
     left:1vw;
   }
 
   .stepcounter{
     position: absolute;
-    top:3vh;
-    left:6vw;
+    top:27vh;
+    left:31vw;
   }
   .caloriecounter{
     position: absolute;
-    top:1vh;
-    left:6vw;
+    top:39vh;
+    left:31vw;
   }
   .watertaken{
     position: absolute;
-    top:1vh;
-    left:6vw;
+    top:51vh;
+    left:31vw;
   }
   .graph{
     position: absolute;
@@ -88,7 +88,7 @@
   }
   .profilecard{
     position: absolute;
-    top: 20vh;
+    top: 8vh;
     left: 60vw;
   }
 
@@ -99,7 +99,7 @@
   }
   .upcomingevent{
     position: absolute;
-    top:45vh;
+    top:47vh;
     left:60vw;
   }
   .postWorkoutSessionCard{
