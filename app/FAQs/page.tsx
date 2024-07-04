@@ -1,13 +1,58 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '../components/Header/Header'; // Adjust the path as needed
 import './FAQs.css'; // Ensure this file contains the styles for the FAQ page
+import LandingHeader from "../components/LandingHeader/Header";
+import UserDashboardHeader from "../components/UserDashboardHeader/Header";
 
 interface FAQItemProps {
   question: string;
   answer: string;
 }
+const loadAuthState = () => {
+  try {
+    const storedToken = localStorage.getItem('token');
+    if (storedToken) {
+      return { authenticated: true, token: storedToken };
+    } else {
+      return { authenticated: false, token: '' };
+    }
+  } catch (error) {
+    console.error('Error accessing localStorage:', error);
+    return { authenticated: false, token: '' };
+  }
+};
+
+const HeaderComponent = () => {
+  const [authState, setAuthState] = useState({ authenticated: false, token: '' });
+
+  useEffect(() => {
+    const state = loadAuthState();
+    setAuthState(state);
+
+    const handleBeforeUnload = () => {
+      localStorage.removeItem('token');
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setAuthState({ authenticated: false, token: '' });
+  };
+
+  return (
+    <div>
+      {authState.authenticated ? <UserDashboardHeader /> : <LandingHeader />}
+    </div>
+  );
+};
 
 const FAQItem: React.FC<FAQItemProps> = ({ question, answer }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -53,7 +98,7 @@ const FAQs: React.FC = () => {
 
   return (
     <div>
-      <Header /> {/* Include the Header component */}
+      <HeaderComponent /> {/* Include the Header component */}
       <div className="faqs-container">
         <div className="intro-text">
           <h1>FAQs on Health and Wellness</h1>
