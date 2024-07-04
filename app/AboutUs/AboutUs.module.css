@@ -1,176 +1,116 @@
-@font-face {
-  font-family: "Lufga";
-  src: url("/public/LufgaSemiBold.ttf");
-  font-weight: 600;
-}
-
-@font-face {
-  font-family: "Lufgaa";
-  src: url("/public/LufgaBold.ttf");
-  font-weight: 700;
-}
-
-.backgroundPatternIcon {
-  position: fixed;
-  top: 0;
-  left: 0;
+.background{
+  overflow: hidden;
+  display: flex;
+  flex-direction: column; /* Use column layout for better responsiveness */
   width: 100%;
   height: 100vh;
-  object-fit: cover;
+  background-image: url('/Background.png');
+  background-size: cover; /* Ensure the image covers the entire background */
+  background-repeat: no-repeat; /* Prevent the image from repeating */
+  background-position: center; /* Center the image */
+  margin: 0;
   z-index: -1;
 }
-
-.mission {
-  width: 229px;
-  height: 74px;
-  font-size: 71px;
-  font-weight: 900;
-}
-
-.missionDetails {
-  position: relative;
-  top: 800px;
-  left: 90px;
-  font-size: 34px;
-  display: inline-block;
-  width: 970px;
-  height: 183px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  margin-top: 0;
-  gap: 15px;
-  max-width: 100%;
-}
-
-.image7Icon {
-  position: absolute;
-  top: 86px;
-  left: 1806px;
-  width: 26vw;
-  height: 39vh;
-  object-fit: contain;
-  z-index: 2;
-}
-
-.atMyeasypharmaOur,
-.vision {
-  position: relative;
-  display: inline-block;
-  flex-shrink: 0;
-  z-index: 1;
-}
-
-.vision {
-  width: 229px;
-  height: 74px;
-  font-size: 71px;
-  font-weight: 900;
-}
-
-.atMyeasypharmaOur {
-  align-self: stretch;
-  width: 68vw;
-  font-size: 35px;
-  left: 8px;
-  font-family: 'Lufga', sans-serif;
-  font-weight: 800;
-}
-
-.visionDetails {
-  position: relative;
-  top: 388px;
-  left: 90px;
-  font-size: 34px;
-  display: inline-block;
-  width: 970px;
-  height: 183px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  margin-top: 10vh;
-  gap: 15px;
-  max-width: 100%;
-  margin: 0;
-}
-
-.myeasypharmaIsAt {
-  margin: 0px;
-  width: 70vw;
-  font-family: 'Lufga', sans-serif;
-  color: #254336;
-}
-
-.myeasypharmaIsAtContainer {
-  position: relative;
-  top: 227px;
-  left: 90px;
-  font-size: 44px;
-  display: inline-block;
-  width: 970px;
-  height: 183px;
-  z-index: 2;
-}
-
-.aboutUs1 {
-  min-height: 100vh;
-  position: relative;
-  background: linear-gradient(270deg, #f2f2f2);
-  overflow-y: auto;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-}
-
-.aboutUs {
-  width: 100%;
-  position: relative;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
-  line-height: normal;
-  letter-spacing: normal;
+.headtext{
+  font-family: Lufga;
+  font-size: 3vh;
+  font-weight: 700;
+  line-height: 3vh;
   text-align: left;
-  font-size: 40px;
+  position: absolute;
+  top:10vh;
+  left:3vw;
+  width:43vw;
   color: #254336;
-  font-family: 'Lufgaa', sans-serif;
 }
-
-@media screen and (max-width: 1125px) {
-  .aboutUs1 {
-    height: auto;
-    min-height: 1286px;
-  }
+.vishead{
+  font-family: Lufga;
+  font-size: 5vh;
+  font-weight: 600;
+  line-height: 4vh;
+  text-align: left;
+  position: absolute;
+  top:20vh;
+  left:3vw;
+  color: #254336;
 }
+.vistext{
+  font-family: Lufga;
+  font-size: 3vh;
+  font-weight: 600;
+  line-height: 4vh;
+  text-align: left;
+  position: absolute;
+  top:28vh;
+  left:3vw;
+  width: 54vw;
+  color: #254336;
 
-@media screen and (max-width: 1025px) {
-  .mission,
-  .vision {
-    font-size: 32px;
-  }
-
-  .myeasypharmaIsAtContainer {
-    font-size: var(--font-size-5xl);
-  }
 }
-
-@media screen and (max-width: 450px) {
-  .mission,
-  .vision {
-    font-size: 24px;
-  }
-
-  .atMyeasypharmaOur {
-    font-size: 22px;
-  }
-
-  .myeasypharmaIsAtContainer {
-    font-size: 18px;
-  }
+.visimg{
+  position:absolute;
+  top:20vh;
+  left:65vw;
+  height: 25vh;
+  width: auto;
+}
+.whathead{
+  font-family: Lufga;
+  font-size: 5vh;
+  font-weight: 600;
+  line-height: 4vh;
+  text-align: left;
+  position: absolute;
+  top:44vh;
+  left:3vw;
+  color: #254336; 
+}
+.whattext{
+  font-family: Lufga;
+  font-size: 3vh;
+  font-weight: 600;
+  line-height: 4vh;
+  text-align: left;
+  position: absolute;
+  top:51vh;
+  left:3vw;
+  width: 54vw;
+  color: #254336;
+}
+.whatimg{
+  position:absolute;
+  top:45vh;
+  left:65vw;
+  height: 20vh;
+  width: auto;
+}
+.misshead{
+  font-family: Lufga;
+  font-size: 5vh;
+  font-weight: 600;
+  line-height: 4vh;
+  text-align: left;
+  position: absolute;
+  top:65vh;
+  left:3vw;
+  color: #254336; 
+}
+.misstext{
+  font-family: Lufga;
+  font-size: 3vh;
+  font-weight: 600;
+  line-height: 4vh;
+  text-align: left;
+  position: absolute;
+  top:72vh;
+  left:3vw;
+  width: 54vw;
+  color: #254336;
+}
+.missimg{
+  position:absolute;
+  top:70vh;
+  left:65vw;
+  height: 20vh;
+  width: auto;
 }

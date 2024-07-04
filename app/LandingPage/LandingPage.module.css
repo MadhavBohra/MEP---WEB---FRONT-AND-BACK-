@@ -1,4 +1,4 @@
-.backgroung{
+.background{
   overflow: hidden;
   display: flex;
   flex-direction: column; /* Use column layout for better responsiveness */
