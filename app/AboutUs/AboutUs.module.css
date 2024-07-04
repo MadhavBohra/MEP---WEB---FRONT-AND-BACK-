@@ -13,104 +13,97 @@
 }
 .headtext{
   font-family: Lufga;
-  font-size: 3vh;
-  font-weight: 700;
-  line-height: 3vh;
+  font-size: 4vh;
+  font-weight: 500;
+  line-height: 4vh;
   text-align: left;
-  position: absolute;
-  top:10vh;
-  left:3vw;
-  width:43vw;
+  margin-top: 10vh;
+  margin-left: 10vh;
+  width:60vw;
   color: #254336;
 }
 .vishead{
   font-family: Lufga;
   font-size: 5vh;
-  font-weight: 600;
+  font-weight: 700;
   line-height: 4vh;
   text-align: left;
-  position: absolute;
-  top:20vh;
-  left:3vw;
+  margin-top: 0vh;
+  margin-left: 10vh;
   color: #254336;
 }
 .vistext{
   font-family: Lufga;
   font-size: 3vh;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 4vh;
   text-align: left;
-  position: absolute;
-  top:28vh;
-  left:3vw;
-  width: 54vw;
+  margin-top: 0vh;
+  margin-left: 12vh ;
+  width: 70vw;
   color: #254336;
 
 }
 .visimg{
   position:absolute;
   top:20vh;
-  left:65vw;
-  height: 25vh;
+  left:76vw;
+  height: 30vh;
   width: auto;
 }
 .whathead{
   font-family: Lufga;
   font-size: 5vh;
-  font-weight: 600;
+  font-weight: 700;
   line-height: 4vh;
   text-align: left;
-  position: absolute;
-  top:44vh;
-  left:3vw;
-  color: #254336; 
+  margin-top: 0vh;
+  margin-left: 10vh;
+  color: #254336;
 }
 .whattext{
   font-family: Lufga;
   font-size: 3vh;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 4vh;
   text-align: left;
-  position: absolute;
-  top:51vh;
-  left:3vw;
-  width: 54vw;
+  margin-top: 0vh;
+  margin-left: 12vh ;
+  width: 70vw;
   color: #254336;
 }
 .whatimg{
   position:absolute;
-  top:45vh;
-  left:65vw;
-  height: 20vh;
+  top:47vh;
+  left:77vw;
+  height: 25vh;
   width: auto;
 }
 .misshead{
   font-family: Lufga;
   font-size: 5vh;
-  font-weight: 600;
+  font-weight: 700;
   line-height: 4vh;
   text-align: left;
-  position: absolute;
-  top:65vh;
-  left:3vw;
+  margin-top: 0vh;
+  margin-left: 10vh;
   color: #254336; 
 }
 .misstext{
   font-family: Lufga;
   font-size: 3vh;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 4vh;
   text-align: left;
-  position: absolute;
-  top:72vh;
-  left:3vw;
-  width: 54vw;
+  margin-top: 0vh;
+  margin-left: 12vh ;
+  width: 70vw;
   color: #254336;
 }
 .missimg{
   position:absolute;
   top:70vh;
-  left:65vw;
-  height: 20vh;
+  left:78vw;
+  height: 23vh;
   width: auto;
 }
