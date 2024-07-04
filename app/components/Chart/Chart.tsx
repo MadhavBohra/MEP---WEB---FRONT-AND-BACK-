@@ -2,6 +2,7 @@
 import * as React from 'react';
 import { BarChart } from '@mui/x-charts/BarChart';
 import { axisClasses } from '@mui/x-charts/ChartsAxis';
+import styles from './BarChart.module.css';
 
 const chartSetting = {
   yAxis: [
@@ -9,8 +10,6 @@ const chartSetting = {
       label: '',
     },
   ],
-  width: 500,
-  height: 300,
   sx: {
     [`.${axisClasses.left} .${axisClasses.label}`]: {
       transform: 'translate(-20px, 0)',
@@ -97,15 +96,17 @@ const valueFormatter = (value: number | null) => `${value}mm`;
 
 export default function BarsDataset() {
   return (
-    <BarChart
-      dataset={dataset}
-      xAxis={[{ scaleType: 'band', dataKey: 'month' }]}
-      series={[
-        { dataKey: 'water', label: 'Water', valueFormatter, color: 'green' },
-        { dataKey: 'steps', label: 'Steps', valueFormatter, color: 'blue' },
-        { dataKey: 'Calories', label: 'Calories', valueFormatter, color: 'purple' },
-      ]}
-      {...chartSetting}
-    />
+    <div className={styles.chartContainer}>
+      <BarChart
+        dataset={dataset}
+        xAxis={[{ scaleType: 'band', dataKey: 'month' }]}
+        series={[
+          { dataKey: 'water', label: 'Water', valueFormatter, color: 'green' },
+          { dataKey: 'steps', label: 'Steps', valueFormatter, color: 'blue' },
+          { dataKey: 'Calories', label: 'Calories', valueFormatter, color: 'purple' },
+        ]}
+        {...chartSetting}
+      />
+    </div>
   );
 }

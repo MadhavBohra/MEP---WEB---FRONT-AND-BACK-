@@ -85,56 +85,37 @@ export default function UserDashboard() {
 
   return (
     <StoreProvider>
-      <Head>
-        <title>Dashboard Overview</title>
-        <link href="/fonts" rel="stylesheet" />
-      </Head>
       <div className={styles.background}>
+        <div className={styles.headercomp}><Header /></div>
         <div className={styles.container}>
-          <main className={styles.main}>
-            <div className={styles.headercomp}><Header /></div>
-            <div className={styles.dashstart}>
-              <header className={styles.header}>
-                <h1 className={styles.headerTitle}>Dashboard Overview</h1>
-              </header>
-              <section className={styles.dashboard}>
-                <UsernameCard
-                  name={userData.name}
-                  message="Have a nice day and don’t forget to take care of your health!"
-                />
-                <div className={styles.profilecard}>
-                  <ProfileCard
-                    Name={userData.name}
-                    Age={userData.age.toString()}
-                    Address={userData.address}
-                    Blood_Group={userData.blood_grp}
-                    Height={userData.height}
-                    Weight={userData.weight}
-                  />
-                </div>
-                <div className={styles.datepicker}><Calendar /></div>
-                <div className={styles.graph}><BarsDataset /></div>
-                <div className={styles.reminder}>
-                <Reminder dur1="48 min" ex1="stretching" dur2="32 min" ex2="Mind training" />  
-                </div>
-                <div className={styles.upcomingevent}><UpcomingEvents /></div>
-                <div className={styles.postWorkoutSessionCard}><PostWorkoutSessionCard /></div>
-                <div className={styles.report}>
-                <Report weight={userData.weight} />
-                </div>
-                <StepCounter name="Steps Taken" steps={userData.steps?.toString() || "0"} />
-                <CalorieCounter name="Calories Burned" calories={userData.calories_burnt?.toString() || "0"} />
-                <Watertaken name="Water Taken" water={userData.water_intake?.toString() || "0"} />
-                <button className={styles.updateButton} onClick={() => setIsModalOpen(true)}>Update Data</button>
-                <Modal
-                  isOpen={isModalOpen}
-                  onClose={() => setIsModalOpen(false)}
-                  onSave={handleModalSave}
-                />
-              </section>
-              <div className={styles.vl}></div>
-            </div>
-          </main>
+          <h1 className={styles.headerTitle}>Dashboard Overview</h1>
+          <section className={styles.dashboard}>
+            <div className={styles.usernamecard}><UsernameCard name={userData.name} message="Have a nice day and don’t forget to take care of your health!" /></div>
+            <div className={styles.profilecard}><ProfileCard
+              Name={userData.name}
+              Age={userData.age.toString()}
+              Address={userData.address}
+              Blood_Group={userData.blood_grp}
+              Height={userData.height}
+              Weight={userData.weight}
+            /></div>
+            <div className={styles.datepicker}><Calendar /></div>
+            <div className={styles.graph}><BarsDataset /></div>
+            <div className={styles.reminder}><Reminder dur1="48 min" ex1="stretching" dur2="32 min" ex2="Mind training" /></div>
+            <div className={styles.upcomingevent}><UpcomingEvents /></div>
+            <div className={styles.postWorkoutSessionCard}><PostWorkoutSessionCard /></div>
+            <div className={styles.report}><Report weight={userData.weight} /></div>
+            <div className={styles.stepcounter}><StepCounter name="Steps Taken" steps={userData.steps?.toString() || "0"} /></div>
+            <div className={styles.caloriecounter}><CalorieCounter name="Calories Burned" calories={userData.calories_burnt?.toString() || "0"} /></div>
+            <div className={styles.watertaken}><Watertaken name="Water Taken" water={userData.water_intake?.toString() || "0"} /></div>
+            <button className={styles.updateButton} onClick={() => setIsModalOpen(true)}>Update Data</button>
+            <Modal
+              isOpen={isModalOpen}
+              onClose={() => setIsModalOpen(false)}
+              onSave={handleModalSave}
+            />
+            <div className={styles.vl}></div>
+          </section>
         </div>
       </div>
     </StoreProvider>

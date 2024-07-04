@@ -6,16 +6,15 @@
   border-radius: 15px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  height: 230px;
+  height: 18vh;
   padding-right: 2vw;
   width: 12vw;
-  position: absolute;
-  top: 680px;
-  left:270px;
 }
 .heading{
   font-family: 'Lufga', sans-serif;
   font-weight: 600;
+  position: absolute;
+  left:30%;
 }
 
 .reportItem {
@@ -28,11 +27,17 @@
 .text {
   font-family: 'Lufga', sans-serif;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 1.5vh;
+  position: absolute;
+  top:50%;
+  left:15%;
   color: #333;
   margin-top: 30px; 
 }
 .cir{
+  position: absolute;
+  top: 30%;
+  left:40%;
   margin-right:10px;
   margin-top: 10px;
 }

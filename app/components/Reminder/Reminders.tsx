@@ -15,16 +15,12 @@ const Reminder: React.FC<ReminderProps> = ({ dur1, ex1, dur2, ex2 }) => {
     <div className={styles.card}>
       <h2 className={styles.heading}>Reminders</h2>
       <div className={styles.ReminderItem1}>
-        <div className={styles.imgcontainer}>
-          <img src='/Dumbell.png' alt='dumbell' className={styles.img} />
-        </div>
+          <img src='/Dumbell.png' alt='dumbell' className={styles.img1} />
         <p className={styles.text}>{dur1}</p>
         <p className={styles.text}>{ex1}</p>
       </div>
       <div className={styles.ReminderItem2}>
-        <div className={styles.imgcontainer}>
-          <img src='/otherlogo.png' alt='otherlogo' className={styles.img}/>
-        </div>
+          <img src='/otherlogo.png' alt='otherlogo' className={styles.img2}/>
         <p className={styles.text}>{dur2}</p>
         <p className={styles.text}>{ex2}</p>
       </div>
