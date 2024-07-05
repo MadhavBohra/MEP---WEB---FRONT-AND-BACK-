@@ -1,61 +1,49 @@
 .card {
-    display: flex;
-    flex-direction: column;
-    background-color: #BDCFC666;
-    padding: 1.5vh;
-    border-radius: 15px;
-    box-shadow: 0 2px 4px rgba(230, 210, 210, 0.1);
-    cursor: pointer;
-    height: 18vh;
-    width: 10vw;
-    justify-content: center;
-    width: 14vw;
-  }
-  
-  .heading {
-    font-family: 'Lufga', sans-serif;
-    font-weight: 600;
-    text-align: center;
-    margin-bottom: 1.5vh;
-    position: absolute;
-    top:0;
-    left:25%;
-  }
-  
-  .ReminderItem1 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-left:5%;
-    position: absolute;
-    left:1vw;
-  }
-  .ReminderItem2 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: absolute;
-    left: 7vw;
-  }
-  
-  .imgcontainer {
-    width: 40px;
-    margin: 20px;
-  }
- .img1 {
-    border-radius:10px;
-    margin-bottom: 1vh;
- }
- .img2 {
-  border-radius:10px;
-  margin-bottom: 1vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #BDCFC666;
+  padding: 1.5vh;
+  border-radius: 15px;
+  box-shadow: 0 2px 4px rgba(230, 210, 210, 0.1);
+  cursor: pointer;
+  height: 17vh;
+  width: 14vw;
+  justify-content: flex-start; /* Align items at the start of the card */
+  align-items: center;
 }
-  .text {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-    font-size: 1.5vh;
-    color: #333;
-    text-align: center;
-    margin: 0;
-  }
-  
+
+.heading {
+  font-family: 'Lufga', sans-serif;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 2vh; /* Add some space below the heading */
+  margin-top:0;
+}
+
+.remindersContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 1vh; /* Add some space above the reminders container */
+}
+
+.reminderItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 45%; /* Adjust width as needed */
+}
+
+.img {
+  border-radius: 10px;
+}
+
+.text {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 1.5vh;
+  color: #333;
+  text-align: center;
+  margin: 0;
+}

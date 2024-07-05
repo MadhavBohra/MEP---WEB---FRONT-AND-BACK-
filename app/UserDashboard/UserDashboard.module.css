@@ -94,17 +94,18 @@
 
   .datepicker{
     position: absolute;
-    top: 32vh;
+    top: 34vh;
     left: 60vw;
+    margin-bottom: 1vh;
   }
   .upcomingevent{
     position: absolute;
-    top:47vh;
+    top:48vh;
     left:60vw;
   }
   .postWorkoutSessionCard{
     position: absolute;
-    top:60vh;
+    top:64vh;
     left:60vw;
   }
 .vl{
