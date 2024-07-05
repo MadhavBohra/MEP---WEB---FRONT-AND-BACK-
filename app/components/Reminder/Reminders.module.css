@@ -6,7 +6,7 @@
   border-radius: 15px;
   box-shadow: 0 2px 4px rgba(230, 210, 210, 0.1);
   cursor: pointer;
-  height: 17vh;
+  height: 20vh;
   width: 14vw;
   justify-content: flex-start; /* Align items at the start of the card */
   align-items: center;
@@ -14,7 +14,7 @@
 
 .heading {
   font-family: 'Lufga', sans-serif;
-  font-weight: 600;
+  font-weight: 1vh;
   text-align: center;
   margin-bottom: 2vh; /* Add some space below the heading */
   margin-top:0;
@@ -40,8 +40,8 @@
 }
 
 .text {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 600;
+  font-family: 'Lufga', sans-serif;
+  font-weight: 1vh;
   font-size: 1.5vh;
   color: #333;
   text-align: center;
