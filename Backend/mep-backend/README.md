@@ -122,6 +122,24 @@ curl -X GET http://localhost:3000/user/profile \
      -H "Authorization: Bearer YOUR_JWT_TOKEN"
 ```
 
+#### Update User Profile:
+
+```bash
+curl -X PUT http://localhost:3000/user/1 \
+     -H "Content-Type: application/json" \
+     -d '{
+           "name": "Updated Name",
+           "email": "updatedemail@example.com",
+           "password": "UpdatedPassword123@"
+         }'
+```
+
+#### Delete User:
+
+```bash
+curl -X DELETE http://localhost:3000/user/1
+```
+
 ### Health Data
 
 #### Add or Update Health Data:
