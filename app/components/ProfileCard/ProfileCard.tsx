@@ -31,12 +31,10 @@ const ProfileCard: React.FC<ProfileCardProps> = ({Name,Age,Address,Blood_Group,H
           <p>Blood</p>
           <p>{Blood_Group}</p>
         </div>
-        <div className={styles.vl}></div>
         <div className={styles.infoItem}>
           <p>Height</p>
           <p>{Height}</p>
         </div>
-        <div className={styles.vl}></div>
         <div className={styles.infoItem}>
           <p>Weight</p>
           <p>{Weight}</p>
