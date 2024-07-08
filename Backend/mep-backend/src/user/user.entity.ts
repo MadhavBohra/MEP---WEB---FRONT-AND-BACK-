@@ -1,4 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Health } from 'src/health/health.entity';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+
 
 @Entity()
 export class User {
@@ -16,4 +18,7 @@ export class User {
 
   @Column({ nullable: true })
   profilePicture: string;
+
+  @OneToMany(() => Health, health => health.user)
+  health: Health[];
 }
