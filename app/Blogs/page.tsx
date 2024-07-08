@@ -62,8 +62,7 @@ const HeaderComponent = () => {
 
   return (
     <div>
-      {authState.authenticated ? <UserDashboardHeader /> : <LandingHeader />}
-    </div>
+      {! authState.authenticated ? <LandingHeader /> : <UserDashboardHeader />}    </div>
   );
 };
 

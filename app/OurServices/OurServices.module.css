@@ -13,6 +13,330 @@
   padding: 0;
 }
 */
+
+.personalizedPlanChild {
+  width: 10vw;
+  height: 10vh;
+  position: relative;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: var(--br-36xl);
+  background: linear-gradient(128.11deg, #254336, rgba(93, 169, 136, 0.8));
+  border: 1px solid var(--color-tan);
+  box-sizing: border-box;
+  display: none;
+  max-width: 100%;
+}
+.byAyush,
+.deliveringHealthAnd {
+  font-family: 'Lufga', sans-serif;
+  margin: 0;
+  color: aliceblue;
+}
+.deliveringHealthAndContainer {
+  font-family: 'Lufga', sans-serif;
+  margin-bottom: -4px;
+  height: 56vh;
+  flex: 1;
+  position: relative;
+  font-weight: 600;
+  display: inline-block;
+  z-index: 3;
+  top: 40vh;
+  font-size: 4vh ;
+}
+.planHeading {
+  align-self: stretch;
+  height: 60vh;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0;
+  box-sizing: border-box;
+  width: 16vw;
+}
+.personalizedPlanItem {
+  width: 5vw;
+  height: 4vh;
+  position: relative;
+  z-index: 3;
+  bottom: 1vw;
+}
+.personalizedPlan,
+.personalizedPlanInner {
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: var(--br-36xl);
+  background: linear-gradient(128.11deg, #254336, rgba(93, 169, 136, 0.8));
+  border: 1px solid var(--color-tan);
+  box-sizing: border-box;
+  max-width: 100%;
+}
+.personalizedPlan {
+  flex: 0.7363;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: var(--padding-249xl) var(--padding-36xl) var(--padding-lg);
+  min-width: 17vw;
+  z-index: 2;
+  border-radius:  2vw;
+  height: 60vh;
+}
+.personalizedPlanInner {
+  width: 408px;
+  height: 435px;
+  position: relative;
+  display: none;
+  z-index: 1;
+}
+.personalisedHealthPlan {
+  width:16vw;
+  height: 18vh;
+  position: relative;
+  font-family: 'Lufga',sans-serif;
+  font-weight: 600;
+  display: inline-block;
+  flex-shrink: 0;
+  z-index: 3;
+  color: aliceblue;
+  font-size: 4vh;
+  bottom: 11px;;
+  right:50px;
+  left: 0vw;
+}
+.frameChild {
+  height: 4vh;
+  width: 5vw;
+  position: relative;
+  z-index: 4;
+  bottom:2vh;
+}
+.frameDiv {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 0 var(--padding-6xs);
+  margin-top: -34px;
+}
+.corporateDescriptionChild,
+.personalizedPlan1 {
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: var(--br-36xl);
+  background: linear-gradient(128.11deg, #254336, rgba(93, 169, 136, 0.8));
+  border: 1px solid var(--color-tan);
+  box-sizing: border-box;
+  max-width: 100%;
+}
+.personalizedPlan1 {
+  flex: 0.7662;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: var(--padding-251xl) var(--padding-30xl) 0;
+  width: 17vw;
+  height: 60vh;
+  z-index: 2;
+  border-radius: 2vw;
+  
+}
+.corporateDescriptionChild {
+  width: 408px;
+  height: 435px;
+  position: relative;
+  display: none;
+}
+.enableProductive {
+  margin-bottom: -27px;
+  height: 154px;
+  flex: 1;
+  position: relative;
+  font-weight: 600;
+  display: inline-block;
+  z-index: 3;
+  color: aliceblue;
+  font-family: 'Lufga',sans-serif;
+  font-size: 4vh;
+  top:7vh;
+}
+.enableProductiveHealthierWrapper {
+  align-self: stretch;
+  height: 23vh;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0;
+  box-sizing: border-box;
+  position: relative;
+}
+.corporateDescriptionItem {
+  width: 5vw;
+  height: 4vh;
+  position: relative;
+  z-index: 3;
+  bottom:2vh;
+}
+.corporateDescription,
+.productiveCorporates {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+.corporateDescription {
+  align-self: stretch;
+  height: 60vh;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: var(--br-36xl);
+  background: linear-gradient(128.11deg, #254336, rgba(93, 169, 136, 0.8));
+  border: 1px solid var(--color-tan);
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: var(--padding-244xl) var(--padding-36xl) var(--padding-6xs);
+  z-index: 2;
+  border-radius: 2vw;
+  min-width: 17vw;
+}
+.productiveCorporates {
+  flex: 1;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 var(--padding-7xs) 0 0;
+  min-width: 17vw;
+}
+.socialIcon {
+  width:4vw;
+  height: 9vh;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  z-index: 1;
+  padding-bottom: 10px;
+}
+.socialIcons {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 0 0 var(--padding-4xs);
+
+}
+.employeeHealth {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: 12vw;
+  max-width: 79%;
+  padding-left: 10vw;
+  height: 51vh;
+  width: 81vh;
+}
+.socialIcon1 {
+  height: 9vh;
+  width: 3vw;
+  position: relative;
+  z-index: 1;
+  padding-bottom: 4px;
+  right: -8px;
+}
+.socialIconTwo {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 var(--padding-6xs);
+  padding-bottom: 10px;
+}
+.socialIcon2,
+.socialIcon3 {
+  width: 3vw;
+  height: 6vh;
+  position: relative;
+  object-fit: cover;
+  z-index: 1;
+  padding-bottom: 10px;
+}
+
+.socialContainer1 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-lgi-5);
+  position: sticky;
+  margin: right -27px;
+}
+.socialContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 0 var(--padding-11xs);
+  bottom: 206px;
+  padding-bottom: 14px;
+  position: relative;
+  margin: right -27px;
+}
+.healthWellness {
+  width: 131vw;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: var(--gap-3xs);
+  max-width: 100%;
+  text-align: center;
+  font-size: var(--font-size-11xl);
+  color: var(--color-white);
+  font-family: var(--font-lufga);
+}
+@media screen and (max-width: 1125px) {
+  .employeeHealth {
+    flex-wrap: wrap;
+  }
+}
+@media screen and (max-width: 1025px) {
+  .deliveringHealthAndContainer,
+  .enableProductive,
+  .personalisedHealthPlan {
+    font-size: var(--font-size-5xl);
+  }
+}
+@media screen and (max-width: 450px) {
+  .deliveringHealthAndContainer {
+    font-size: var(--font-size-lg);
+  }
+  .personalizedPlan {
+    padding: var(--padding-155xl) var(--padding-xl) var(--padding-xl);
+    box-sizing: border-box;
+    flex: 1;
+  }
+  .personalisedHealthPlan {
+    font-size: var(--font-size-lg);
+  }
+  .personalizedPlan1 {
+    padding-left: var(--padding-xl);
+    padding-top: var(--padding-156xl);
+    padding-right: var(--padding-xl);
+    box-sizing: border-box;
+    flex: 1;
+  }
+  .enableProductive {
+    font-size: var(--font-size-lg);
+  }
+  .corporateDescription {
+    padding: var(--padding-152xl) var(--padding-xl) var(--padding-xl);
+    box-sizing: border-box;
+  }
+}
+
+
+
 .ourServicesChild,
 .ourServicesInner,
 .ourServicesItem {
@@ -66,9 +390,9 @@
 .ourServices1 {
   margin: 0;
   width: 100%;
-  max-width: 460px;
+  width: 40vw;
   height: auto;
-  font-size: 3.75rem; /* 60px */
+  font-size: 11vh; /* 60px */
   font-weight: 600;
   font-family: inherit;
   color: #254336;
@@ -76,6 +400,9 @@
   display: inline-block;
   flex-shrink: 0;
   z-index: 5;
+  position: relative;
+  right: 64vw;
+  bottom:11vh;
 }
 
 .loginContainer,
@@ -109,27 +436,37 @@
   object-fit: cover;
 }
 
-.image10Icon,
-.image11Icon,
-.image9Icon {
-  position: absolute;
-  top: 20vh;
-  width: 16vw;
-  height: auto;
+
+
+.image10Icon {
+  right: 2vw;
+  position: relative;
+  bottom: 3vh;
+  height:96vh;
+  width:26vh;
   object-fit: contain;
   z-index: 4;
 }
 
-.image10Icon {
-  left: 41vw;
-}
-
 .image11Icon {
-  left: 72vw;
+  left: 2vw;
+  position: relative;
+  top: 68vh;
+  height:96vh;
+  width:26vh;
+  object-fit: contain;
+  z-index: 4;
+  
 }
 
 .image9Icon {
-  left: 13vw;
+  right: 2vw;
+  position: relative;
+  top: 40vh;
+  height:96vh;
+  width:26vh;
+  object-fit: contain;
+  z-index: 4;
 }
 
 .ourServices,
@@ -144,8 +481,8 @@
   background: linear-gradient(270deg, #f2f2f2);
   flex-direction: column;
   align-items: flex-end;
-  padding: 4rem 2rem;
-  gap: 3rem;
+  padding: 11vh 4vw;
+  gap: 8vh;
 }
 
 .root {
@@ -195,7 +532,7 @@
     font-size: 2.25rem; /* 36px */
   }
   .loginContainer {
-    gap: 1rem;
+    gap: 1rem;  
   }
   .ourServices {
     gap: var(--gap-mini);

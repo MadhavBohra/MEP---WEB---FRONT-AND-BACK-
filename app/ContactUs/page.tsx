@@ -48,8 +48,7 @@ const HeaderComponent = () => {
 
   return (
     <div className={styles.headercomp}>
-      {authState.authenticated ? <UserDashboardHeader /> : <LandingHeader />}
-    </div>
+      {! authState.authenticated ? <LandingHeader /> : <UserDashboardHeader />}    </div>
   );
 };
 
