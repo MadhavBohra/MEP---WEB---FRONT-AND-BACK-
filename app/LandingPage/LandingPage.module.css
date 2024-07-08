@@ -83,4 +83,5 @@
   left:5vw;
   border-radius: 50px; /* Rounded corners */
   opacity: 1; /* Ensure opacity is set */
+  cursor:pointer;
 }
