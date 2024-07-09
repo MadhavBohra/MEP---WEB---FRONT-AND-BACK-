@@ -62,7 +62,7 @@ html, body {
 }
 
 .blog-box .text-content {
-  width: 55%; /* Adjust width to ensure text fits within the box */
+  width: 75%; /* Adjust width to ensure text fits within the box */
   padding: 0 20px; /* Add padding to ensure text does not touch the edges */
 }
 
