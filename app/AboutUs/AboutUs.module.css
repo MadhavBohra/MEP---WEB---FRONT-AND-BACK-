@@ -1,3 +1,4 @@
+
 .background{
   overflow: hidden;
   display: flex;
@@ -10,21 +11,23 @@
   background-position: center; /* Center the image */
   margin: 0;
   z-index: -1;
+  overflow-y: scroll;
 }
 .headtext{
-  font-family: Lufga;
-  font-size: 4vh;
-  font-weight: 500;
-  line-height: 4vh;
+  font-family: 'Lufga',sans-serif;
+  font-size: 5vh;
+  font-weight: 600;
+  line-height: 6vh;
   text-align: left;
-  margin-top: 10vh;
+  margin-top: 20vh;
   margin-left: 10vh;
-  width:60vw;
+  width:80vw;
   color: #254336;
+  padding-bottom: 13vh;
 }
 .vishead{
-  font-family: Lufga;
-  font-size: 5vh;
+  font-family: 'Lufga',sans-serif;
+  font-size: 7vh;
   font-weight: 700;
   line-height: 4vh;
   text-align: left;
@@ -33,76 +36,76 @@
   color: #254336;
 }
 .vistext{
-  font-family: Lufga;
-  font-size: 3vh;
+  font-family: 'Lufga',serif;
+  font-size: 4vh;
   font-weight: 500;
   line-height: 4vh;
   text-align: left;
   margin-top: 0vh;
-  margin-left: 12vh ;
-  width: 70vw;
+  margin-left: 10vh ;
+  width: 68vw;
   color: #254336;
 
 }
 .visimg{
-  position:absolute;
-  top:20vh;
+  position:relative;
+  bottom:31vh;
   left:76vw;
   height: 30vh;
   width: auto;
 }
 .whathead{
-  font-family: Lufga;
-  font-size: 5vh;
+  font-family: 'Lufga',sans-serif;
+  font-size: 7vh;
   font-weight: 700;
   line-height: 4vh;
   text-align: left;
-  margin-top: 0vh;
+  margin-top: -25vh;
   margin-left: 10vh;
   color: #254336;
 }
 .whattext{
-  font-family: Lufga;
-  font-size: 3vh;
+  font-family: 'Lufga',serif;
+  font-size: 4vh;
   font-weight: 500;
   line-height: 4vh;
   text-align: left;
   margin-top: 0vh;
-  margin-left: 12vh ;
-  width: 70vw;
+  margin-left: 10vh ;
+  width: 68vw;
   color: #254336;
 }
 .whatimg{
-  position:absolute;
-  top:47vh;
+  position:relative;
+  bottom:30vh;
   left:77vw;
   height: 25vh;
   width: auto;
 }
 .misshead{
-  font-family: Lufga;
-  font-size: 5vh;
+  font-family: 'Lufga',sans-serif;
+  font-size: 7vh;
   font-weight: 700;
   line-height: 4vh;
   text-align: left;
-  margin-top: 0vh;
+  margin-top: -15vh;
   margin-left: 10vh;
   color: #254336; 
 }
 .misstext{
-  font-family: Lufga;
-  font-size: 3vh;
+  font-family: 'Lufga',serif;
+  font-size: 4vh;
   font-weight: 500;
   line-height: 4vh;
   text-align: left;
   margin-top: 0vh;
-  margin-left: 12vh ;
-  width: 70vw;
+  margin-left: 10vh ;
+  width: 68vw;
   color: #254336;
 }
 .missimg{
-  position:absolute;
-  top:70vh;
+  position:relative;
+  bottom:25vh;
   left:78vw;
   height: 23vh;
   width: auto;
