@@ -1,18 +1,17 @@
 'use client';
-import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
+
+import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import Header from '../components/Header/Header';
 import UserDashboardHeader from "../components/UserDashboardHeader/Header";
 import LandingHeader from "../components/LandingHeader/Header";
-import PDFModal from '../components/PdfModal/PdfModal';
-import './Blogs.css';
+import './Blog.css';
 
 interface Blog {
   id: number;
   title: string;
   content: string;
   images: string[];
-  pdfUrl: string;
 }
 
 const loadAuthState = () => {
@@ -59,42 +58,39 @@ const HeaderComponent = () => {
   );
 };
 
-const Blogs: React.FC = () => {
-  const [blogs, setBlogs] = useState<Blog[]>([]);
-  const [selectedPdf, setSelectedPdf] = useState<string | null>(null);
+const Blog: React.FC = () => {
+  const router = useRouter();
+  const { id } = router.query;
+  const [blog, setBlog] = useState<Blog | null>(null);
 
   useEffect(() => {
-    fetch('/blogs.json')
-      .then(response => response.json())
-      .then(data => setBlogs(data))
-      .catch(error => console.error('Error fetching blogs data:', error));
-  }, []);
+    if (id) {
+      fetch('/blogs.json')
+        .then(response => response.json())
+        .then(data => {
+          const blogData = data.find((blog: Blog) => blog.id === parseInt(id as string, 10));
+          setBlog(blogData);
+        })
+        .catch(error => console.error('Error fetching blog data:', error));
+    }
+  }, [id]);
 
-  const handlePdfClick = (pdfUrl: string) => {
-    // Construct the full URL for the PDF
-    const fullPdfUrl = `${window.location.origin}${pdfUrl}`;
-    setSelectedPdf(fullPdfUrl);
-  };
+  if (!blog) return <p>Loading...</p>;
 
   return (
     <>
       <HeaderComponent />
-      <div className="blogs-container">
-        {blogs.map((blog, index) => (
-          <div key={index} className={`blog-box ${index % 2 === 0 ? 'even' : 'odd'}`} onClick={() => handlePdfClick(blog.pdfUrl)}>
-            <h2>{blog.title}</h2>
-            <div className="blog-content">
-              <p>{blog.content.substring(0, 100)}...</p>
-              {blog.images.length > 0 && (
-                <img src={blog.images[0]} alt={blog.title} className="blog-image" />
-              )}
-            </div>
-          </div>
-        ))}
+      <div className="blog-container">
+        <h1>{blog.title}</h1>
+        <div className="blog-content">
+          <p>{blog.content}</p>
+          {blog.images.map((image, i) => (
+            <img key={i} src={image} alt={`Image ${i + 1}`} className="blog-image" />
+          ))}
+        </div>
       </div>
-      {selectedPdf && <PDFModal pdfUrl={selectedPdf} onClose={() => setSelectedPdf(null)} />}
     </>
   );
 };
 
-export default Blogs;
+export default Blog;

@@ -1,0 +1,17 @@
+[
+    {
+      "id": 1,
+      "title": "First Blog Post",
+      "content": "This is a summary of the first blog post.",
+      "images": ["/images/blog1_1.jpg", "/images/blog1_2.jpg"],
+      "pdfUrl": "/BlogsPDFS/asthma_relief.pdf"
+    },
+    {
+      "id": 2,
+      "title": "Second Blog Post",
+      "content": "This is a summary of the second blog post.",
+      "images": ["/images/blog2_1.jpg"],
+      "pdfUrl": "/BlogsPDFS/Ayurveda-_not_reductional_science.pdf"
+    }
+  ]
+  
