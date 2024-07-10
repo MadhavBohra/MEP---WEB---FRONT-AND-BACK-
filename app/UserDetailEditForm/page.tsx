@@ -12,6 +12,7 @@ import { auth } from "../firebase";
 import { getAuth, RecaptchaVerifier, signInWithPhoneNumber } from 'firebase/auth';
 import { app } from '../firebase';
 import { useRouter } from 'next/router';
+import OtpModal from '../components/OTP Modal/otpmodal'; // Import the OtpModal component
 
 interface FormData {
   username: string;
@@ -82,41 +83,43 @@ const UserDetailsForm: React.FC = () => {
   const [avatar, setAvatar] = useState<string>('/avataricon.png');
   const [otp, setOtp] = useState<string>('');
   const [otpSent, setOtpSent] = useState<boolean>(false);
-  const [confirmationResult, setConfirmationResult] = useState(null);
-  const [verificationId, setVerificationId] = useState<string>('');
+  const [confirmationResult, setConfirmationResult] = useState<any>(null);
+  const [isOtpModalOpen, setIsOtpModalOpen] = useState<boolean>(false); // State to manage modal visibility
   const auth = getAuth(app);
 
   useEffect(() => {
     window.recaptchaVerifier = new RecaptchaVerifier(auth, "recaptcha-container", {
       'size': 'invisible',
       'callback': (response) => {
-
+        console.log('reCAPTCHA solved', response);
       },
       'expired-callback': () => {
-
+        console.log('reCAPTCHA expired');
       }
     });
   }, [auth]);
 
-  const handleOTPChange = (e) => {
-    setPhoneNumber(e.target.value);
-  }
   const handleSendOtp = async () => {
     try {
       const formattedPhoneNumber = `+${formData.phone.replace(/\D/g, '')}`;
       const confirmation = await signInWithPhoneNumber(auth, formattedPhoneNumber, window.recaptchaVerifier)
       setConfirmationResult(confirmation);
       setOtpSent(true);
-      setPhoneNumber('');
+      setOtp('');
+      console.log('OTP sent, opening modal');
+      setIsOtpModalOpen(true); // Open the OTP modal
       alert('OTP has been sent');
     } catch (error) {
       console.error(error);
     }
   }
+
   const handleOTPSubmit = async () => {
     try {
       await confirmationResult.confirm(otp);
       setOtp('');
+      console.log('OTP verified, closing modal');
+      setIsOtpModalOpen(false); // Close the OTP modal
     } catch (error) {
       console.error(error);
     }
@@ -164,7 +167,7 @@ const UserDetailsForm: React.FC = () => {
     }
   }, [formData.profilePicture]);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -181,8 +184,6 @@ const UserDetailsForm: React.FC = () => {
       });
     }
   };
-
-
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -282,6 +283,18 @@ const UserDetailsForm: React.FC = () => {
                   </select>
                 </label>
               </div>
+              <div className="form-group">
+                <label>
+                  Email:
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                  />
+                </label>
+              </div>
             </div>
             <div className="right-column">
               <div className="form-group">
@@ -311,27 +324,13 @@ const UserDetailsForm: React.FC = () => {
                 </label>
               </div>
               <div className="form-group">
-                <label>
+                <label className="address">
                   Address:
                   <input
-                    type="text"
+                    type="textbox"
                     name="address"
                     value={formData.address}
                     onChange={handleChange}
-                  />
-                </label>
-              </div>
-            </div>
-            <div className="bottom-column">
-              <div className="form-group">
-                <label>
-                  Email:
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
                   />
                 </label>
               </div>
@@ -351,26 +350,17 @@ const UserDetailsForm: React.FC = () => {
                   Send OTP
                 </button>
               </div>
-              <div className="form-group">
-                <label>
-                  OTP:
-                  <input
-                    type="text"
-                    name="otp"
-                    value={otp}
-                    onChange={(e) => setOtp(e.target.value)}
-                    required
-                    placeholder="Enter OTP"
-                  />
-                </label>
-                <button type="button" onClick={handleOTPSubmit}>
-                  Verify OTP
-                </button>
-              </div>
             </div>
           </div>
           <button className='save-button' type="submit">Submit</button>
         </form>
+        <OtpModal
+          isOpen={isOtpModalOpen}
+          otp={otp}
+          setOtp={setOtp}
+          handleOTPSubmit={handleOTPSubmit}
+          closeModal={() => setIsOtpModalOpen(false)}
+        />
       </div>
     </StoreProvider>
   );
