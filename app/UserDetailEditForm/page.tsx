@@ -1,3 +1,5 @@
+// UserDetailsForm.tsx
+
 'use client';
 
 import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
@@ -6,6 +8,10 @@ import axios from 'axios';
 import { StoreProvider } from '../StoreProvider';
 import LandingHeader from "../components/LandingHeader/Header";
 import UserDashboardHeader from "../components/UserDashboardHeader/Header";
+import { auth } from "../firebase";
+import { getAuth, RecaptchaVerifier, signInWithPhoneNumber } from 'firebase/auth';
+import { app } from '../firebase';
+import { useRouter } from 'next/router';
 
 interface FormData {
   username: string;
@@ -73,17 +79,57 @@ const UserDetailsForm: React.FC = () => {
     email: '',
     phone: ''
   });
+  const [avatar, setAvatar] = useState<string>('/avataricon.png');
+  const [otp, setOtp] = useState<string>('');
+  const [otpSent, setOtpSent] = useState<boolean>(false);
+  const [confirmationResult, setConfirmationResult] = useState(null);
+  const [verificationId, setVerificationId] = useState<string>('');
+  const auth = getAuth(app);
 
-  const [avatar, setAvatar] = useState<string>('/avataricon.png'); 
+  useEffect(() => {
+    window.recaptchaVerifier = new RecaptchaVerifier(auth, "recaptcha-container", {
+      'size': 'invisible',
+      'callback': (response) => {
+
+      },
+      'expired-callback': () => {
+
+      }
+    });
+  }, [auth]);
+
+  const handleOTPChange = (e) => {
+    setPhoneNumber(e.target.value);
+  }
+  const handleSendOtp = async () => {
+    try {
+      const formattedPhoneNumber = `+${formData.phone.replace(/\D/g, '')}`;
+      const confirmation = await signInWithPhoneNumber(auth, formattedPhoneNumber, window.recaptchaVerifier)
+      setConfirmationResult(confirmation);
+      setOtpSent(true);
+      setPhoneNumber('');
+      alert('OTP has been sent');
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  const handleOTPSubmit = async () => {
+    try {
+      await confirmationResult.confirm(otp);
+      setOtp('');
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   const getData = async () => {
     try {
       const res = await axios.get('/api/usereditform', { params: { email: formData.email } });
       const userData = res.data;
-  
+
       setFormData({
         username: userData.username || '',
-        profilePicture: null, 
+        profilePicture: null,
         address: userData.address || '',
         bloodGroup: userData.blood_group || '',
         height: userData.height || '',
@@ -91,7 +137,7 @@ const UserDetailsForm: React.FC = () => {
         email: userData.email || '',
         phone: userData.phone || ''
       });
-  
+
       if (userData.profile_picture) {
         setAvatar(`/uploads/${userData.profile_picture}`);
       }
@@ -99,7 +145,6 @@ const UserDetailsForm: React.FC = () => {
       console.log(error);
     }
   };
-  
 
   useEffect(() => {
     if (formData.email) {
@@ -137,46 +182,52 @@ const UserDetailsForm: React.FC = () => {
     }
   };
 
+
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-  
-    const formDataToSubmit = new FormData();
-    formDataToSubmit.append('username', formData.username);
-    formDataToSubmit.append('address', formData.address);
-    formDataToSubmit.append('bloodGroup', formData.bloodGroup);
-    formDataToSubmit.append('height', formData.height);
-    formDataToSubmit.append('weight', formData.weight);
-    formDataToSubmit.append('email', formData.email);
-    formDataToSubmit.append('phone', formData.phone);
-  
-    if (formData.profilePicture instanceof File) {
-      formDataToSubmit.append('profilePicture', formData.profilePicture);
-    } else {
-      console.error('Invalid profile picture');
-      return;
-    }
-  
-    // Client-side validation
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const phonePattern = /^\d{10}$/;
 
-    if (!emailPattern.test(formData.email)) {
-      alert('Please enter a valid email address.');
-      return;
-    }
-
-    if (!phonePattern.test(formData.phone)) {
-      alert('Please enter a valid 10-digit phone number.');
+    if (!otpSent) {
+      alert('Please verify your phone number first.');
       return;
     }
 
     try {
+      const formDataToSubmit = new FormData();
+      formDataToSubmit.append('username', formData.username);
+      formDataToSubmit.append('address', formData.address);
+      formDataToSubmit.append('bloodGroup', formData.bloodGroup);
+      formDataToSubmit.append('height', formData.height);
+      formDataToSubmit.append('weight', formData.weight);
+      formDataToSubmit.append('email', formData.email);
+      formDataToSubmit.append('phone', formData.phone);
+
+      if (formData.profilePicture instanceof File) {
+        formDataToSubmit.append('profilePicture', formData.profilePicture);
+      } else {
+        console.error('Invalid profile picture');
+        return;
+      }
+
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const phonePattern = /^\d{10}$/;
+
+      if (!emailPattern.test(formData.email)) {
+        alert('Please enter a valid email address.');
+        return;
+      }
+
+      if (!phonePattern.test(formData.phone)) {
+        alert('Please enter a valid 10-digit phone number.');
+        return;
+      }
+
       const res = await axios.post('/api/usereditform', formDataToSubmit, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
-  
+
       if (res.status === 200) {
         alert('User details updated successfully');
       } else {
@@ -186,13 +237,14 @@ const UserDetailsForm: React.FC = () => {
       console.error('Error updating user details', error);
     }
   };
-  
-  
 
   return (
     <StoreProvider>
+      <HeaderComponent />
       <div className="body">
-        <HeaderComponent/>
+        {
+          !otpSent ? (<div id="recaptcha-container"></div>) : null
+        }
         <form onSubmit={handleSubmit} className="user-details-form">
           <div className="profile-picture-container">
             <img src={avatar} alt="User Avatar" className="avatar" />
@@ -260,6 +312,19 @@ const UserDetailsForm: React.FC = () => {
               </div>
               <div className="form-group">
                 <label>
+                  Address:
+                  <input
+                    type="text"
+                    name="address"
+                    value={formData.address}
+                    onChange={handleChange}
+                  />
+                </label>
+              </div>
+            </div>
+            <div className="bottom-column">
+              <div className="form-group">
+                <label>
                   Email:
                   <input
                     type="email"
@@ -272,20 +337,39 @@ const UserDetailsForm: React.FC = () => {
               </div>
               <div className="form-group">
                 <label>
-                  Phone Number:
+                  Phone:
                   <input
-                    type="tel"
+                    type="text"
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    pattern="\d{10}"
                     required
+                    placeholder="Enter phone number"
                   />
                 </label>
+                <button type="button" onClick={handleSendOtp}>
+                  Send OTP
+                </button>
+              </div>
+              <div className="form-group">
+                <label>
+                  OTP:
+                  <input
+                    type="text"
+                    name="otp"
+                    value={otp}
+                    onChange={(e) => setOtp(e.target.value)}
+                    required
+                    placeholder="Enter OTP"
+                  />
+                </label>
+                <button type="button" onClick={handleOTPSubmit}>
+                  Verify OTP
+                </button>
               </div>
             </div>
           </div>
-          <button type="submit" className="save-button">Save</button>
+          <button className='save-button' type="submit">Submit</button>
         </form>
       </div>
     </StoreProvider>

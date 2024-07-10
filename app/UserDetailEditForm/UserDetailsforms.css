@@ -89,6 +89,7 @@ body {
   box-sizing: border-box;
 }
 
+
 .save-button {
   grid-column: 2 / 3;
   justify-self: end;
@@ -110,7 +111,7 @@ body {
 
 @font-face {
   font-family: 'Lufga';
-  src: url('/fonts/LufgaRegular.ttf') format('truetype');
+  src: url('/LufgaRegular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
