@@ -45,13 +45,15 @@ html, body {
 
 .blog-box .content {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
   width: 100%;
+  padding: 0 20px; /* Add padding to ensure text does not touch the edges */
 }
 
-.blog-box.even .content {
-  flex-direction: row-reverse; /* Text on the left, image on the right for even boxes */
+.blog-box.even {
+  flex-direction: row-reverse;
 }
 
 .blog-box .blog-image {
@@ -59,11 +61,6 @@ html, body {
   height: 25vh; /* Ensure the image covers the container properly */
   object-fit: cover; /* Maintain aspect ratio while filling the box */
   border-radius: 40px; /* Optional: round corners of the image */
-}
-
-.blog-box .text-content {
-  width: 75%; /* Adjust width to ensure text fits within the box */
-  padding: 0 20px; /* Add padding to ensure text does not touch the edges */
 }
 
 .blog-box h2 {

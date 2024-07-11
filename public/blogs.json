@@ -1,16 +1,16 @@
 [
     {
       "id": 1,
-      "title": "First Blog Post",
-      "content": "This is a summary of the first blog post.",
-      "images": ["/images/blog1_1.jpg", "/images/blog1_2.jpg"],
+      "title": "Asthama Relief",
+      "content": "Asthma, a chronic respiratory condition affecting millions globally, poses significant challenges, especially for working professionals",
+      "images": ["/asthama-relief.png"],
       "pdfUrl": "/BlogsPDFS/asthma_relief.pdf"
     },
     {
       "id": 2,
-      "title": "Second Blog Post",
-      "content": "This is a summary of the second blog post.",
-      "images": ["/images/blog2_1.jpg"],
+      "title": "Ayurveda: Beyond Reductionist Science!",
+      "content": "Ayurveda, the ancient Indian system of medicine, offers a holistic approach to health that transcends the limitations of reductionist science",
+      "images": ["/ayureveda_reductional.png"],
       "pdfUrl": "/BlogsPDFS/Ayurveda-_not_reductional_science.pdf"
     }
   ]

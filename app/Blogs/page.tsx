@@ -82,15 +82,31 @@ const Blogs: React.FC = () => {
       <div className="blogs-container">
         {blogs.map((blog, index) => (
           <div key={index} className={`blog-box ${index % 2 === 0 ? 'even' : 'odd'}`} onClick={() => handlePdfClick(blog.pdfUrl)}>
-            <h2>{blog.title}</h2>
-            <div className="content">
-              <div className="text-content">
-                <p>{blog.content.substring(0, 100)}...</p>
-              </div>
-              {blog.images.length > 0 && (
-                <img src={blog.images[0]} alt={blog.title} className="blog-image" />
-              )}
-            </div>
+            {index % 2 === 0 ? (
+              <>
+                {blog.images.length > 0 && (
+                  <img src={blog.images[0]} alt={blog.title} className="blog-image" />
+                )}
+                <div className="content">
+                  <h2>{blog.title}</h2>
+                  <div className="text-content">
+                    <p>{blog.content.substring(0, 100)}...</p>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="content">
+                  <h2>{blog.title}</h2>
+                  <div className="text-content">
+                    <p>{blog.content.substring(0, 100)}...</p>
+                  </div>
+                </div>
+                {blog.images.length > 0 && (
+                  <img src={blog.images[0]} alt={blog.title} className="blog-image" />
+                )}
+              </>
+            )}
           </div>
         ))}
       </div>
