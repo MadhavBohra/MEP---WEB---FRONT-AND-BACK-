@@ -119,8 +119,10 @@ const UserDetailsForm: React.FC = () => {
       await confirmationResult.confirm(otp);
       setOtp('');
       console.log('OTP verified, closing modal');
+      alert('OTP verified succesfully');
       setIsOtpModalOpen(false); // Close the OTP modal
     } catch (error) {
+      alert('OTP incorrect');
       console.error(error);
     }
   }
@@ -222,7 +224,9 @@ const UserDetailsForm: React.FC = () => {
         alert('Please enter a valid 10-digit phone number.');
         return;
       }
-
+      if(!confirmationResult){
+        alert('OTP not verified');
+      }
       const res = await axios.post('/api/usereditform', formDataToSubmit, {
         headers: {
           'Content-Type': 'multipart/form-data',
