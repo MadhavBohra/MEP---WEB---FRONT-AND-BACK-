@@ -1,17 +1,19 @@
 [
-    {
-      "id": 1,
-      "title": "Asthama Relief",
-      "content": "Asthma, a chronic respiratory condition affecting millions globally, poses significant challenges, especially for working professionals",
-      "images": ["/asthama-relief.png"],
-      "pdfUrl": "/BlogsPDFS/asthma_relief.pdf"
-    },
-    {
-      "id": 2,
-      "title": "Ayurveda: Beyond Reductionist Science!",
-      "content": "Ayurveda, the ancient Indian system of medicine, offers a holistic approach to health that transcends the limitations of reductionist science",
-      "images": ["/ayureveda_reductional.png"],
-      "pdfUrl": "/BlogsPDFS/Ayurveda-_not_reductional_science.pdf"
-    }
-  ]
-  
+  {
+    "id": 1,
+    "title": "Asthama Relief",
+    "content": "Asthma, a chronic respiratory condition affecting millions globally, poses significant challenges, especially for working professionals. Conventional treatments like inhalers and medications are crucial, but integrating complementary therapies such as yoga and Ayurveda can offer additional relief. This article explores how these ancient practices can help manage asthma, supported by scientific evidence. Recent research highlights yoga as a promising complementary therapy for asthma management. Studies indicate that regular yoga practice, including breathing exercises (pranayama) and specific postures (asanas), can reduce asthma symptoms by up to 43%. Yoga improves lung function, reduces stress, and enhances overall respiratory health. Healthcare professionals are increasingly recommending yoga to asthma patients for its holistic benefits and minimal side effects. As awareness grows, workplaces and wellness programs are integrating yoga sessions to support employees with asthma, promoting a balanced approach to health and productivity. This trend underscores the importance of lifestyle modifications in chronic disease management",
+    "images": ["/asthama-relief.png"
+  ],
+  "pdfUrl": "/BlogsPDFS/asthma_relief.pdf"
+},
+{
+  "id": 2,
+  "title": "Ayurveda: Beyond Reductionist Science!",
+  "content": "Ayurveda, the ancient Indian system of medicine, offers a holistic approach to health that transcends the limitations of reductionist science",
+  "images": [
+    "/ayureveda_reductional.png"
+  ],
+  "pdfUrl": "/BlogsPDFS/Ayurveda-_not_reductional_science.pdf"
+}
+]

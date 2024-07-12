@@ -1,3 +1,5 @@
+/* Blogs.css */
+
 html, body {
   margin: 0;
   padding: 0;
@@ -26,16 +28,20 @@ html, body {
   justify-content: space-between; /* Ensure content is spaced within the box */
   margin: 15px;
   width: 80vw;
-  height: 30vh;
   padding: 20px;
   border: 2px solid #ccc;
   border-radius: 50px;
   background-color: rgba(133, 170, 151, 0.5);
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s, height 0.3s;
   cursor: pointer;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add box shadow */
   text-decoration: none; /* Remove underline from links */
   color: inherit; /* Ensure link color matches the surrounding text */
+  overflow: hidden; /* Ensure content doesn't overflow */
+}
+
+.blog-box.expanded {
+  height: auto; /* Allow height to adjust to content */
 }
 
 .blog-box:hover {
@@ -48,7 +54,7 @@ html, body {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  width: 100%;
+  width: calc(100% - 150px); /* Fixed width for text content */
   padding: 0 20px; /* Add padding to ensure text does not touch the edges */
 }
 
@@ -57,8 +63,8 @@ html, body {
 }
 
 .blog-box .blog-image {
-  width: auto; /* Adjust width to ensure it fits within the box */
-  height: 25vh; /* Ensure the image covers the container properly */
+  width: 130px; /* Fixed width for the image */
+  height: auto; /* Height will adjust based on aspect ratio */
   object-fit: cover; /* Maintain aspect ratio while filling the box */
   border-radius: 40px; /* Optional: round corners of the image */
 }

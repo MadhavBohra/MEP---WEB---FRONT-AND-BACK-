@@ -1,11 +1,9 @@
 'use client';
-import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
-import Header from '../components/Header/Header';
-import UserDashboardHeader from "../components/UserDashboardHeader/Header";
-import LandingHeader from "../components/LandingHeader/Header";
-import PDFModal from '../components/PdfModal/PdfModal';
+
 import './Blogs.css';
+import React, { useState, useEffect } from 'react';
+import LandingHeader from '../components/LandingHeader/Header';
+import UserDashboardHeader from '../components/UserDashboardHeader/Header';
 
 interface Blog {
   id: number;
@@ -61,7 +59,7 @@ const HeaderComponent = () => {
 
 const Blogs: React.FC = () => {
   const [blogs, setBlogs] = useState<Blog[]>([]);
-  const [selectedPdf, setSelectedPdf] = useState<string | null>(null);
+  const [expandedBlogId, setExpandedBlogId] = useState<number | null>(null);
 
   useEffect(() => {
     fetch('/blogs.json')
@@ -70,10 +68,8 @@ const Blogs: React.FC = () => {
       .catch(error => console.error('Error fetching blogs data:', error));
   }, []);
 
-  const handlePdfClick = (pdfUrl: string) => {
-    // Construct the full URL for the PDF
-    const fullPdfUrl = `${window.location.origin}${pdfUrl}`;
-    setSelectedPdf(fullPdfUrl);
+  const toggleExpand = (id: number) => {
+    setExpandedBlogId(prev => (prev === id ? null : id));
   };
 
   return (
@@ -81,7 +77,11 @@ const Blogs: React.FC = () => {
       <HeaderComponent />
       <div className="blogs-container">
         {blogs.map((blog, index) => (
-          <div key={index} className={`blog-box ${index % 2 === 0 ? 'even' : 'odd'}`} onClick={() => handlePdfClick(blog.pdfUrl)}>
+          <div
+            key={blog.id}
+            className={`blog-box ${expandedBlogId === blog.id ? 'expanded' : ''} ${index % 2 === 0 ? 'even' : 'odd'}`}
+            onClick={() => toggleExpand(blog.id)}
+          >
             {index % 2 === 0 ? (
               <>
                 {blog.images.length > 0 && (
@@ -90,7 +90,7 @@ const Blogs: React.FC = () => {
                 <div className="content">
                   <h2>{blog.title}</h2>
                   <div className="text-content">
-                    <p>{blog.content.substring(0, 100)}...</p>
+                    <p>{expandedBlogId === blog.id ? blog.content : `${blog.content.substring(0, 100)}...`}</p>
                   </div>
                 </div>
               </>
@@ -99,7 +99,7 @@ const Blogs: React.FC = () => {
                 <div className="content">
                   <h2>{blog.title}</h2>
                   <div className="text-content">
-                    <p>{blog.content.substring(0, 100)}...</p>
+                    <p>{expandedBlogId === blog.id ? blog.content : `${blog.content.substring(0, 100)}...`}</p>
                   </div>
                 </div>
                 {blog.images.length > 0 && (
@@ -110,7 +110,6 @@ const Blogs: React.FC = () => {
           </div>
         ))}
       </div>
-      {selectedPdf && <PDFModal pdfUrl={selectedPdf} onClose={() => setSelectedPdf(null)} />}
     </>
   );
 };
