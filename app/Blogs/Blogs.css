@@ -26,7 +26,8 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: space-between; /* Ensure content is spaced within the box */
-  margin: 15px;
+  margin: 0.5vw;
+  height:25vh;
   width: 80vw;
   padding: 20px;
   border: 2px solid #ccc;
