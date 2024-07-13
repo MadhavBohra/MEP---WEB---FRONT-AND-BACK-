@@ -36,7 +36,7 @@
   color: #254336;
 }
 .vistext{
-  font-family: 'Lufga',serif;
+  font-family: 'Lufga',sans-serif;
   font-size: 4vh;
   font-weight: 500;
   line-height: 4vh;
@@ -65,7 +65,7 @@
   color: #254336;
 }
 .whattext{
-  font-family: 'Lufga',serif;
+  font-family: 'Lufga',sans-serif;
   font-size: 4vh;
   font-weight: 500;
   line-height: 4vh;
@@ -93,7 +93,7 @@
   color: #254336; 
 }
 .misstext{
-  font-family: 'Lufga',serif;
+  font-family: 'Lufga',sans-serif;
   font-size: 4vh;
   font-weight: 500;
   line-height: 4vh;
