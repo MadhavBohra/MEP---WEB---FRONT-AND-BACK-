@@ -1,12 +1,14 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { UserProfile } from './user-profile-details.model';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
 import { Multer } from 'multer';
 import * as multer from 'multer';
 import * as bcrypt from 'bcryptjs';
+import { type } from 'os';
+
 
 @Injectable()
 export class UserProfileDetailsService {
@@ -103,4 +105,10 @@ export class UserProfileDetailsService {
     async findByEmail(email: string): Promise<UserProfile | undefined> {
         return this.UserProfileModel.findOne({ email }).exec();
       }
+
+    async findById(id: string): Promise<UserProfile | undefined> {
+        const objectId = new Types.ObjectId(id)
+        
+        return this.UserProfileModel.findById(objectId).exec();
+    }
 }
