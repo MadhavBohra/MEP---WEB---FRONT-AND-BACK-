@@ -1,7 +1,7 @@
 // OtpModal.tsx
 
 import React from 'react';
-import './OtpModal.css';
+import './otpmodal.css';
 
 interface OtpModalProps {
   isOpen: boolean;

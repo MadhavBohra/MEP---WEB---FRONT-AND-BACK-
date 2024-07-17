@@ -18,7 +18,7 @@ const LoginForm: React.FC = () => {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      const response = await fetch('/api/signup', {
+      const response = await fetch('http://localhost:3001/api/v1/auth/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
