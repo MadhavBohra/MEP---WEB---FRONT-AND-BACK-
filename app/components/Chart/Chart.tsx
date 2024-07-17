@@ -24,8 +24,11 @@ const chartSetting = {
 const valueFormatter = (value: number | null) => `${value}mm`;
 
 const fetchData = async (userId: string) => {
+  if (typeof window === 'undefined') {
+    return null;
+  }
   try {
-    const response = await axios.get(`http://localhost:3001/api/v1/${userId}/daily/chart`);
+    const response = await axios.get(`http://localhost:3001/api/v1/${userId}/daily/chart`, { timeout: 5000 });
     return response.data;
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -44,8 +47,8 @@ interface DecodedToken {
   userId: string;
 }
 
-const getUserIdFromToken = (): string | null => {
-  if (typeof document !== 'undefined') {
+const getUserIdFromToken = () => {
+  if (typeof window !== 'undefined') {
     const cookies = cookie.parse(document.cookie);
     const token = cookies.token;
     if (token) {
@@ -61,28 +64,80 @@ const getUserIdFromToken = (): string | null => {
   return null;
 };
 
+const defaultDataset = [
+  { month: 'Jan', water: 5, steps: 5, Calories: 5 },
+  { month: 'Feb', water: 5, steps: 5, Calories: 5 },
+  { month: 'Mar', water: 5, steps: 5, Calories: 5 },
+  { month: 'Apr', water: 5, steps: 5, Calories: 5 },
+  { month: 'May', water: 5, steps: 5, Calories: 5 },
+  { month: 'Jun', water: 5, steps: 5, Calories: 5 },
+  { month: 'Jul', water: 5, steps: 5, Calories: 5 },
+  { month: 'Aug', water: 5, steps: 5, Calories: 5 },
+  { month: 'Sep', water: 5, steps: 5, Calories: 5 },
+  { month: 'Oct', water: 5, steps: 5, Calories: 5 },
+  { month: 'Nov', water: 5, steps: 5, Calories: 5 },
+  { month: 'Dec', water: 5, steps: 5, Calories: 5 },
+];
+
 const BarsDataset: React.FC = () => {
-  const [dataset, setDataset] = useState<any[]>([]); // Adjusted type
+  const [dataset, setDataset] = useState<any[]>(defaultDataset);
   const [userId, setUserId] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const id = getUserIdFromToken();
-    if (id) {
-      setUserId(id);
+    const getIdFromToken = () => {
+      const id = getUserIdFromToken();
+      if (id) {
+        setUserId(id);
+      } else {
+        // If we can't get the userId, load default values
+        setDataset(defaultDataset);
+        setIsLoading(false);
+      }
+    };
+
+    if (typeof window !== 'undefined') {
+      getIdFromToken();
+    } else {
+      // If we're not in the browser, load default values
+      setDataset(defaultDataset);
+      setIsLoading(false);
     }
   }, []);
 
   useEffect(() => {
     const getData = async () => {
       if (userId) {
-        const data = await fetchData(userId);
-        if (data) {
-          setDataset(data);
+        try {
+          const data = await Promise.race([
+            fetchData(userId),
+            new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), 5000))
+          ]);
+
+          if (data && Array.isArray(data) && data.length > 0) {
+            setDataset(data);
+          } else {
+            console.log('Using default dataset');
+            setDataset(defaultDataset);
+          }
+        } catch (error) {
+          console.error('Error or timeout occurred:', error);
+          setDataset(defaultDataset);
+        } finally {
+          setIsLoading(false);
         }
+      } else {
+        // If there's no userId, we've already loaded default values in the first useEffect
+        setIsLoading(false);
       }
     };
+
     getData();
   }, [userId]);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className={styles.chartContainer}>
@@ -101,4 +156,3 @@ const BarsDataset: React.FC = () => {
 };
 
 export default BarsDataset;
-

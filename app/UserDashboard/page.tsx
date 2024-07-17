@@ -39,6 +39,9 @@ const defaultUser: UserData = {
   weight: '70',
   blood_grp: 'B+',
   address: 'BITS GOA',
+  calories_burnt: 0,
+  steps: 0,
+  water_intake: 0
 };
 
 const decodeUserIdAndEmailFromToken = (token: string): { userId: string, email: string } | null => {
@@ -56,8 +59,12 @@ const decodeUserIdAndEmailFromToken = (token: string): { userId: string, email: 
 
 const fetchDataFromDB = async (userId: string): Promise<UserData | null> => {
   try {
-    const res = await axios.get(`http://localhost:3001/api/v1/users/${userId}/health`);
-    return res.data;
+    const res = await axios.get(`http://localhost:3001/api/v1/users/${userId}/health`, { timeout: 10000 });
+    if (res.status === 200 && res.data) {
+      return res.data;
+    } else {
+      return null;
+    }
   } catch (error) {
     console.error('Error fetching data from the database:', error);
     return null;
@@ -68,6 +75,7 @@ export default function UserDashboard() {
   const [userData, setUserData] = useState<UserData | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [token, setToken] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchToken = async () => {
@@ -83,18 +91,39 @@ export default function UserDashboard() {
 
   useEffect(() => {
     const getData = async () => {
-      if (token) {
-        const decoded = decodeUserIdAndEmailFromToken(token);
-        if (decoded) {
-          const data = await fetchDataFromDB(decoded.userId);
-          if (data) {
-            setUserData(data);
-          } else {
-            setUserData(defaultUser);
-          }
+      if (!token) {
+        setIsLoading(false);
+        return;
+      }
+  
+      const decoded = decodeUserIdAndEmailFromToken(token);
+      if (!decoded) {
+        setIsLoading(false);
+        return;
+      }
+  
+      const timer = setTimeout(() => {
+        setUserData(defaultUser);
+        setIsLoading(false);
+      }, 10000);
+  
+      try {
+        const data = await fetchDataFromDB(decoded.userId);
+        clearTimeout(timer);
+        
+        if (data) {
+          setUserData(data);
+        } else {
+          setUserData(defaultUser);
         }
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+        setUserData(defaultUser);
+      } finally {
+        setIsLoading(false);
       }
     };
+  
     getData();
   }, [token]);
 
@@ -134,7 +163,7 @@ export default function UserDashboard() {
     });
   };
 
-  if (!userData || !token) {
+  if (isLoading) {
     return <div>Loading...</div>;
   }
 
@@ -147,18 +176,18 @@ export default function UserDashboard() {
           <section className={styles.dashboard}>
             <div className={styles.usernamecard}>
               <UsernameCard
-                name={userData.name}
+                name={userData?.name ?? "Manan Jain"}
                 message="Have a nice day and don’t forget to take care of your health!"
               />
             </div>
             <div className={styles.profilecard}>
               <ProfileCard
-                Name={userData.name}
-                Age={userData.age.toString()}
-                Address={userData.address}
-                Blood_Group={userData.blood_grp}
-                Height={userData.height}
-                Weight={userData.weight}
+                Name={userData?.name ?? "Manan Jain"}
+                Age={(userData?.age ?? 20).toString()}
+                Address={userData?.address ?? "BITS GOA"}
+                Blood_Group={userData?.blood_grp ?? "B+"}
+                Height={userData?.height ?? "174"}
+                Weight={userData?.weight ?? "70"}
               />
             </div>
             <div className={styles.datepicker}><Calendar /></div>
@@ -168,16 +197,18 @@ export default function UserDashboard() {
             </div>
             <div className={styles.upcomingevent}><UpcomingEvents /></div>
             <div className={styles.postWorkoutSessionCard}><PostWorkoutSessionCard /></div>
-            <div className={styles.report}><Report weight={userData.weight} /></div>
-            <div className={styles.stepcounter}><StepCounter name="Steps Taken" steps={userData.steps?.toString() || "0"} /></div>
-            <div className={styles.caloriecounter}><CalorieCounter name="Calories Burned" calories={userData.calories_burnt?.toString() || "0"} /></div>
-            <div className={styles.watertaken}><Watertaken name="Water Taken" water={userData.water_intake?.toString() || "0"} /></div>
+            <div className={styles.report}><Report weight={userData?.weight ?? "70"} /></div>
+            <div className={styles.stepcounter}><StepCounter name="Steps Taken" steps={(userData?.steps ?? 0).toString()} /></div>
+            <div className={styles.caloriecounter}><CalorieCounter name="Calories Burned" calories={(userData?.calories_burnt ?? 0).toString()} /></div>
+            <div className={styles.watertaken}><Watertaken name="Water Taken" water={(userData?.water_intake ?? 0).toString()} /></div>
             <button className={styles.updateButton} onClick={() => setIsModalOpen(true)}>Update Data</button>
+            
             <Modal
               isOpen={isModalOpen}
               onClose={() => setIsModalOpen(false)}
               onSave={(steps, waterIntake, caloriesBurnt) => handleModalSave(steps, waterIntake, caloriesBurnt)}
             />
+            <button className={styles.historyButton}>History</button>
             <div className={styles.vl}></div>
           </section>
         </div>
