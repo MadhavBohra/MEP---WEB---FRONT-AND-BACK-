@@ -1,19 +1,4 @@
 @font-face {
-<<<<<<< HEAD
-    font-family: 'Lufga';
-    src: url('/fonts/Lufga-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-  }
-  
-  @font-face {
-    font-family: 'Lufga';
-    src: url('/fonts/Lufga-Bold.ttf') format('truetype');
-    font-weight: bold;
-    font-style: normal;
-  }
-  
-=======
   font-family: "Lufga";
   src: url("/public/LufgaRegular.ttf");
   font-weight: 400;
@@ -56,4 +41,3 @@ body {
   --padding-4xs: 9px;
   --padding-6xl: 25px;
 }
->>>>>>> 1db6ed7c71c8a3c9f77a84bf7bfb35ddf42f7d04

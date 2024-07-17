@@ -60,7 +60,7 @@ export default function LandingPage() {
         <div className={styles.container}>
           <p className={styles.t1}>AI Curated corporate wellness program</p>
           <p className={styles.t2}>MyEasyPharma</p>
-          <button className={styles.b1}>Get started for free</button>
+          <Link href='/SignUp'><button className={styles.b1}>Get started for free</button></Link>
           <Link href='/OurServices'><button className={styles.b2}>&#x25BC; Our Services</button></Link>
         </div>
       </div>
