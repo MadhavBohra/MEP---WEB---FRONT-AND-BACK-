@@ -1,8 +1,12 @@
 'use client';
 import * as React from 'react';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import jwtDecode from 'jwt-decode';
 import { BarChart } from '@mui/x-charts/BarChart';
 import { axisClasses } from '@mui/x-charts/ChartsAxis';
 import styles from './BarChart.module.css';
+import cookie from 'cookie';
 
 const chartSetting = {
   yAxis: [
@@ -17,84 +21,69 @@ const chartSetting = {
   },
 };
 
-const dataset = [
-  {
-    water: 59,
-    steps: 57,
-    Calories: 86,
-    month: 'Jan',
-  },
-  {
-    water: 50,
-    steps: 52,
-    Calories: 78,
-    month: 'Fev',
-  },
-  {
-    water: 47,
-    steps: 53,
-    Calories: 106,
-    month: 'Mar',
-  },
-  {
-    water: 54,
-    steps: 56,
-    Calories: 92,
-    month: 'Apr',
-  },
-  {
-    water: 57,
-    steps: 69,
-    Calories: 92,
-    month: 'May',
-  },
-  {
-    water: 60,
-    steps: 63,
-    Calories: 103,
-    month: 'June',
-  },
-  {
-    water: 59,
-    steps: 60,
-    Calories: 105,
-    month: 'July',
-  },
-  {
-    water: 65,
-    steps: 60,
-    Calories: 106,
-    month: 'Aug',
-  },
-  {
-    water: 51,
-    steps: 51,
-    Calories: 95,
-    month: 'Sept',
-  },
-  {
-    water: 60,
-    steps: 65,
-    Calories: 97,
-    month: 'Oct',
-  },
-  {
-    water: 67,
-    steps: 64,
-    Calories: 76,
-    month: 'Nov',
-  },
-  {
-    water: 61,
-    steps: 70,
-    Calories: 103,
-    month: 'Dec',
-  },
-];
-
 const valueFormatter = (value: number | null) => `${value}mm`;
 
-export default function BarsDataset() {
+const fetchData = async (userId: string) => {
+  try {
+    const response = await axios.get(`http://localhost:3001/api/v1/${userId}/daily/chart`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    return null;
+  }
+};
+
+interface DataPoint {
+  water: number;
+  steps: number;
+  Calories: number;
+  month: string;
+}
+
+interface DecodedToken {
+  userId: string;
+}
+
+const getUserIdFromToken = (): string | null => {
+  if (typeof document !== 'undefined') {
+    const cookies = cookie.parse(document.cookie);
+    const token = cookies.token;
+    if (token) {
+      try {
+        const decoded: DecodedToken = jwtDecode(token);
+        return decoded.userId;
+      } catch (error) {
+        console.error('Error decoding token:', error);
+        return null;
+      }
+    }
+  }
+  return null;
+};
+
+const BarsDataset: React.FC = () => {
+  const [dataset, setDataset] = useState<any[]>([]); // Adjusted type
+  const [userId, setUserId] = useState<string | null>(null);
+
+  useEffect(() => {
+    const id = getUserIdFromToken();
+    if (id) {
+      setUserId(id);
+    }
+  }, []);
+
+  useEffect(() => {
+    const getData = async () => {
+      if (userId) {
+        const data = await fetchData(userId);
+        if (data) {
+          setDataset(data);
+        }
+      }
+    };
+    getData();
+  }, [userId]);
+
   return (
     <div className={styles.chartContainer}>
       <BarChart
@@ -109,4 +98,7 @@ export default function BarsDataset() {
       />
     </div>
   );
-}
+};
+
+export default BarsDataset;
+

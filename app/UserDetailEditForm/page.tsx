@@ -8,9 +8,8 @@ import axios from 'axios';
 import { StoreProvider } from '../StoreProvider';
 import LandingHeader from "../components/LandingHeader/Header";
 import UserDashboardHeader from "../components/UserDashboardHeader/Header";
-import { auth } from "../firebase";
+import { auth, app } from "../firebase";
 import { getAuth, RecaptchaVerifier, signInWithPhoneNumber } from 'firebase/auth';
-import { app } from '../firebase';
 import { useRouter } from 'next/router';
 import OtpModal from '../components/OTP Modal/otpmodal'; // Import the OtpModal component
 
@@ -102,7 +101,7 @@ const UserDetailsForm: React.FC = () => {
   const handleSendOtp = async () => {
     try {
       const formattedPhoneNumber = `+${formData.phone.replace(/\D/g, '')}`;
-      const confirmation = await signInWithPhoneNumber(auth, formattedPhoneNumber, window.recaptchaVerifier)
+      const confirmation = await signInWithPhoneNumber(auth, formattedPhoneNumber, window.recaptchaVerifier);
       setConfirmationResult(confirmation);
       setOtpSent(true);
       setOtp('');
@@ -119,7 +118,7 @@ const UserDetailsForm: React.FC = () => {
       await confirmationResult.confirm(otp);
       setOtp('');
       console.log('OTP verified, closing modal');
-      alert('OTP verified succesfully');
+      alert('OTP verified successfully');
       setIsOtpModalOpen(false); // Close the OTP modal
     } catch (error) {
       alert('OTP incorrect');
@@ -187,6 +186,19 @@ const UserDetailsForm: React.FC = () => {
     }
   };
 
+  const decodeUserIdAndEmailFromToken = (token: string): { userId: string, email: string } | null => {
+    try {
+      const decoded: any = jwtDecode(token);
+      return {
+        userId: decoded.userId, // Adjust according to your token's payload structure
+        email: decoded.email // Adjust according to your token's payload structure
+      };
+    } catch (error) {
+      console.error('Error decoding token:', error);
+      return null;
+    }
+  };
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -224,10 +236,13 @@ const UserDetailsForm: React.FC = () => {
         alert('Please enter a valid 10-digit phone number.');
         return;
       }
-      if(!confirmationResult){
+
+      if (!confirmationResult) {
         alert('OTP not verified');
+        return;
       }
-      const res = await axios.post('/api/usereditform', formDataToSubmit, {
+
+      const res = await axios.post('http://localhost:3001/api/v1/users/${userId}/health', formDataToSubmit, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

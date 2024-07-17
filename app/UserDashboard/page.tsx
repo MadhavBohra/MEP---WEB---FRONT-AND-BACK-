@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from 'react';
 import { StoreProvider } from '../StoreProvider';
-import Head from 'next/head';
 import UsernameCard from '../components/UsernameCard/UsernameCard';
 import StepCounter from '../components/StepCounter/Stepcounter';
 import CalorieCounter from '../components/CalorieCounter/CalorieCounter';
@@ -17,8 +16,9 @@ import UpcomingEvents from '../components/UpcomingEvent/UpcomingEvent';
 import PostWorkoutSessionCard from '../components/PostWorkout/PostWorkout';
 import Header from '../components/UserDashboardHeader/Header';
 import axios from 'axios';
-import { getSession } from 'next-auth/react';
+import jwtDecode from 'jwt-decode';
 import Modal from '../components/Modal/Modal';
+import cookie from 'cookie';
 
 interface UserData {
   name: string;
@@ -41,9 +41,22 @@ const defaultUser: UserData = {
   address: 'BITS GOA',
 };
 
-const fetchDataFromDB = async (): Promise<UserData | null> => {
+const decodeUserIdAndEmailFromToken = (token: string): { userId: string, email: string } | null => {
   try {
-    const res = await axios.get('/api/users');
+    const decoded: any = jwtDecode(token);
+    return {
+      userId: decoded.userId, // Adjust according to your token's payload structure
+      email: decoded.email // Adjust according to your token's payload structure
+    };
+  } catch (error) {
+    console.error('Error decoding token:', error);
+    return null;
+  }
+};
+
+const fetchDataFromDB = async (userId: string): Promise<UserData | null> => {
+  try {
+    const res = await axios.get(`http://localhost:3001/api/v1/users/${userId}/health`);
     return res.data;
   } catch (error) {
     console.error('Error fetching data from the database:', error);
@@ -54,32 +67,74 @@ const fetchDataFromDB = async (): Promise<UserData | null> => {
 export default function UserDashboard() {
   const [userData, setUserData] = useState<UserData | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [token, setToken] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchToken = async () => {
+      // This is how you can retrieve cookies in a Next.js environment
+      if (typeof document !== 'undefined') {
+        const cookies = document.cookie;
+        const parsedCookies = cookie.parse(cookies);
+        setToken(parsedCookies.token || null);
+      }
+    };
+    fetchToken();
+  }, []);
 
   useEffect(() => {
     const getData = async () => {
-      const data = await fetchDataFromDB();
-      if (data) {
-        setUserData(data);
-      } else {
-        setUserData(defaultUser);
+      if (token) {
+        const decoded = decodeUserIdAndEmailFromToken(token);
+        if (decoded) {
+          const data = await fetchDataFromDB(decoded.userId);
+          if (data) {
+            setUserData(data);
+          } else {
+            setUserData(defaultUser);
+          }
+        }
       }
     };
     getData();
-  }, []);
+  }, [token]);
 
   const handleModalSave = (steps: string, waterIntake: string, caloriesBurnt: string) => {
-    setUserData((prevState) => {
+    if (!token) {
+      console.error('Token not available');
+      return;
+    }
+
+    const decoded = decodeUserIdAndEmailFromToken(token);
+
+    if (!decoded) {
+      console.error('Unable to decode token');
+      return;
+    }
+
+    const { userId } = decoded;
+
+    setUserData((prevState: UserData | null) => {
       if (!prevState) return prevState;
-      return {
+      const updatedData = {
         ...prevState,
         steps: parseInt(steps),
         water_intake: parseInt(waterIntake),
         calories_burnt: parseInt(caloriesBurnt),
       };
+
+      axios.put(`http://localhost:3001/api/v1/users/${userId}/daily`, updatedData)
+        .then((response) => {
+          console.log('Data saved successfully:', response.data);
+        })
+        .catch((error) => {
+          console.error('Error saving data:', error);
+        });
+
+      return updatedData;
     });
   };
 
-  if (!userData) {
+  if (!userData || !token) {
     return <div>Loading...</div>;
   }
 
@@ -90,18 +145,27 @@ export default function UserDashboard() {
         <div className={styles.container}>
           <h1 className={styles.headerTitle}>Dashboard Overview</h1>
           <section className={styles.dashboard}>
-            <div className={styles.usernamecard}><UsernameCard name={userData.name} message="Have a nice day and don’t forget to take care of your health!" /></div>
-            <div className={styles.profilecard}><ProfileCard
-              Name={userData.name}
-              Age={userData.age.toString()}
-              Address={userData.address}
-              Blood_Group={userData.blood_grp}
-              Height={userData.height}
-              Weight={userData.weight}
-            /></div>
+            <div className={styles.usernamecard}>
+              <UsernameCard
+                name={userData.name}
+                message="Have a nice day and don’t forget to take care of your health!"
+              />
+            </div>
+            <div className={styles.profilecard}>
+              <ProfileCard
+                Name={userData.name}
+                Age={userData.age.toString()}
+                Address={userData.address}
+                Blood_Group={userData.blood_grp}
+                Height={userData.height}
+                Weight={userData.weight}
+              />
+            </div>
             <div className={styles.datepicker}><Calendar /></div>
             <div className={styles.graph}><BarsDataset /></div>
-            <div className={styles.reminder}><Reminder dur1="48 min" ex1="stretching" dur2="32 min" ex2="Mind training" /></div>
+            <div className={styles.reminder}>
+              <Reminder dur1="48 min" ex1="stretching" dur2="32 min" ex2="Mind training" />
+            </div>
             <div className={styles.upcomingevent}><UpcomingEvents /></div>
             <div className={styles.postWorkoutSessionCard}><PostWorkoutSessionCard /></div>
             <div className={styles.report}><Report weight={userData.weight} /></div>
@@ -112,7 +176,7 @@ export default function UserDashboard() {
             <Modal
               isOpen={isModalOpen}
               onClose={() => setIsModalOpen(false)}
-              onSave={handleModalSave}
+              onSave={(steps, waterIntake, caloriesBurnt) => handleModalSave(steps, waterIntake, caloriesBurnt)}
             />
             <div className={styles.vl}></div>
           </section>
