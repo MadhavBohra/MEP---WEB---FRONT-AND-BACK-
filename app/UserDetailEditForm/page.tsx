@@ -11,6 +11,7 @@ import UserDashboardHeader from "../components/UserDashboardHeader/Header";
 import { auth, app } from "../firebase";
 import { getAuth, RecaptchaVerifier, signInWithPhoneNumber } from 'firebase/auth';
 import { useRouter } from 'next/router';
+import jwtDecode from 'jwt-decode';
 import OtpModal from '../components/OTP Modal/otpmodal'; // Import the OtpModal component
 
 interface FormData {
@@ -24,22 +25,28 @@ interface FormData {
   phone: string;
 }
 
+interface DecodedToken {
+  userId: string;
+  email: string;
+}
+
 const loadAuthState = () => {
   try {
     const storedToken = localStorage.getItem('token');
     if (storedToken) {
-      return { authenticated: true, token: storedToken };
+      const decoded: DecodedToken = jwtDecode(storedToken);
+      return { authenticated: true, token: storedToken, userId: decoded.userId, email: decoded.email };
     } else {
-      return { authenticated: false, token: '' };
+      return { authenticated: false, token: '', userId: '', email: '' };
     }
   } catch (error) {
     console.error('Error accessing localStorage:', error);
-    return { authenticated: false, token: '' };
+    return { authenticated: false, token: '', userId: '', email: '' };
   }
 };
 
 const HeaderComponent = () => {
-  const [authState, setAuthState] = useState({ authenticated: false, token: '' });
+  const [authState, setAuthState] = useState({ authenticated: false, token: '', userId: '', email: '' });
 
   useEffect(() => {
     const state = loadAuthState();
@@ -58,7 +65,7 @@ const HeaderComponent = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('token');
-    setAuthState({ authenticated: false, token: '' });
+    setAuthState({ authenticated: false, token: '', userId: '', email: '' });
   };
 
   return (
@@ -84,9 +91,19 @@ const UserDetailsForm: React.FC = () => {
   const [otpSent, setOtpSent] = useState<boolean>(false);
   const [confirmationResult, setConfirmationResult] = useState<any>(null);
   const [isOtpModalOpen, setIsOtpModalOpen] = useState<boolean>(false); // State to manage modal visibility
+  const [userId, setUserId] = useState<string>('');
   const auth = getAuth(app);
 
   useEffect(() => {
+    const state = loadAuthState();
+    if (state.authenticated && state.userId) {
+      setUserId(state.userId);
+      setFormData((prevData) => ({
+        ...prevData,
+        email: state.email
+      }));
+    }
+
     window.recaptchaVerifier = new RecaptchaVerifier(auth, "recaptcha-container", {
       'size': 'invisible',
       'callback': (response) => {
@@ -186,19 +203,6 @@ const UserDetailsForm: React.FC = () => {
     }
   };
 
-  const decodeUserIdAndEmailFromToken = (token: string): { userId: string, email: string } | null => {
-    try {
-      const decoded: any = jwtDecode(token);
-      return {
-        userId: decoded.userId, // Adjust according to your token's payload structure
-        email: decoded.email // Adjust according to your token's payload structure
-      };
-    } catch (error) {
-      console.error('Error decoding token:', error);
-      return null;
-    }
-  };
-
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -242,7 +246,7 @@ const UserDetailsForm: React.FC = () => {
         return;
       }
 
-      const res = await axios.post('http://localhost:3001/api/v1/users/${userId}/health', formDataToSubmit, {
+      const res = await axios.post(`http://localhost:3001/api/v1/users/${userId}/health`, formDataToSubmit, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
