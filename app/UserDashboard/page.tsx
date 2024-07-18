@@ -3,9 +3,9 @@
 import React, { useEffect, useState } from 'react';
 import { StoreProvider } from '../StoreProvider';
 import UsernameCard from '../components/UsernameCard/UsernameCard';
-import StepCounter from '../components/StepCounter/Stepcounter';
+import StepCounter from '../components/StepCounter/StepCounter';
 import CalorieCounter from '../components/CalorieCounter/CalorieCounter';
-import Watertaken from '../components/WaterTaken/Watertaken';
+import Watertaken from '../components/WaterTaken/WaterTaken';
 import Report from '../components/Report/Report';
 import Reminder from '../components/Reminder/Reminders';
 import styles from './UserDashboard.module.css';
@@ -127,7 +127,7 @@ export default function UserDashboard() {
     getData();
   }, [token]);
 
-  const handleModalSave = (steps: string, waterIntake: string, caloriesBurnt: string) => {
+  const handleModalSave = async (steps: string, waterIntake: string, caloriesBurnt: string) => {
     if (!token) {
       console.error('Token not available');
       return;
@@ -151,7 +151,11 @@ export default function UserDashboard() {
         calories_burnt: parseInt(caloriesBurnt),
       };
 
-      axios.put(`http://localhost:3001/api/v1/users/${userId}/daily`, updatedData)
+      axios.put(`http://localhost:3001/api/v1/users/${userId}/daily`, updatedData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
         .then((response) => {
           console.log('Data saved successfully:', response.data);
         })

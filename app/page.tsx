@@ -13,8 +13,8 @@ import UserDashboard from "./UserDashboard/page";
  import Blogs from "./Blogs/page";
 
 const IndexPage: React.FC = () => {
-  //return <LandingPage />;
-  return <UserDashboard/>;
+  return <LandingPage />;
+
 };
 
 export default IndexPage;
