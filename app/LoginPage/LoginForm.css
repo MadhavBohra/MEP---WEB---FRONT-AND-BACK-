@@ -21,7 +21,7 @@ body {
 }
 
 .logo {
-  width: 75px;
+  width: 10vh;
   margin-top: 0.5rem;
   margin-bottom: 0rem;
 }
@@ -42,7 +42,7 @@ form {
   flex-direction: column;
   margin-top: 2.5vh;
   width: 100vw;
-  max-width: 400px;
+  max-width: 30vw;
 }
 
 label {
@@ -56,8 +56,8 @@ input {
   color:#254336;
   margin-bottom: 0.5rem;
   padding: 0.5rem;
-  border: 1.25px solid #ccc;
-  border-radius: 5px;
+  border: 0.15vh solid #ccc;
+  border-radius: 0.5vh;
   width: 100%; /* Make inputs take full width */
 }
 
@@ -70,18 +70,18 @@ input {
   padding-right: 2.5rem;
   padding: 0.5rem;
   margin-bottom: 0.5rem;
-  border: 1.25px solid #ccc;
-  border-radius: 5px;
+  border: 0.15vh solid #ccc;
+  border-radius: 0.5vh;
   width: 100%;
 }
 
 .eye-icon {
   position: absolute; /* Position the eye icon absolutely within the container */
-  top: 50%; /* Vertically center the icon */
-  right: 10px; /* Position the eye icon to the right with some padding */
+  top: 2.5vh; /* Vertically center the icon */
+  right: 2vh; /* Position the eye icon to the right with some padding */
   transform: translateY(-50%); /* Adjust the vertical alignment to be perfectly centered */
   cursor: pointer;
-  width: 30px; /* Adjust the width as needed */
+  width: 5vh; /* Adjust the width as needed */
   height: auto;
   pointer-events: auto; /* Ensure the icon is clickable */
 }
@@ -118,7 +118,7 @@ input {
   padding: 0.75rem;
   margin-bottom: 0.25rem;
   border: none;
-  border-radius: 75px;
+  border-radius: 7.5vh;
   cursor: pointer;
 }
 
@@ -171,12 +171,12 @@ input {
 
 .or-separator .line {
   flex: 1;
-  height: 1.25px;
+  height: 0.25vh;
   background-color: #ccc;
 }
 
 .or-separator .or-text {
   margin: 1vh 1vh;
   color: #666;
-  font-weight:500;
+  font-weight:bold;
 }
