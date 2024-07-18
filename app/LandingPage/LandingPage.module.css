@@ -64,6 +64,7 @@
   position:absolute;
   top:40vh;
   left:5vw;
+  cursor: pointer;
   border-radius: 50px; /* Rounded corners */
   opacity: 1; /* Ensure opacity is set */
 }

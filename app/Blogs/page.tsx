@@ -9,6 +9,7 @@ interface Blog {
   id: number;
   title: string;
   content: string;
+  formattedContent: string;
   images: string[];
   pdfUrl: string;
 }
@@ -57,6 +58,10 @@ const HeaderComponent = () => {
   );
 };
 
+const formatContent = (content: string) => {
+  return content.replace(/\\n/g, '\n');
+};
+
 const Blogs: React.FC = () => {
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [expandedBlogId, setExpandedBlogId] = useState<number | null>(null);
@@ -64,7 +69,13 @@ const Blogs: React.FC = () => {
   useEffect(() => {
     fetch('/blogs.json')
       .then(response => response.json())
-      .then(data => setBlogs(data))
+      .then(data => {
+        const formattedBlogs = data.map((blog: Blog) => ({
+          ...blog,
+          formattedContent: formatContent(blog.content)
+        }));
+        setBlogs(formattedBlogs);
+      })
       .catch(error => console.error('Error fetching blogs data:', error));
   }, []);
 
@@ -91,7 +102,11 @@ const Blogs: React.FC = () => {
                 <div className="content">
                   <h2>{blog.title}</h2>
                   <div className="text-content">
-                    <p>{expandedBlogId === blog.id ? blog.content : `${blog.content.substring(0, 100)}...`}</p>
+                    {expandedBlogId === blog.id ? (
+                      <pre>{blog.formattedContent}</pre>
+                    ) : (
+                      <p>{blog.formattedContent.split('\n')[0].substring(0, 100)}...</p>
+                    )}
                   </div>
                 </div>
               </>
@@ -100,7 +115,11 @@ const Blogs: React.FC = () => {
                 <div className="content">
                   <h2>{blog.title}</h2>
                   <div className="text-content">
-                    <p>{expandedBlogId === blog.id ? blog.content : `${blog.content.substring(0, 100)}...`}</p>
+                    {expandedBlogId === blog.id ? (
+                      <pre>{blog.formattedContent}</pre>
+                    ) : (
+                      <p>{blog.formattedContent.split('\n')[0].substring(0, 100)}...</p>
+                    )}
                   </div>
                 </div>
                 {blog.images.length > 0 && (

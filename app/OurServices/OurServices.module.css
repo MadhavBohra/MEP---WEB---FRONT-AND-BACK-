@@ -389,12 +389,12 @@
 
 .ourServices1 {
   margin: 0;
-  width: 100%;
+  width: 100vw;
   width: 40vw;
   height: auto;
-  font-size: 11vh; /* 60px */
+  font-size: 7.5vh; /* 60px */
   font-weight: 600;
-  font-family: inherit;
+  font-family: 'Lufga', sans-serif;
   color: #254336;
   text-align: center;
   display: inline-block;

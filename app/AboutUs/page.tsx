@@ -3,7 +3,6 @@
 import React, { useState, useEffect, FunctionComponent } from "react";
 //import classnames from "classnames";
 import styles from "./AboutUs.module.css";
-import './fonts.css';
 import LandingHeader from "../components/LandingHeader/Header";
 import UserDashboardHeader from "../components/UserDashboardHeader/Header";
 

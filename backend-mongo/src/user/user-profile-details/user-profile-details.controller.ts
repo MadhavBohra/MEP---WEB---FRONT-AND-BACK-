@@ -1,34 +1,25 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, UploadedFile, UseGuards, UseInterceptors, UnauthorizedException } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { UserProfileDetailsService } from './user-profile-details.service';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { UpdateUserProfileDto } from './dto/update-user-profile.dto';
+import { CurrentUser } from 'src/common/decorators/current-user.decorator';
 
-@Controller('user')
+@Controller('api/v1/users')
 export class UserProfileDetailsController {
     constructor(private readonly userProfileService: UserProfileDetailsService){}
 
-    @Post()
-    @UseInterceptors(FileInterceptor('profilePicture'))
-    async addUser(
-        @Body('username') userName: string,
-        @Body('email') userEmail: string,
-        @Body('password') userPass: string,
-        @UploadedFile() file: Express.Multer.File,
-    ) {
-        const filePath = file ? await this.userProfileService.handleFileUpload(file) : null;
-        const genId = await this.userProfileService.insertUser(
-            userName,
-            userEmail,
-            userPass,
-            filePath,
-        );
-        return {id : genId};    
-    }
-
     @UseGuards(JwtAuthGuard)
     @Get(':id')
-    async getUser(@Param('id') userId : string){
-        return this.userProfileService.getSingleUser(userId);
+    async getUser(
+        @Param('id') userId : string,
+        @CurrentUser() user
+        ){
+            console.log("userId");
+            if(userId !== user.userId){
+                throw new UnauthorizedException("Accessing this not allowed")
+            }
+            return this.userProfileService.getSingleUser(userId);
     }
 
     @UseGuards(JwtAuthGuard)
@@ -36,20 +27,35 @@ export class UserProfileDetailsController {
     @UseInterceptors(FileInterceptor('profilePicture'))
     async updateUser(
         @Param('id') userId : string,
-        @Body('username') userName : string,
-        @Body('email') userEmail : string,
-        @Body('password') userPass : string,
+        @Body() updateUserProfileDto: UpdateUserProfileDto,
         @UploadedFile() file: Express.Multer.File,
+        @CurrentUser() user
     ){
+        if(userId !== user.userId){
+            throw new UnauthorizedException("Accessing this not allowed")
+        }
+
         const filePath = file ? await this.userProfileService.handleFileUpload(file) : null;
-        await this.userProfileService.updateUser(userId, userName, userEmail, userPass, filePath);
+        await this.userProfileService.updateUser(
+            userId,
+            updateUserProfileDto.username,
+            updateUserProfileDto.email,
+            updateUserProfileDto.password,
+            filePath
+        );
         return null;
     }
 
     @UseGuards(JwtAuthGuard)
     @Delete(':id')
-    async removeUser(@Param('id') userId : string){
-        await this.userProfileService.deleteUser(userId);
-        return null;
+    async removeUser(
+        @Param('id') userId : string,
+        @CurrentUser() user
+        ){
+            if(userId !== user.userId){
+                throw new UnauthorizedException("Accessing this not allowed")
+            }
+            await this.userProfileService.deleteUser(userId);
+            return null;
     }
 }

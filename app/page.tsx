@@ -13,28 +13,8 @@ import UserDashboard from "./UserDashboard/page";
  import Blogs from "./Blogs/page";
 
 const IndexPage: React.FC = () => {
-  const auth = getAuth(app);
-  const router = useRouter();
+  return <LandingPage />;
 
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        router.push('/UserDashboard');
-      }
-    });
-  }, [auth, router]);
-
-  return (
-    <main>
-      <UserDetailsForm />
-    </main>
-  );
-  // Uncomment the component you want to render
-  // return <UserDashboard />;
-   return <LandingPage />;
-  // return <LoginForm />;
-  // return <Blogs />;
-  // return <OurServices />;
 };
 
 export default IndexPage;

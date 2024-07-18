@@ -41,6 +41,11 @@ html, body {
   overflow: hidden; /* Ensure content doesn't overflow */
 }
 
+.text-content pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-family: inherit;
+}
 .blog-box.expanded {
   height: auto; /* Allow height to adjust to content */
 }

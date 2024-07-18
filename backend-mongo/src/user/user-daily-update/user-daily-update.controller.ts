@@ -1,39 +1,56 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards, UnauthorizedException } from '@nestjs/common';
 import { UserDailyDetailsService } from './user-daily-update.service';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { CurrentUser } from 'src/common/decorators/current-user.decorator';
+import { CreateUserDailyDto } from './dto/create-user-daily.dto';
 
 // @UseGuards(JwtAuthGuard)
-@Controller('daily')
+@Controller('api/v1/users')
 export class UserDailyDetailsController {
     constructor(private readonly userDailyServices: UserDailyDetailsService){};
 
     @UseGuards(JwtAuthGuard)
-    @Post(':id')
+    @Post(':id/daily')
     async addUser(
         @Param('id') userId : string,
-        @Body('steps') steps : number,
-        @Body('calorie') calorie : number,
-        @Body('water') water : number,
+        @Body() createUserDailyDto : CreateUserDailyDto,
+        @CurrentUser() user
     ){
+        if(userId !== user.userId){
+            throw new UnauthorizedException("Accessing this not allowed")
+        }
+
         const result = await this.userDailyServices.insertUser(
             userId,
-            steps,
-            calorie,
-            water,
+            createUserDailyDto.steps,
+            createUserDailyDto.calorie,
+            createUserDailyDto.water
         );
         console.log(result);
     }
 
     @UseGuards(JwtAuthGuard)
-    @Get(':id')
-    async getUser(@Param('id') userId : string){
+    @Get(':id/daily')
+    async getUser(
+        @Param('id') userId : string,
+        @CurrentUser() user
+        ){
         // console.log("hello");
+        if(userId !== user.userId){
+            throw new UnauthorizedException("Accessing this not allowed")
+        }
         return await this.userDailyServices.getSingleUser(userId);
     }
 
     @UseGuards(JwtAuthGuard)
-    @Get('chart/:id')
-    async getChartData(@Param('id') userId: string) {
-        return await this.userDailyServices.getChartData(userId);
+    @Get(':id/daily/chart')
+    async getChartData(
+        @Param('id') userId: string,
+        @CurrentUser() user
+        ) {
+            if(userId !== user.userId){
+                throw new UnauthorizedException("Accessing this not allowed")
+            }
+            return await this.userDailyServices.getChartData(userId);
     }
 }
