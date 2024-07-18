@@ -20,6 +20,30 @@ const LoginForm: React.FC = () => {
   const [showPassword, setShowPassword] = useState<LoginFormState['showPassword']>(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
+  // const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   try {
+  //     const response = await fetch('http://localhost:3001/api/v1/auth/login', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({ username, password }),
+  //     });
+
+  //     const result = await response.json();
+
+  //     if (response.status === 200) {
+  //       localStorage.setItem('token', result.token);
+  //       window.location.href = result.redirectTo || '/UserDashboard';
+  //     } else {
+  //       setErrorMessage(result.message);
+  //     }
+  //   } catch (error) {
+  //     setErrorMessage('An error occurred. Please try again.');
+  //   }
+  // };
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
@@ -29,14 +53,14 @@ const LoginForm: React.FC = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ username, password }),
+        credentials: 'include', // This line is crucial for sending and receiving cookies
       });
-
-      const result = await response.json();
-
-      if (response.status === 200) {
-        localStorage.setItem('token', result.token);
-        window.location.href = result.redirectTo || '/UserDashboard';
+  
+      if (response.ok) {
+        // Don't store the token in localStorage
+        window.location.href = '/UserDashboard';
       } else {
+        const result = await response.json();
         setErrorMessage(result.message);
       }
     } catch (error) {

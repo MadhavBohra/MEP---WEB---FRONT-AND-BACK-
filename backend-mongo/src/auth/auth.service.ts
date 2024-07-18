@@ -31,7 +31,7 @@ export class AuthService {
       sameSite: 'strict',
       maxAge: 24 * 60 * 60 * 1000
     });
-
+        
     return { message: 'Login successful' };
   }
 }

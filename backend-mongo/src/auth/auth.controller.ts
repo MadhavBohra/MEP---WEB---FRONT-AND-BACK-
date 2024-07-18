@@ -1,4 +1,4 @@
-import { Controller, Post, UseGuards, Request, Body, UseInterceptors, UploadedFile, Res } from '@nestjs/common';
+import { Controller, Post, UseGuards, Request, Body, UseInterceptors, UploadedFile, Res, Get } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from './auth.service';
 import { UserProfileDetailsService } from '../user/user-profile-details/user-profile-details.service';
@@ -40,9 +40,25 @@ async signup(
   async login(@Request() req, @Res() res: Response) {
     try{
       const loginResult = await this.authService.login(req.user, res);
+      // console.log(loginResult);
       return res.status(200).json(loginResult);
     } catch(error){
       return res.status(401).json({message : 'Login failed', error : error.message})
     }
+  }
+
+  @Get('me')
+  @UseGuards(AuthGuard('jwt'))
+  async getCurrentUser(@Request() req) {
+    // The user object is attached to the request by the JWT strategy
+    console.log(req.user);
+    console.log("break");
+    
+    
+    return {
+      userId: req.user.userId,
+      username: req.user.email,
+      // Include any other necessary user data
+    };
   }
 }

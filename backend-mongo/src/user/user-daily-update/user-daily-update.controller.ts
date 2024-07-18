@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards, UnauthorizedException } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards, UnauthorizedException, HttpCode } from '@nestjs/common';
 import { UserDailyDetailsService } from './user-daily-update.service';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { CurrentUser } from 'src/common/decorators/current-user.decorator';
@@ -11,6 +11,7 @@ export class UserDailyDetailsController {
 
     @UseGuards(JwtAuthGuard)
     @Post(':id/daily')
+    @HttpCode(200)
     async addUser(
         @Param('id') userId : string,
         @Body() createUserDailyDto : CreateUserDailyDto,

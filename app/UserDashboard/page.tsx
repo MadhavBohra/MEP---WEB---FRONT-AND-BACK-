@@ -3,9 +3,9 @@
 import React, { useEffect, useState } from 'react';
 import { StoreProvider } from '../StoreProvider';
 import UsernameCard from '../components/UsernameCard/UsernameCard';
-import StepCounter from '../components/StepCounter/StepCounter';
+import StepCounter from '../components/StepCounter/Stepcounter';
 import CalorieCounter from '../components/CalorieCounter/CalorieCounter';
-import Watertaken from '../components/WaterTaken/WaterTaken';
+import Watertaken from '../components/WaterTaken/Watertaken';
 import Report from '../components/Report/Report';
 import Reminder from '../components/Reminder/Reminders';
 import styles from './UserDashboard.module.css';
@@ -16,7 +16,7 @@ import UpcomingEvents from '../components/UpcomingEvent/UpcomingEvent';
 import PostWorkoutSessionCard from '../components/PostWorkout/PostWorkout';
 import Header from '../components/UserDashboardHeader/Header';
 import axios from 'axios';
-import jwtDecode from 'jwt-decode';
+import {jwtDecode} from 'jwt-decode';
 import Modal from '../components/Modal/Modal';
 import cookie from 'cookie';
 
@@ -44,22 +44,28 @@ const defaultUser: UserData = {
   water_intake: 0
 };
 
-const decodeUserIdAndEmailFromToken = (token: string): { userId: string, email: string } | null => {
-  try {
-    const decoded: any = jwtDecode(token);
-    return {
-      userId: decoded.userId, // Adjust according to your token's payload structure
-      email: decoded.email // Adjust according to your token's payload structure
-    };
-  } catch (error) {
-    console.error('Error decoding token:', error);
-    return null;
-  }
-};
+// const decodeUserIdAndEmailFromToken = (token: string): { userId: string, email: string } | null => {
+//   try {
+//     const decoded: any = jwtDecode(token);
+//     console.log("hello" ,decoded);
+    
+//     return {
+//       userId: decoded.userId, // Adjust according to your token's payload structure
+//       email: decoded.email // Adjust according to your token's payload structure
+//     };
+//   } catch (error) {
+//     console.error('Error decoding token:', error);
+//     return null;
+//   }
+// };
+
 
 const fetchDataFromDB = async (userId: string): Promise<UserData | null> => {
   try {
-    const res = await axios.get(`http://localhost:3001/api/v1/users/${userId}/health`, { timeout: 10000 });
+    const res = await axios.get(`http://localhost:3001/api/v1/users/${userId}/health`, {
+      withCredentials: true,
+      timeout: 10000
+    });
     if (res.status === 200 && res.data) {
       return res.data;
     } else {
@@ -74,46 +80,85 @@ const fetchDataFromDB = async (userId: string): Promise<UserData | null> => {
 export default function UserDashboard() {
   const [userData, setUserData] = useState<UserData | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [token, setToken] = useState<string | null>(null);
+  // const [token, setToken] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchToken = async () => {
-      // This is how you can retrieve cookies in a Next.js environment
-      if (typeof document !== 'undefined') {
-        const cookies = document.cookie;
-        const parsedCookies = cookie.parse(cookies);
-        setToken(parsedCookies.token || null);
-      }
-    };
-    fetchToken();
-  }, []);
+  // THIS TOKEN RRETRIEVAL METHOD NOT NEEDED
+  // useEffect(() => {
+  //   const fetchToken = async () => {
+  //     // This is how you can retrieve cookies in a Next.js environment
+  //     if (typeof document !== 'undefined') {
+  //       const cookies = document.cookie;
+  //       const parsedCookies = cookie.parse(cookies);
+  //       setToken(parsedCookies.token || null);
+  //     }
+  //   };
+  //   fetchToken();
+  // }, []);
+
+  // THIS OLD USE EFFECT USED TOKEN RETRIEVAL NOT NEEDED, ADDED THE UPDATED CODE BELOW
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     if (!token) {
+  //       setIsLoading(false);
+  //       return;
+  //     }
+  
+  //     const decoded = decodeUserIdAndEmailFromToken(token);
+  //     if (!decoded) {
+  //       setIsLoading(false);
+  //       return;
+  //     }
+  
+  //     const timer = setTimeout(() => {
+  //       setUserData(defaultUser);
+  //       setIsLoading(false);
+  //     }, 10000);
+  
+  //     try {
+  //       const data = await fetchDataFromDB(decoded.userId);
+  //       clearTimeout(timer);
+        
+  //       if (data) {
+  //         setUserData(data);
+  //       } else {
+  //         setUserData(defaultUser);
+  //       }
+  //     } catch (error) {
+  //       console.error('Error fetching user data:', error);
+  //       setUserData(defaultUser);
+  //     } finally {
+  //       setIsLoading(false);
+  //     }
+  //   };
+  
+  //   getData();
+  // }, [token]);
 
   useEffect(() => {
-    const getData = async () => {
-      if (!token) {
-        setIsLoading(false);
-        return;
-      }
-  
-      const decoded = decodeUserIdAndEmailFromToken(token);
-      if (!decoded) {
-        setIsLoading(false);
-        return;
-      }
-  
-      const timer = setTimeout(() => {
-        setUserData(defaultUser);
-        setIsLoading(false);
-      }, 10000);
-  
+    const fetchUserData = async () => {
       try {
-        const data = await fetchDataFromDB(decoded.userId);
-        clearTimeout(timer);
-        
-        if (data) {
-          setUserData(data);
+        // Fetch user info from the new /me endpoint
+        const userResponse = await axios.get('http://localhost:3001/api/v1/auth/me', {
+          withCredentials: true,
+        });
+
+        if (userResponse.status === 200 && userResponse.data) {
+          const { userId } = userResponse.data;
+
+          // Fetch health data using the userId
+          const healthData = await fetchDataFromDB(userId);
+
+          if (healthData) {
+            setUserData({
+              ...userResponse.data,
+              ...healthData,
+            });
+          } else {
+            setUserData(defaultUser);
+          }
         } else {
+          console.error('Failed to fetch user data');
           setUserData(defaultUser);
         }
       } catch (error) {
@@ -123,48 +168,98 @@ export default function UserDashboard() {
         setIsLoading(false);
       }
     };
-  
-    getData();
-  }, [token]);
+
+    fetchUserData();
+  }, []);
+
+  // THIS HANDLE MODAL SAVE NOT NEEDED NEW UPDATED METHOD ADDED BELOW
+  // const handleModalSave = async (steps: string, waterIntake: string, caloriesBurnt: string) => {
+  //   if (!token) {
+  //     console.error('Token not available');
+  //     return;
+  //   }
+
+  //   const decoded = decodeUserIdAndEmailFromToken(token);
+
+  //   if (!decoded) {
+  //     console.error('Unable to decode token');
+  //     return;
+  //   }
+
+  //   const { userId } = decoded;
+
+  //   setUserData((prevState: UserData | null) => {
+  //     if (!prevState) return prevState;
+  //     const updatedData = {
+  //       ...prevState,
+  //       steps: parseInt(steps),
+  //       water_intake: parseInt(waterIntake),
+  //       calories_burnt: parseInt(caloriesBurnt),
+  //     };
+
+  //     axios.put(`http://localhost:3001/api/v1/users/${userId}/daily`, updatedData, {
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     })
+  //       .then((response) => {
+  //         console.log('Data saved successfully:', response.data);
+  //       })
+  //       .catch((error) => {
+  //         console.error('Error saving data:', error);
+  //       });
+
+  //     return updatedData;
+  //   });
+  // };
 
   const handleModalSave = async (steps: string, waterIntake: string, caloriesBurnt: string) => {
-    if (!token) {
-      console.error('Token not available');
-      return;
-    }
-
-    const decoded = decodeUserIdAndEmailFromToken(token);
-
-    if (!decoded) {
-      console.error('Unable to decode token');
-      return;
-    }
-
-    const { userId } = decoded;
-
-    setUserData((prevState: UserData | null) => {
-      if (!prevState) return prevState;
+    try {
+      // First, fetch the user info to get the userId
+      // console.log("1 : ", {steps, waterIntake, caloriesBurnt} );
+      
+      const userResponse = await axios.get('http://localhost:3001/api/v1/auth/me', {
+        withCredentials: true,
+      });
+  
+      if (userResponse.status !== 200 || !userResponse.data || !userResponse.data.userId) {
+        console.error('Failed to fetch user data or userId is missing');
+        return;
+      }
+  
+      const { userId } = userResponse.data;
+      // console.log("2 : ", userId);
+      
       const updatedData = {
-        ...prevState,
         steps: parseInt(steps),
-        water_intake: parseInt(waterIntake),
-        calories_burnt: parseInt(caloriesBurnt),
+        water: parseInt(waterIntake),
+        calorie: parseInt(caloriesBurnt),
       };
+      // console.log("3 : ", updatedData);
 
-      axios.put(`http://localhost:3001/api/v1/users/${userId}/daily`, updatedData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-        .then((response) => {
-          console.log('Data saved successfully:', response.data);
-        })
-        .catch((error) => {
-          console.error('Error saving data:', error);
+      const response = await axios.post(`http://localhost:3001/api/v1/users/${userId}/daily`, updatedData, {
+        withCredentials: true,
+      });
+      // console.log("4 : ", response.data);
+
+      if (response.status === 200) {
+        console.log('Data saved successfully:', response.data);
+        setUserData((prevData) => {
+          if (!prevData) return null;
+          return {
+            ...prevData,
+            steps: updatedData.steps,
+            water_intake: updatedData.water,
+            calories_burnt: updatedData.calorie
+          };
         });
-
-      return updatedData;
-    });
+        setIsModalOpen(false)
+      } else {
+        console.error('Error saving data:', response.data);
+      }
+    } catch (error) {
+      console.error('Error saving data:', error);
+    }
   };
 
   if (isLoading) {
