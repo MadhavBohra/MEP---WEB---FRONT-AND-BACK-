@@ -76,10 +76,10 @@
             <div className={styles.social}>
               <img src="/socialx.png" alt="x" />
               <img src="/socialfacebook.png" alt="facebook" />
-              <a href="https://www.instagram.com/myeasypharma?igsh=MW5wcHl3eWdoa25mOQ==">
+              <a href="https://www.instagram.com/myeasypharma?igsh=MW5wcHl3eWdoa25mOQ==" target="_blank">
               <img src="/socialinsta.png" alt="instagram" />
               </a>
-              <a href="https://in.linkedin.com/company/myeasypharma">
+              <a href="https://in.linkedin.com/company/myeasypharma" target="_blank">
               <img src="/sociallinkedin.png"  alt="linkedin" />
               </a>
             </div>

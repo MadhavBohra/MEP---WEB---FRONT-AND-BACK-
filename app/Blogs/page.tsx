@@ -73,6 +73,7 @@ const Blogs: React.FC = () => {
   };
 
   return (
+    
     <>
       <HeaderComponent />
       <div className="blogs-container">
