@@ -21,9 +21,10 @@ const HealthWellness: React.FC<{ className?: string }> = ({ className = "" }) =>
           <div className={styles.planHeading}>
             <div className={styles.deliveringHealthAndContainer}>
               <p className={styles.deliveringHealthAnd}>
-                Delivering Health and wellness
+                Delivering Health and wellness by AYUSH
+        
               </p>
-              <p className={styles.byAyush}>by AYUSH</p>
+              <p className={styles.byAyush}></p>
             </div>
           </div>
           <img

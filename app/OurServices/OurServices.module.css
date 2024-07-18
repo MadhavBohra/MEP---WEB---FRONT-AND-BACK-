@@ -31,6 +31,7 @@
   font-family: 'Lufga', sans-serif;
   margin: 0;
   color: aliceblue;
+  width:17vw;
 }
 .deliveringHealthAndContainer {
   font-family: 'Lufga', sans-serif;
@@ -46,7 +47,7 @@
 }
 .planHeading {
   align-self: stretch;
-  height: 60vh;
+  height: 56vh;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -171,6 +172,7 @@
   padding: 0;
   box-sizing: border-box;
   position: relative;
+  width: 17vw;
 }
 .corporateDescriptionItem {
   width: 5vw;
