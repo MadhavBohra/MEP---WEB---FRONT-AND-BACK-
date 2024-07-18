@@ -30,7 +30,7 @@ const LoginForm: React.FC = () => {
 
       if (response.status === 200) {
         localStorage.setItem('token', result.token);
-        window.location.href = result.redirectTo || '/UserDashboard';
+        window.location.href = result.redirectTo || '/LoginPage';
       } else {
         setErrorMessage(result.message);
       }

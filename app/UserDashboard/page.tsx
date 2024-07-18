@@ -1,5 +1,5 @@
 'use client';
-
+ 
 import React, { useEffect, useState } from 'react';
 import { StoreProvider } from '../StoreProvider';
 import UsernameCard from '../components/UsernameCard/UsernameCard';
@@ -19,7 +19,8 @@ import axios from 'axios';
 import {jwtDecode} from 'jwt-decode';
 import Modal from '../components/Modal/Modal';
 import cookie from 'cookie';
-
+import { clearTimeout } from 'timers';
+ 
 interface UserData {
   name: string;
   age: number;
@@ -31,7 +32,7 @@ interface UserData {
   steps?: number;
   water_intake?: number;
 }
-
+ 
 const defaultUser: UserData = {
   name: 'Manan Jain',
   age: 20,
@@ -43,7 +44,7 @@ const defaultUser: UserData = {
   steps: 0,
   water_intake: 0
 };
-
+ 
 // const decodeUserIdAndEmailFromToken = (token: string): { userId: string, email: string } | null => {
 //   try {
 //     const decoded: any = jwtDecode(token);
@@ -58,11 +59,11 @@ const defaultUser: UserData = {
 //     return null;
 //   }
 // };
-
-
+ 
+ 
 const fetchDataFromDB = async (userId: string): Promise<UserData | null> => {
   try {
-    const res = await axios.get(`http://localhost:3001/api/v1/users/${userId}/health`, {
+    const res = await axios.get(`http://localhost:3001/api/v1/users/${userId}/daily`, {
       withCredentials: true,
       timeout: 10000
     });
@@ -76,13 +77,13 @@ const fetchDataFromDB = async (userId: string): Promise<UserData | null> => {
     return null;
   }
 };
-
+ 
 export default function UserDashboard() {
   const [userData, setUserData] = useState<UserData | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   // const [token, setToken] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-
+ 
   // THIS TOKEN RRETRIEVAL METHOD NOT NEEDED
   // useEffect(() => {
   //   const fetchToken = async () => {
@@ -95,7 +96,7 @@ export default function UserDashboard() {
   //   };
   //   fetchToken();
   // }, []);
-
+ 
   // THIS OLD USE EFFECT USED TOKEN RETRIEVAL NOT NEEDED, ADDED THE UPDATED CODE BELOW
   // useEffect(() => {
   //   const getData = async () => {
@@ -134,26 +135,38 @@ export default function UserDashboard() {
   
   //   getData();
   // }, [token]);
-
+ 
   useEffect(() => {
     const fetchUserData = async () => {
+      // const timer = setTimeout(() => {
+      //   console.warn('Request timed out. Loading default user data.');
+      //   setUserData(defaultUser);
+      //   setIsLoading(false);
+      // }, 10000);
       try {
         // Fetch user info from the new /me endpoint
         const userResponse = await axios.get('http://localhost:3001/api/v1/auth/me', {
           withCredentials: true,
         });
-
+ 
         if (userResponse.status === 200 && userResponse.data) {
           const { userId } = userResponse.data;
-
+ 
           // Fetch health data using the userId
           const healthData = await fetchDataFromDB(userId);
-
+          console.log(healthData);
+          
           if (healthData) {
+            // clearTimeout(timer)
             setUserData({
               ...userResponse.data,
-              ...healthData,
+              // ...healthData,
+              calories_burnt : healthData.calorie,
+              steps : healthData.steps,
+              water_intake : healthData.water
             });
+            
+            
           } else {
             setUserData(defaultUser);
           }
@@ -166,28 +179,29 @@ export default function UserDashboard() {
         setUserData(defaultUser);
       } finally {
         setIsLoading(false);
+        // clearTimeout(timer)
       }
     };
-
+ 
     fetchUserData();
   }, []);
-
+ 
   // THIS HANDLE MODAL SAVE NOT NEEDED NEW UPDATED METHOD ADDED BELOW
   // const handleModalSave = async (steps: string, waterIntake: string, caloriesBurnt: string) => {
   //   if (!token) {
   //     console.error('Token not available');
   //     return;
   //   }
-
+ 
   //   const decoded = decodeUserIdAndEmailFromToken(token);
-
+ 
   //   if (!decoded) {
   //     console.error('Unable to decode token');
   //     return;
   //   }
-
+ 
   //   const { userId } = decoded;
-
+ 
   //   setUserData((prevState: UserData | null) => {
   //     if (!prevState) return prevState;
   //     const updatedData = {
@@ -196,7 +210,7 @@ export default function UserDashboard() {
   //       water_intake: parseInt(waterIntake),
   //       calories_burnt: parseInt(caloriesBurnt),
   //     };
-
+ 
   //     axios.put(`http://localhost:3001/api/v1/users/${userId}/daily`, updatedData, {
   //       headers: {
   //         Authorization: `Bearer ${token}`,
@@ -208,11 +222,11 @@ export default function UserDashboard() {
   //       .catch((error) => {
   //         console.error('Error saving data:', error);
   //       });
-
+ 
   //     return updatedData;
   //   });
   // };
-
+ 
   const handleModalSave = async (steps: string, waterIntake: string, caloriesBurnt: string) => {
     try {
       // First, fetch the user info to get the userId
@@ -236,12 +250,12 @@ export default function UserDashboard() {
         calorie: parseInt(caloriesBurnt),
       };
       // console.log("3 : ", updatedData);
-
+ 
       const response = await axios.post(`http://localhost:3001/api/v1/users/${userId}/daily`, updatedData, {
         withCredentials: true,
       });
       // console.log("4 : ", response.data);
-
+ 
       if (response.status === 200) {
         console.log('Data saved successfully:', response.data);
         setUserData((prevData) => {
@@ -261,11 +275,11 @@ export default function UserDashboard() {
       console.error('Error saving data:', error);
     }
   };
-
+ 
   if (isLoading) {
     return <div>Loading...</div>;
   }
-
+ 
   return (
     <StoreProvider>
       <div className={styles.background}>

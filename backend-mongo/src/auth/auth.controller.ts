@@ -49,16 +49,15 @@ async signup(
 
   @Get('me')
   @UseGuards(AuthGuard('jwt'))
-  async getCurrentUser(@Request() req) {
-    // The user object is attached to the request by the JWT strategy
-    console.log(req.user);
-    console.log("break");
-    
-    
-    return {
+  async getCurrentUser(@Request() req, @Res() res) {
+    // The user object is attached to the request by the JWT strategy    
+
+    const userData = {
       userId: req.user.userId,
       username: req.user.email,
       // Include any other necessary user data
     };
+
+    return res.status(200).json(userData)
   }
 }

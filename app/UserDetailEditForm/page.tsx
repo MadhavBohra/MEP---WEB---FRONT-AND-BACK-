@@ -11,7 +11,7 @@ import UserDashboardHeader from "../components/UserDashboardHeader/Header";
 import { auth, app } from "../firebase";
 import { getAuth, RecaptchaVerifier, signInWithPhoneNumber } from 'firebase/auth';
 import { useRouter } from 'next/router';
-import jwtDecode from 'jwt-decode';
+import {jwtDecode} from 'jwt-decode';
 import OtpModal from '../components/OTP Modal/otpmodal'; // Import the OtpModal component
 
 interface FormData {
