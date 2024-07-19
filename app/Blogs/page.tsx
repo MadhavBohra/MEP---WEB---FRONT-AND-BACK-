@@ -112,7 +112,7 @@ const Blogs: React.FC = () => {
                     {expandedBlogId === blog.id ? (
                       <div>
                         <pre>{blog.formattedContent}</pre>
-                        <button onClick={() => handlePdfClick(blog.pdfUrl)}>Read More</button>
+                        <button className='read-more' onClick={() => handlePdfClick(blog.pdfUrl)}>Read More</button>
                       </div>
                     ) : (
                       <p>{blog.formattedContent.split('\n')[0].substring(0, 100)}...</p>
