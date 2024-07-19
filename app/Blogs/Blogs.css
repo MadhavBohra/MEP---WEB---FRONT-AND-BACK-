@@ -88,3 +88,27 @@ html, body {
   color: #254336;
   font-size: 1em; /* Adjust font size */
 }
+.read-more {
+  display: inline-block;
+  padding: 8px 16px;
+  margin-top: 8px;
+  background-color: transparent;
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.read-more:hover {
+  background-color: #0056b3;
+}
+
+.read-more:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+}
