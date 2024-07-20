@@ -22,4 +22,7 @@ export class CreateUserHealthDto {
 
   @IsString()
   address: string;
+
+  @IsNumber()
+  phone: number;
 }

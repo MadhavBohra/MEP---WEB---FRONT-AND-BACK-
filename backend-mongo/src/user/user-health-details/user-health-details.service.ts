@@ -16,7 +16,8 @@ export class UserHealthDetailsService {
         height: number, 
         weight: number, 
         bloodGroup: string, 
-        address: string
+        address: string,
+        phone: number
     ){
         const newUser = new this.UserHealthModel({
             userId,
@@ -25,7 +26,8 @@ export class UserHealthDetailsService {
             height,
             weight,
             bloodGroup,
-            address
+            address,
+            phone : phone || null
         });
         const result = await newUser.save();
         console.log(result);
@@ -41,7 +43,8 @@ export class UserHealthDetailsService {
             height : user.height,
             weight : user.weight,
             bloodGroup : user.bloodGroup,
-            address : user.address
+            address : user.address,
+            phone : user.phone || null
         };
     }
 
@@ -59,7 +62,8 @@ export class UserHealthDetailsService {
         height: number, 
         weight: number, 
         bloodGroup: string, 
-        address: string
+        address: string,
+        phone: number
     ) {
         const updatedUser = await this.findUser(userId);
         if(name){
@@ -78,6 +82,9 @@ export class UserHealthDetailsService {
             updatedUser.bloodGroup = bloodGroup;
         }if(address){
             updatedUser.address = address;
+        }
+        if(phone){
+            updatedUser.phone = phone;
         }
         updatedUser.save();
     }

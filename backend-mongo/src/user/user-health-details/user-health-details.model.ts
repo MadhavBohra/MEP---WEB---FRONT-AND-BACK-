@@ -10,6 +10,7 @@ export const UserHealthSchema = new Schema({
     weight: { type: Number, required: true },
     bloodGroup: { type: String, required: true },
     address: { type: String, required: true },
+    phone: {type: Number}
 });
 
 export interface UserHealth extends mongoose.Document {
@@ -19,5 +20,6 @@ export interface UserHealth extends mongoose.Document {
     height: number,
     weight: number,
     bloodGroup: string,
-    address: string
+    address: string,
+    phone: number
 }

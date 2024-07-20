@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, UnauthorizedException, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, Param, Patch, Post, UnauthorizedException, UseGuards } from '@nestjs/common';
 import { UserHealthDetailsService } from './user-health-details.service';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { CreateUserHealthDto } from './dto/create-user-health.dto';
@@ -12,6 +12,7 @@ export class UserHealthDetailsController {
 
     @UseGuards(JwtAuthGuard)
     @Post(':id/health')
+    @HttpCode(200)
     async addUser(
         @Param('id') userId : string,
         @Body() createUserHealthDto: CreateUserHealthDto,
@@ -28,13 +29,16 @@ export class UserHealthDetailsController {
             createUserHealthDto.height,
             createUserHealthDto.weight,
             createUserHealthDto.bloodGroup,
-            createUserHealthDto.address
+            createUserHealthDto.address,
+            createUserHealthDto.phone
         );
         console.log(result);
     }
 
+
     @UseGuards(JwtAuthGuard)
     @Get(':id/health')
+    @HttpCode(200)
     async getUser(
         @Param('id') userId : string,
         @CurrentUser() user
@@ -48,6 +52,7 @@ export class UserHealthDetailsController {
 
     @UseGuards(JwtAuthGuard)
     @Delete(':id/health')
+    @HttpCode(200)
     async removeUser(
         @Param('id') userId : string,
         @CurrentUser() user
@@ -61,6 +66,7 @@ export class UserHealthDetailsController {
 
     @UseGuards(JwtAuthGuard)
     @Patch(':id/health')
+    @HttpCode(200)
     async updateUser(
         @Param('id') userId : string,
         @Body() updateUserHealthDto: UpdateUserHealthDto,
@@ -77,7 +83,8 @@ export class UserHealthDetailsController {
             updateUserHealthDto.height,
             updateUserHealthDto.weight,
             updateUserHealthDto.bloodGroup,
-            updateUserHealthDto.address
+            updateUserHealthDto.address,
+            updateUserHealthDto.phone
         );
         return null;
     }

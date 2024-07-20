@@ -28,4 +28,8 @@ export class UpdateUserHealthDto {
   @IsOptional()
   @IsString()
   address?: string;
+
+  @IsOptional()
+  @IsNumber()
+  phone?: number;
 }
