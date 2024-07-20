@@ -2,8 +2,10 @@
 
 import './Blogs.css';
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import LandingHeader from '../components/LandingHeader/Header';
 import UserDashboardHeader from '../components/UserDashboardHeader/Header';
+import PDFModal from '../components/PdfModal/PdfModal';
 
 interface Blog {
   id: number;
@@ -64,6 +66,7 @@ const formatContent = (content: string) => {
 
 const Blogs: React.FC = () => {
   const [blogs, setBlogs] = useState<Blog[]>([]);
+  const [selectedPdf, setSelectedPdf] = useState<string | null>(null);
   const [expandedBlogId, setExpandedBlogId] = useState<number | null>(null);
 
   useEffect(() => {
@@ -83,8 +86,12 @@ const Blogs: React.FC = () => {
     setExpandedBlogId(prev => (prev === id ? null : id));
   };
 
+  const handlePdfClick = (pdfUrl: string) => {
+    const fullPdfUrl = `${window.location.origin}${pdfUrl}`;
+    setSelectedPdf(fullPdfUrl);
+  };
+
   return (
-    
     <>
       <HeaderComponent />
       <div className="blogs-container">
@@ -103,7 +110,10 @@ const Blogs: React.FC = () => {
                   <h2>{blog.title}</h2>
                   <div className="text-content">
                     {expandedBlogId === blog.id ? (
-                      <pre>{blog.formattedContent}</pre>
+                      <div>
+                        <pre>{blog.formattedContent}</pre>
+                        <button className='read-more' onClick={() => handlePdfClick(blog.pdfUrl)}>Read More</button>
+                      </div>
                     ) : (
                       <p>{blog.formattedContent.split('\n')[0].substring(0, 100)}...</p>
                     )}
@@ -116,7 +126,10 @@ const Blogs: React.FC = () => {
                   <h2>{blog.title}</h2>
                   <div className="text-content">
                     {expandedBlogId === blog.id ? (
-                      <pre>{blog.formattedContent}</pre>
+                      <div>
+                        <pre>{blog.formattedContent}</pre>
+                        <button className='read-more' onClick={() => handlePdfClick(blog.pdfUrl)}>Read More</button>
+                      </div>
                     ) : (
                       <p>{blog.formattedContent.split('\n')[0].substring(0, 100)}...</p>
                     )}
@@ -130,6 +143,9 @@ const Blogs: React.FC = () => {
           </div>
         ))}
       </div>
+      {selectedPdf && (
+        <PDFModal pdfUrl={selectedPdf} onClose={() => setSelectedPdf(null)} />
+      )}
     </>
   );
 };
