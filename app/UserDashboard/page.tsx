@@ -77,6 +77,23 @@ const fetchDataFromDB = async (userId: string): Promise<UserData | null> => {
     return null;
   }
 };
+
+const fetchHealthDataFromDB = async (userId: string): Promise<UserData | null> => {
+  try {
+    const res = await axios.get(`http://localhost:3001/api/v1/users/${userId}/health`, {
+      withCredentials: true,
+      timeout: 10000
+    });
+    if (res.status === 200 && res.data) {
+      return res.data;
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.error('Error fetching data from the database:', error);
+    return null;
+  }
+};
  
 export default function UserDashboard() {
   const [userData, setUserData] = useState<UserData | null>(null);
@@ -153,17 +170,26 @@ export default function UserDashboard() {
           const { userId } = userResponse.data;
  
           // Fetch health data using the userId
-          const healthData = await fetchDataFromDB(userId);
-          console.log(healthData);
+          const dailyData = await fetchDataFromDB(userId);
+          // console.log(dailyData);
           
-          if (healthData) {
+          const healthData = await fetchHealthDataFromDB(userId);
+          // console.log(healthData);
+          
+
+          if (dailyData && healthData) {
             // clearTimeout(timer)
             setUserData({
               ...userResponse.data,
               // ...healthData,
-              calories_burnt : healthData.calorie,
-              steps : healthData.steps,
-              water_intake : healthData.water
+              name : healthData?.name,
+              height : healthData.height,
+              weight : healthData.weight,
+              blood_grp : healthData.bloodGroup,
+              address : healthData.address,
+              calories_burnt : dailyData.calorie,
+              steps : dailyData.steps,
+              water_intake : dailyData.water
             });
             
             

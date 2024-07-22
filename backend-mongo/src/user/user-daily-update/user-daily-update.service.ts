@@ -44,38 +44,67 @@ export class UserDailyDetailsService {
     }
 
     async getChartData(userId: string) {
-        let idToSearch = new mongoose.Types.ObjectId(userId);
-        const userExists = await this.UserDailyModel.findOne({ userId }).exec();
-        console.log(userExists);
-        
-        if (!userExists) {
-          throw new NotFoundException('User not found');
-        }    
-        return await this.UserDailyModel.aggregate([
-          { $match: { userId : idToSearch } },
-          {
-            $group: {
-              _id: {
-                month: { $month: '$date' },
-                year: { $year: '$date' }
-              },
-              average_steps: { $avg: '$steps' },
-              average_calorie: { $avg: '$calorie' },
-              average_water: { $avg: '$water' },
-            }
-          },
-          {
-            $project: {
-              month: '$_id.month',
-              year: '$_id.year',
-              average_steps: 1,
-              average_calorie: 1,
-              average_water: 1,
-              _id: 0
-            }
-          },
-          { $sort: { year: 1, month: 1 } }
-        ]).exec();
+      let idToSearch = new mongoose.Types.ObjectId(userId);
+      const userExists = await this.UserDailyModel.findOne({ userId }).exec();
+      
+      if (!userExists) {
+        throw new NotFoundException('User not found');
       }
+      
+      const currentYear = new Date().getFullYear();
+      
+      const result = await this.UserDailyModel.aggregate([
+        { 
+          $match: { 
+            userId: idToSearch,
+            date: {
+              $gte: new Date(`${currentYear}-01-01`),
+              $lt: new Date(`${currentYear + 1}-01-01`)
+            }
+          } 
+        },
+        {
+          $group: {
+            _id: { month: { $month: '$date' } },
+            average_steps: { $avg: '$steps' },
+            average_calorie: { $avg: '$calorie' },
+            average_water: { $avg: '$water' },
+          }
+        },
+        {
+          $project: {
+            month: {
+              $let: {
+                vars: {
+                  monthsInString: [null, 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                },
+                in: { $arrayElemAt: ['$$monthsInString', '$_id.month'] }
+              }
+            },
+            water: { $round: ['$average_water', 2] },
+            steps: { $round: ['$average_steps', 2] },
+            Calories: { $round: ['$average_calorie', 2] },
+            _id: 0
+          }
+        },
+        { $sort: { '_id.month': 1 } }
+      ]).exec();
+    
+      // Create a map of existing data
+      const dataMap = new Map(result.map(item => [item.month, item]));
+    
+      // Create the final dataset with default values for missing months
+      const finalDataset = [
+        'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+        'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+      ].map(month => ({
+        month,
+        water: dataMap.get(month)?.water ?? 0,
+        steps: dataMap.get(month)?.steps ?? 0,
+        Calories: dataMap.get(month)?.Calories ?? 0
+      }));
+    
+      return finalDataset;
+    }
     
 }

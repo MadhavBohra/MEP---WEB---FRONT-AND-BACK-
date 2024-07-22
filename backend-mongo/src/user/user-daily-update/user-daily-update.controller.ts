@@ -32,6 +32,7 @@ export class UserDailyDetailsController {
 
     @UseGuards(JwtAuthGuard)
     @Get(':id/daily')
+    @HttpCode(200)
     async getUser(
         @Param('id') userId : string,
         @CurrentUser() user
@@ -45,6 +46,7 @@ export class UserDailyDetailsController {
 
     @UseGuards(JwtAuthGuard)
     @Get(':id/daily/chart')
+    @HttpCode(200)
     async getChartData(
         @Param('id') userId: string,
         @CurrentUser() user
