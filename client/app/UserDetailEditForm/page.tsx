@@ -146,14 +146,14 @@ const UserDetailsForm: React.FC = () => {
  
   const getData = async () => {
     try {
-      const userRes = await axios.get(`http://localhost:3001/api/v1/auth/me` , {
+      const userRes = await axios.get(`https://mep-web-front-and-back-etqn.onrender.com/api/v1/auth/me` , {
         withCredentials: true,
       });
 
       if(userRes.status === 200 && userRes.data){
         const { userId } = userRes.data;
       
-      const res = await axios.get(`http://localhost:3001/api/v1/users/${userId}/health`, {
+      const res = await axios.get(`https://mep-web-front-and-back-etqn.onrender.com/api/v1/users/${userId}/health`, {
         withCredentials: true
       });
       const userData = res.data;
@@ -267,7 +267,7 @@ const UserDetailsForm: React.FC = () => {
         phone : formData.phone
       }
 
-      const userRes = await axios.get(`http://localhost:3001/api/v1/auth/me`, {
+      const userRes = await axios.get('https://mep-web-front-and-back-etqn.onrender.com/api/v1/auth/me`, {
         withCredentials: true
       });
       
@@ -277,7 +277,7 @@ const UserDetailsForm: React.FC = () => {
         console.log(userId);
         
         
-        const res = await axios.post(`http://localhost:3001/api/v1/users/${userId}/health`, updatedData, {
+        const res = await axios.post('https://mep-web-front-and-back-etqn.onrender.com/api/v1/users/${userId}/health`, updatedData, {
         // headers: {
         //   'Content-Type': 'multipart/form-data',
         // },
