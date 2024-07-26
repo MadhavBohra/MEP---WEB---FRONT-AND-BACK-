@@ -42,6 +42,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
 export default handler;
 
+// Updated configuration
 export const config = {
   api: {
     bodyParser: {
