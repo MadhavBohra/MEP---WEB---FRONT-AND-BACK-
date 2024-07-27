@@ -63,7 +63,7 @@ const defaultUser: UserData = {
  
 const fetchDataFromDB = async (userId: string): Promise<UserData | null> => {
   try {
-    const res = await axios.get(`https://mep-web-front-and-back-etqn.onrender.com/api/v1/users/${userId}/daily`, {
+    const res = await axios.get(`https://mep-web-front-and-back-6.onrender.com/api/v1/users/${userId}/daily`, {
       withCredentials: true,
       timeout: 10000
     });

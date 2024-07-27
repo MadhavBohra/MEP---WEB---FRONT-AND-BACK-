@@ -277,7 +277,7 @@ const UserDetailsForm: React.FC = () => {
         console.log(userId);
         
         
-        const res = await axios.post('https://mep-web-front-and-back-etqn.onrender.com/api/v1/users/${userId}/health`, updatedData, {
+        const res = await axios.post('https://mep-web-front-and-back-6.onrender.com/api/v1/users/${userId}/health`, updatedData, {
         // headers: {
         //   'Content-Type': 'multipart/form-data',
         // },

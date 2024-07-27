@@ -47,7 +47,7 @@ const LoginForm: React.FC = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await fetch('https://mep-web-front-and-back-etqn.onrender.com/api/v1/auth/login', {
+      const response = await fetch('https://mep-web-front-and-back-6.onrender.com/api/v1/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
